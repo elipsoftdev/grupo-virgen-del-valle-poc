@@ -17,54 +17,80 @@ WhatsApp personalizados, planes de previsión, presencia nacional, un
 asistente digital 24/7 y un módulo de obituarios — dejando además el terreno
 preparado para una futura arquitectura con backend, CRM e IA real.
 
+## Arquitectura
+
+El Home es una landing comercial: convierte. El contenido institucional
+extenso (historia completa, misión, visión) vive aparte, en `/nosotros.html`.
+
+```text
+index.html               → Home comercial: hero, servicios, teaser de
+                            cotización, atención inmediata, previsión,
+                            obituarios + solicitar obituario, sedes,
+                            instalaciones, CTA final
+cotizar.html              → Cotizador guiado completo (soporta ?tipo=)
+obituarios.html           → Listado completo de obituarios/homenajes
+solicitar-obituario.html  → Formulario de solicitud de publicación
+nosotros.html              → Historia, misión, visión, presencia nacional
+```
+
 ## Funcionalidades demostradas
 
-- **Header y navegación responsive** con acceso permanente a "Atención 24/7".
-- **Hero** con CTAs diferenciados: asistencia inmediata, conocer servicios,
-  solicitar cotización.
-- **Trayectoria institucional** (+70 años) con fotografía histórica.
-- **Misión y visión oficiales**, presentadas tal como están publicadas por la
-  empresa (no reescritas).
-- **Servicios** organizados en cuatro bloques: inmediatos, destino final,
-  complementarios y previsión.
-- **Previsión funeraria**, con enfoque en planificación anticipada (sin
-  precios ni condiciones inventadas).
-- **Cotizador guiado** de 4 pasos que genera un resumen y un mensaje de
-  WhatsApp personalizado según las respuestas.
+- **Header y navegación responsive** (Inicio, Servicios, Previsión,
+  Obituarios, Sedes, Cotizar, Nosotros) con acceso permanente a
+  "Atención 24/7".
+- **Hero comercial** con jerarquía de CTAs: Cotizar un servicio (dominante),
+  Necesito asistencia ahora, Ver nuestros servicios.
+- **Servicios** en seis bloques con detalle ampliado en modal y acceso
+  directo a cotizar cada uno.
+- **Cotizador guiado** en página propia: Servicio → Ubicación → Detalles →
+  Contacto → Resultado, con preguntas dinámicas por tipo de servicio y dos
+  CTAs de WhatsApp (enviar solicitud / solicitar llamada).
+- **Atención inmediata** diferenciada del cotizador, para saltar directo a
+  WhatsApp o pedir contacto.
+- **Previsión funeraria**, resumida en tres pilares (sin precios ni
+  condiciones inventadas).
+- **Obituarios y homenajes**: teaser en el Home, listado completo, y un
+  flujo de solicitud de publicación con validación, resumen y confirmación
+  simulada (sin backend).
 - **Presencia nacional**: sedes en Cumaná (principal), Puerto La Cruz, Anaco
-  y Distrito Capital.
-- **Galería de instalaciones.**
-- **Obituarios y homenajes** (módulo demostrativo, datos 100% ficticios).
+  y Distrito Capital, cada una con "Ver sede", "Cómo llegar" y "Contactar".
+- **Misión y visión oficiales**, presentadas tal como están publicadas por la
+  empresa (no reescritas), en `/nosotros.html`.
 - **Asistente digital 24/7** simulado mediante árbol conversacional, con
-  escalamiento a WhatsApp/asesor humano.
+  enlace directo al cotizador y escalamiento a WhatsApp/asesor humano desde
+  cualquier página.
+- Sistema de botones e iconografía propios, con microinteracciones
+  (elevación, desplazamiento de ícono) y revelado progresivo al hacer scroll,
+  respetando `prefers-reduced-motion`.
 - Diseño responsive verificado en móvil (360–412px) y desktop
-  (1366–1920px), con foco en accesibilidad básica (`prefers-reduced-motion`,
-  navegación por teclado, contraste, `aria-label`s).
+  (1366–1920px), con foco en accesibilidad básica (navegación por teclado,
+  contraste, `aria-label`s).
 
 ## Tecnologías
 
-HTML, CSS y JavaScript vanilla — sin frameworks ni build step. Elegido
-deliberadamente para minimizar complejidad y garantizar una publicación
-simple y confiable en GitHub Pages.
+HTML, CSS y JavaScript vanilla — sin frameworks ni build step. Cada página
+es un archivo HTML independiente que comparte los mismos `css/` y `js/`.
+Elegido deliberadamente para minimizar complejidad y garantizar una
+publicación simple y confiable en GitHub Pages.
 
 ```text
-index.html
 css/
-  tokens.css       → design tokens (colores, tipografía, espaciado)
-  main.css         → layout base, header, hero, footer
-  components.css   → cards, cotizador, asistente, modales, galería
+  tokens.css       → design tokens (colores, tipografía, espaciado, motion)
+  main.css         → layout base, header, hero, botones, footer
+  components.css   → cards, cotizador, asistente, modales, formularios
 data/
   config.js            → configuración centralizada (WhatsApp, correo, etc.)
   company.js           → contenido institucional (misión, visión, trayectoria)
   locations.js         → sedes
-  services.js          → catálogo de servicios
+  services.js          → catálogo de servicios (Home)
   demo-obituaries.js   → DEMO_DATA — obituarios ficticios
 js/
-  icons.js         → set de iconos SVG en línea
-  render.js        → renderizado de contenido dinámico desde data/
-  quote.js         → lógica del cotizador guiado
-  assistant.js     → árbol conversacional del asistente digital
-  main.js          → navegación, scroll reveal, inicialización
+  icons.js             → set de iconos SVG en línea
+  render.js            → renderizado de contenido dinámico desde data/
+  quote.js             → lógica del cotizador guiado
+  assistant.js         → árbol conversacional del asistente digital
+  obituary-request.js  → validación y confirmación del formulario de obituario
+  main.js              → navegación, scroll reveal, inicialización
 docs/
   recomendaciones-produccion.md
 ```
