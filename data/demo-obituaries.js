@@ -9,7 +9,7 @@
 const DEMO_OBITUARIES = [
   {
     id: "demo-1",
-    name: "Carmen Rosa Delgado (nombre ficticio)",
+    name: "Carmen Rosa Delgado",
     years: "1948 — 2026",
     city: "Cumaná",
     venue: "Sala de Velación Principal, Sede Cumaná",
@@ -19,7 +19,7 @@ const DEMO_OBITUARIES = [
   },
   {
     id: "demo-2",
-    name: "José Gregorio Marcano (nombre ficticio)",
+    name: "José Gregorio Marcano",
     years: "1955 — 2026",
     city: "Puerto La Cruz",
     venue: "Salón de Velación 2, Agencia Puerto La Cruz",
@@ -28,7 +28,7 @@ const DEMO_OBITUARIES = [
   },
   {
     id: "demo-3",
-    name: "Ana Teresa Villarroel (nombre ficticio)",
+    name: "Ana Teresa Villarroel",
     years: "1962 — 2026",
     city: "Anaco",
     venue: "Sala de Estar, Agencia Anaco",
@@ -37,7 +37,7 @@ const DEMO_OBITUARIES = [
   },
   {
     id: "demo-4",
-    name: "Rafael Antonio Guevara (nombre ficticio)",
+    name: "Rafael Antonio Guevara",
     years: "1940 — 2026",
     city: "Caracas",
     venue: "Atención Distrito Capital",

@@ -79,19 +79,18 @@ function observeNewReveals() {
   initReveal();
 }
 
-function initObituaryModal() {
-  const overlay = document.getElementById("obituary-modal");
-  if (!overlay) return;
-  const closeBtn = overlay.querySelector(".modal__close");
+function initModals() {
+  document.querySelectorAll(".modal-overlay").forEach((overlay) => {
+    const closeBtn = overlay.querySelector(".modal__close");
+    const close = () => overlay.classList.remove("is-open");
 
-  const close = () => overlay.classList.remove("is-open");
-
-  closeBtn.addEventListener("click", close);
-  overlay.addEventListener("click", (e) => {
-    if (e.target === overlay) close();
-  });
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && overlay.classList.contains("is-open")) close();
+    closeBtn.addEventListener("click", close);
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) close();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && overlay.classList.contains("is-open")) close();
+    });
   });
 }
 
@@ -101,12 +100,13 @@ document.addEventListener("DOMContentLoaded", () => {
   renderLocations();
   renderGallery();
   renderObituaries();
+  renderImmediateHelp();
   renderContact();
   renderFooter();
 
   initNav();
   initScrollTo();
-  initObituaryModal();
+  initModals();
   initQuoter();
   initAssistant();
 

@@ -1,50 +1,59 @@
 /**
- * Catálogo de servicios organizado conceptualmente en cuatro bloques.
+ * Servicios mostrados en el Home: seis bloques comerciales simples, cada
+ * uno con su detalle ampliado (mostrado en un modal ligero, sin necesidad
+ * de una página aparte) y su tipo de cotización asociado.
+ *
  * Algunos servicios se presentan como parte del concepto comercial de la
  * PoC y no deben interpretarse como una oferta contractual vigente: el
  * catálogo real debe ser validado por el cliente antes de producción.
  */
-const SERVICE_CATEGORIES = [
+const SERVICES = [
   {
-    id: "inmediatos",
-    title: "Servicios inmediatos",
-    description: "Disponibles las 24 horas, los 365 días del año.",
-    icon: "clock",
-    items: [
-      "Atención funeraria 24/7",
-      "Velación",
-      "Traslado del fallecido",
-      "Traslados nacionales",
-      "Preparación",
-      "Carroza fúnebre",
-      "Trámites y diligencias",
-    ],
-  },
-  {
-    id: "destino-final",
-    title: "Destino final",
-    description: "Acompañamiento en cada alternativa, con la información clara para decidir con calma.",
-    icon: "leaf",
-    items: ["Inhumación", "Cremación", "Cementerio municipal", "Cementerios privados"],
-  },
-  {
-    id: "complementarios",
-    title: "Servicios complementarios",
-    description: "Todo lo que rodea a la despedida, cuidado al detalle.",
+    id: "servicio-funerario",
+    title: "Servicio funerario",
     icon: "heart",
-    items: [
-      "Asesoría integral",
-      "Servicios religiosos",
-      "Arreglos florales",
-      "Atención a familiares",
-      "Salas y espacios de descanso",
-    ],
+    desc: "Atención inmediata, velación y acompañamiento completo en el momento que más lo necesita.",
+    items: ["Atención funeraria 24/7", "Velación", "Preparación", "Carroza fúnebre", "Trámites y diligencias"],
+    quoteType: "servicio-ahora",
   },
   {
-    id: "prevision",
-    title: "Previsión",
-    description: "Planificar hoy para proteger la tranquilidad de quienes más queremos.",
+    id: "traslados",
+    title: "Traslados",
+    icon: "truck",
+    desc: "Traslados nacionales con unidades modernas, dentro y entre ciudades.",
+    items: ["Traslado del fallecido", "Traslados nacionales", "Coordinación entre sedes"],
+    quoteType: "traslado",
+  },
+  {
+    id: "cremacion",
+    title: "Cremación",
+    icon: "flame",
+    desc: "Acompañamiento claro en cada alternativa, con la información necesaria para decidir con calma.",
+    items: ["Proceso de cremación", "Entrega de cenizas", "Alternativas de destino final"],
+    quoteType: "cremacion",
+  },
+  {
+    id: "cementerio",
+    title: "Cementerio",
+    icon: "leaf",
+    desc: "Orientación sobre alternativas de cementerio municipal y privado según su ciudad.",
+    items: ["Inhumación", "Cementerio municipal", "Cementerios privados"],
+    quoteType: "cementerio",
+  },
+  {
+    id: "prevision-funeraria",
+    title: "Previsión funeraria",
     icon: "shield",
-    items: ["Planes funerarios", "Previsión familiar", "Convenios", "Atención corporativa"],
+    desc: "Planifique hoy y proteja la tranquilidad de quienes más quiere.",
+    items: ["Planes individuales", "Planes familiares", "Convenios corporativos"],
+    quoteType: "prevision",
+  },
+  {
+    id: "asesoria",
+    title: "Asesoría y trámites",
+    icon: "users",
+    desc: "Acompañamiento en gestiones legales y apoyo profesional en cada paso.",
+    items: ["Asesoría integral", "Servicios religiosos", "Atención a familiares"],
+    quoteType: "otro",
   },
 ];

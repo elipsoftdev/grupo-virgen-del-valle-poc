@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Grupo Virgen del Valle | Acompañamiento funerario 24/7 en Venezuela</title>
-  <meta name="description" content="Grupo Virgen del Valle: más de siete décadas acompañando a las familias venezolanas. Atención funeraria 24/7, traslados nacionales, cremación, previsión familiar y presencia en Caracas, Cumaná, Puerto La Cruz y Anaco." />
+  <meta name="description" content="Grupo Virgen del Valle: más de siete décadas acompañando a las familias venezolanas. Cotice en minutos, escríbanos por WhatsApp o solicite atención inmediata. Presencia en Caracas, Cumaná, Puerto La Cruz y Anaco." />
   <link rel="canonical" href="https://elipsoftdev.github.io/grupo-virgen-del-valle-poc/" />
 
   <meta property="og:type" content="website" />
@@ -28,7 +28,7 @@
 
   <header class="site-header">
     <div class="container site-header__bar">
-      <a class="brand" href="#inicio">
+      <a class="brand" href="index.html">
         <img src="assets/img/logo.png" alt="Logo Grupo Virgen del Valle" width="120" height="66" />
         <span class="brand-text">Grupo Virgen del Valle<small>Servicio funerario · Desde hace más de 70 años</small></span>
       </a>
@@ -39,22 +39,22 @@
 
       <nav id="main-nav" class="main-nav" aria-label="Navegación principal">
         <ul class="main-nav__list">
-          <li><a href="#inicio">Inicio</a></li>
-          <li><a href="#nosotros">Nosotros</a></li>
-          <li><a href="#servicios">Servicios</a></li>
-          <li><a href="#prevision">Previsión</a></li>
-          <li><a href="#sedes">Sedes</a></li>
-          <li><a href="#obituarios">Obituarios</a></li>
-          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="index.html#servicios" data-scroll-to="servicios">Servicios</a></li>
+          <li><a href="index.html#prevision" data-scroll-to="prevision">Previsión</a></li>
+          <li><a href="obituarios.html">Obituarios</a></li>
+          <li><a href="index.html#sedes" data-scroll-to="sedes">Sedes</a></li>
+          <li><a href="cotizar.html">Cotizar</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
         </ul>
         <div class="header-actions">
           <span class="header-badge"><span class="dot"></span> Atención 24/7</span>
-          <a href="#" class="btn btn-primary btn-sm" data-open-assistant="urgent">Necesito asistencia ahora</a>
+          <a href="#" class="btn btn-emergency btn-sm" data-open-assistant="urgent">Necesito asistencia ahora</a>
         </div>
       </nav>
       <div class="header-actions header-actions--desktop">
         <span class="header-badge"><span class="dot"></span> Atención 24/7</span>
-        <a href="#" class="btn btn-primary btn-sm" data-open-assistant="urgent">Necesito asistencia ahora</a>
+        <a href="#" class="btn btn-emergency btn-sm" data-open-assistant="urgent">Necesito asistencia ahora</a>
       </div>
     </div>
   </header>
@@ -68,9 +68,9 @@
         <h1 data-slogan>Estamos aquí cuando más nos necesitas.</h1>
         <p class="lead" data-subtitle>Más de siete décadas acompañando a las familias venezolanas en los momentos más difíciles, con respeto, experiencia y humanidad.</p>
         <div class="hero__ctas">
-          <a href="#" class="btn btn-primary" data-open-assistant="urgent">Necesito asistencia ahora</a>
-          <a href="#servicios" class="btn btn-outline" data-scroll-to="servicios">Conocer nuestros servicios</a>
-          <a href="#cotizador" class="btn btn-outline" data-scroll-to="cotizador">Solicitar una cotización</a>
+          <a href="cotizar.html" class="btn btn-primary btn-lg">Cotizar un servicio <svg class="icon icon--arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="#" class="btn btn-emergency" data-open-assistant="urgent">Necesito asistencia ahora</a>
+          <a href="#servicios" class="btn btn-arrow" data-scroll-to="servicios">Ver nuestros servicios <svg class="icon icon--arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
         <div class="hero__stats">
           <div class="hero__stat"><strong>+70</strong><span>Años de trayectoria</span></div>
@@ -80,107 +80,116 @@
       </div>
     </section>
 
-    <!-- TRAYECTORIA -->
-    <section class="section" id="nosotros">
-      <div class="container trayectoria">
-        <div>
-          <span class="section-eyebrow">Nuestra historia</span>
-          <h2 data-trayectoria-title>Más de siete décadas acompañando a las familias venezolanas</h2>
-          <p data-trayectoria-body>Una trayectoria construida sobre la confianza, el respeto y el acompañamiento a las familias en uno de los momentos más íntimos de la vida.</p>
-          <p class="trayectoria__note" data-historic-tagline>“Brindando paz espiritual y tranquilidad en los momentos más difíciles por más de siete décadas.”</p>
-        </div>
-        <div class="trayectoria__media">
-          <img src="assets/img/fachada-historica.jpg" alt="Fachada histórica de la primera sede de Grupo Virgen del Valle" width="800" height="1000" loading="lazy" />
-          <div class="trayectoria__badge">
-            <strong>+70</strong>
-            <span>Años de tradición</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- MISIÓN Y VISIÓN -->
-    <section class="section section--surface section--tight">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-eyebrow">Quiénes somos</span>
-          <h2>Misión y visión institucional</h2>
-        </div>
-        <div class="mv-grid">
-          <article class="card mv-card">
-            <div class="icon-badge" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-9.7-9.2C.7 7.6 2.6 4 6.3 4c2.1 0 3.7 1.1 4.7 2.7C12 5.1 13.6 4 15.7 4c3.7 0 5.6 3.6 4 7.3C19.5 15.9 12 20.5 12 20.5Z"/></svg></div>
-            <h3>Misión</h3>
-            <p data-mission>Ofrecer un servicio funerario de excelencia que brinde la paz espiritual y tranquilidad personal necesaria en momentos difíciles.</p>
-          </article>
-          <article class="card mv-card">
-            <div class="icon-badge" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15 9-2 6-6 2 2-6z"/></svg></div>
-            <h3>Visión</h3>
-            <p data-vision>Fortalecer nuestro liderazgo nacional a través de la mística, buena atención, responsabilidad y absoluta seriedad.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
     <!-- SERVICIOS -->
     <section class="section" id="servicios">
       <div class="container">
-        <div class="section-header">
-          <span class="section-eyebrow">Cómo acompañamos</span>
-          <h2>Servicios pensados para cada momento</h2>
-          <p>Desde la asistencia inmediata hasta la previsión familiar, un mismo acompañamiento en cada etapa.</p>
+        <div class="section-header reveal">
+          <span class="section-eyebrow">Cómo podemos ayudarle</span>
+          <h2>¿Qué necesita en este momento?</h2>
+          <p>Seis formas de acompañarle, desde la atención inmediata hasta la planificación anticipada.</p>
         </div>
         <div class="services-grid" id="services-grid"></div>
+      </div>
+    </section>
+
+    <!-- COTIZADOR (teaser) -->
+    <section class="section section--surface" id="cotizar-teaser">
+      <div class="container">
+        <div class="quote-teaser reveal">
+          <div class="quote-teaser__copy">
+            <span class="section-eyebrow">Cotizador guiado</span>
+            <h2>Solicita una cotización</h2>
+            <p>Cuéntenos qué necesita y le orientamos en pocos pasos.</p>
+            <span class="quote-teaser__badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Toma menos de 1 minuto</span>
+            <div class="quote-teaser__cta">
+              <a href="cotizar.html" class="btn btn-primary btn-lg">Comenzar cotización <svg class="icon icon--arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </div>
+          <ol class="quote-teaser__steps">
+            <li><span>1</span>Servicio</li>
+            <li><span>2</span>Ubicación</li>
+            <li><span>3</span>Detalles</li>
+            <li><span>4</span>Contacto</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ATENCIÓN INMEDIATA -->
+    <section class="section" id="atencion-inmediata">
+      <div class="container">
+        <div class="immediate-help reveal">
+          <div class="icon-badge immediate-help__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h3l1.5 4.5L8 9.5a12 12 0 0 0 6.5 6.5l2-2.5L21 15v3a2 2 0 0 1-2 2C10.7 20 4 13.3 4 5a2 2 0 0 1 2-2Z"/></svg></div>
+          <div class="immediate-help__copy">
+            <h2>¿Necesita asistencia ahora?</h2>
+            <p>Nuestro equipo está disponible las 24 horas para orientarle.</p>
+          </div>
+          <div class="immediate-help__actions" id="immediate-help-actions"></div>
+        </div>
       </div>
     </section>
 
     <!-- PREVISIÓN -->
     <section class="section section--primary" id="prevision">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header reveal">
           <span class="section-eyebrow">Prever también es cuidar</span>
           <h2>Planifique hoy la tranquilidad de su familia</h2>
-          <p>Anticiparse permite decidir con calma, no bajo presión.</p>
         </div>
         <div class="prevision-grid">
-          <div class="prevision-card">
-            <h3>Evite decisiones bajo presión</h3>
-            <p>Planificar anticipadamente permite que la familia tenga mayor claridad cuando llegue un momento difícil.</p>
+          <div class="prevision-card reveal">
+            <h3>Planificación</h3>
+            <p>Evita decisiones bajo presión.</p>
           </div>
-          <div class="prevision-card">
-            <h3>Proteja la tranquilidad familiar</h3>
-            <p>Permite conocer y organizar previamente las alternativas disponibles.</p>
+          <div class="prevision-card reveal">
+            <h3>Tranquilidad</h3>
+            <p>Conoce anticipadamente tus alternativas.</p>
           </div>
-          <div class="prevision-card">
-            <h3>Estamos para acompañarle</h3>
-            <p>Orientación durante el proceso y acceso a los servicios necesarios.</p>
+          <div class="prevision-card reveal">
+            <h3>Acompañamiento</h3>
+            <p>Un asesor puede orientarte según tus necesidades.</p>
           </div>
         </div>
         <div class="prevision-ctas">
-          <a href="#servicios" class="btn btn-outline" data-scroll-to="servicios">Conocer planes</a>
+          <a href="nosotros.html#prevision-info" class="btn btn-outline">Conocer planes</a>
           <a href="#" class="btn btn-outline" data-open-assistant="prevision">Solicitar asesor</a>
-          <a href="#cotizador" class="btn btn-primary" data-scroll-to="cotizador">Cotizar previsión</a>
+          <a href="cotizar.html?tipo=prevision" class="btn btn-primary">Cotizar previsión</a>
         </div>
       </div>
     </section>
 
-    <!-- COTIZADOR -->
-    <section class="section section--surface" id="cotizador">
+    <!-- OBITUARIOS -->
+    <section class="section section--surface" id="obituarios">
       <div class="container">
-        <div class="section-header">
-          <span class="section-eyebrow">Cotizador guiado</span>
-          <h2>¿Cómo podemos ayudarle?</h2>
-          <p>Responda unas preguntas breves y le prepararemos un mensaje directo para nuestro equipo.</p>
+        <div class="section-header reveal">
+          <span class="section-eyebrow">Homenajes</span>
+          <h2>Obituarios y homenajes</h2>
+          <p>Un espacio para acompañar e informar a familiares y allegados.</p>
         </div>
-        <div class="quoter" id="quoter"></div>
+        <div class="obituaries-grid" id="obituaries-grid" data-limit="4"></div>
+        <div class="section-cta reveal">
+          <a href="obituarios.html" class="btn btn-arrow">Ver todos los obituarios <svg class="icon icon--arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+
+        <div class="obituary-request-banner reveal">
+          <div>
+            <h3>¿Desea publicar un obituario?</h3>
+            <p>Solicite la publicación de un homenaje para informar a familiares y allegados sobre los actos velatorios y ceremonias.</p>
+          </div>
+          <div class="obituary-request-banner__ctas">
+            <a href="solicitar-obituario.html" class="btn btn-primary">Solicitar publicación</a>
+            <a href="#" class="btn btn-ghost" data-open-assistant="human">Hablar con un asesor</a>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- SEDES -->
     <section class="section" id="sedes">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header reveal">
           <span class="section-eyebrow">Presencia nacional</span>
-          <h2>Un grupo funerario con cobertura en varias regiones del país</h2>
+          <h2>Encuentre atención cerca de usted</h2>
           <p>Sede principal en Cumaná, con agencias en Puerto La Cruz, Anaco y atención en el Distrito Capital.</p>
         </div>
         <div class="locations-grid" id="locations-grid"></div>
@@ -190,40 +199,21 @@
     <!-- INSTALACIONES -->
     <section class="section section--surface" id="instalaciones">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header reveal">
           <span class="section-eyebrow">Nuestros espacios</span>
-          <h2>Instalaciones pensadas para el confort y la calma</h2>
+          <h2>Espacios pensados para acompañar a las familias</h2>
         </div>
         <div class="gallery-grid" id="gallery-grid"></div>
-        <p class="gallery-note">Estas fotografías corresponden al banco institucional actual. Se recomienda una nueva sesión fotográfica profesional para la versión definitiva — ver <code>docs/recomendaciones-produccion.md</code>.</p>
       </div>
     </section>
 
-    <!-- OBITUARIOS -->
-    <section class="section" id="obituarios">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-eyebrow">Homenajes</span>
-          <h2>Obituarios y homenajes</h2>
-          <p>Módulo demostrativo con datos completamente ficticios (<code>DEMO_DATA</code>), pensado para evolucionar hacia un módulo administrable.</p>
-        </div>
-        <div class="obituaries-grid" id="obituaries-grid"></div>
-      </div>
-    </section>
-
-    <!-- CONTACTO -->
-    <section class="section section--surface" id="contacto">
-      <div class="container contact-grid">
-        <div>
-          <span class="section-eyebrow">Contáctenos</span>
-          <h2>Estamos disponibles cuando nos necesite</h2>
-          <p>Escríbanos por WhatsApp para recibir atención personalizada, o utilice el cotizador para una solicitud más detallada.</p>
-          <div class="contact-list" id="contact-info"></div>
-        </div>
-        <div class="card" style="padding: var(--space-lg);">
-          <h3>¿Prefiere una respuesta guiada?</h3>
-          <p style="color: var(--color-text-muted);">Nuestro asistente digital puede orientarle en segundos, las 24 horas del día.</p>
-          <a href="#" class="btn btn-primary btn-block" data-open-assistant="root">Hablar con el asistente digital</a>
+    <!-- CTA FINAL -->
+    <section class="section section--primary final-cta">
+      <div class="container final-cta__inner reveal">
+        <h2>Cuando nos necesite, estamos aquí.</h2>
+        <div class="final-cta__actions">
+          <a href="cotizar.html" class="btn btn-primary btn-lg">Cotizar servicio</a>
+          <a href="#" class="btn btn-emergency btn-lg" data-open-assistant="urgent">Solicitar atención</a>
         </div>
       </div>
     </section>
@@ -233,7 +223,7 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <a class="footer-brand" href="#inicio">
+          <a class="footer-brand" href="index.html">
             <img src="assets/img/logo.png" alt="Grupo Virgen del Valle" width="100" height="55" />
           </a>
           <p style="max-width: 32ch;">Acompañando a las familias venezolanas con respeto, experiencia y humanidad desde hace más de siete décadas.</p>
@@ -241,20 +231,20 @@
         <div>
           <h4>Navegación</h4>
           <ul>
-            <li><a href="#nosotros">Nosotros</a></li>
-            <li><a href="#servicios">Servicios</a></li>
-            <li><a href="#prevision">Previsión</a></li>
-            <li><a href="#sedes">Sedes</a></li>
-            <li><a href="#obituarios">Obituarios</a></li>
+            <li><a href="index.html#servicios">Servicios</a></li>
+            <li><a href="index.html#prevision">Previsión</a></li>
+            <li><a href="obituarios.html">Obituarios</a></li>
+            <li><a href="index.html#sedes">Sedes</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
           </ul>
         </div>
         <div>
           <h4>Sedes</h4>
           <ul>
-            <li><a href="#sede-cumana">Cumaná (sede principal)</a></li>
-            <li><a href="#sede-puerto-la-cruz">Puerto La Cruz</a></li>
-            <li><a href="#sede-anaco">Anaco</a></li>
-            <li><a href="#sede-caracas">Distrito Capital</a></li>
+            <li><a href="index.html#sede-cumana">Cumaná (sede principal)</a></li>
+            <li><a href="index.html#sede-puerto-la-cruz">Puerto La Cruz</a></li>
+            <li><a href="index.html#sede-anaco">Anaco</a></li>
+            <li><a href="index.html#sede-caracas">Distrito Capital</a></li>
           </ul>
         </div>
         <div>
@@ -284,12 +274,12 @@
     <div class="assistant-panel__header">
       <div>
         <h3 id="assistant-title">Asistente Virgen del Valle</h3>
-        <p>Orientación digital 24/7 (simulada)</p>
+        <p>Orientación digital 24/7</p>
       </div>
       <button id="assistant-close" class="assistant-panel__close" aria-label="Cerrar asistente">✕</button>
     </div>
     <div id="assistant-body" class="assistant-panel__body" aria-live="polite"></div>
-    <div class="assistant-panel__footer">Asistente digital 24/7 · Respuestas guiadas, con escalamiento a un asesor humano</div>
+    <div class="assistant-panel__footer">Respuestas guiadas, con escalamiento a un asesor humano</div>
   </div>
 
   <!-- MODAL OBITUARIO -->
@@ -297,6 +287,14 @@
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="obituary-modal-title" tabindex="-1">
       <button class="modal__close" aria-label="Cerrar">✕</button>
       <div id="obituary-modal-content"></div>
+    </div>
+  </div>
+
+  <!-- MODAL INFO (servicios / sedes) -->
+  <div id="info-modal" class="modal-overlay">
+    <div class="modal" role="dialog" aria-modal="true" tabindex="-1">
+      <button class="modal__close" aria-label="Cerrar">✕</button>
+      <div id="info-modal-content"></div>
     </div>
   </div>
 

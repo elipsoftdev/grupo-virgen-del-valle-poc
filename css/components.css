@@ -4,12 +4,14 @@
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
   box-shadow: var(--shadow-sm);
-  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  transition: transform var(--duration-base) var(--ease-standard), box-shadow var(--duration-base) var(--ease-standard),
+    border-color var(--duration-base) var(--ease-standard);
 }
 
 .card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
   box-shadow: var(--shadow-md);
+  border-color: var(--color-gold-400);
 }
 
 /* Trayectoria */
@@ -155,6 +157,32 @@
   background: var(--color-accent);
 }
 
+.service-card__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--color-border);
+}
+
+.service-card__quote {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  padding: 0.4em 0.9em;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--color-border);
+  transition: border-color var(--duration-base) var(--ease-standard), color var(--duration-base) var(--ease-standard);
+}
+
+.service-card__quote:hover {
+  border-color: var(--color-accent);
+  color: var(--color-navy-950);
+}
+
 /* Previsión */
 .prevision-grid {
   display: grid;
@@ -264,6 +292,13 @@
   font-style: italic;
 }
 
+.location-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  margin-top: var(--space-sm);
+}
+
 /* Galería instalaciones */
 .gallery-grid {
   display: grid;
@@ -302,14 +337,6 @@
   font-weight: 600;
 }
 
-.gallery-note {
-  margin-top: var(--space-md);
-  padding: var(--space-sm) var(--space-md);
-  background: var(--color-gold-100);
-  border-radius: var(--radius-md);
-  font-size: var(--fs-sm);
-  color: var(--color-navy-900);
-}
 
 /* Cotizador */
 .quoter {
@@ -324,30 +351,54 @@
 
 .quoter__progress {
   display: flex;
-  gap: var(--space-3xs);
-  padding: var(--space-md) var(--space-lg) 0;
+  padding: var(--space-lg) var(--space-lg) 0;
 }
 
 .quoter__progress-step {
   flex: 1;
-  height: 4px;
-  border-radius: var(--radius-pill);
-  background: var(--color-border);
-  overflow: hidden;
+  position: relative;
+  text-align: center;
+  padding-top: var(--space-lg);
 }
 
-.quoter__progress-step::after {
+.quoter__progress-step span {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.quoter__progress-step::before {
   content: "";
-  display: block;
-  height: 100%;
-  width: 0%;
-  background: var(--color-accent);
-  transition: width var(--transition-base);
+  position: absolute;
+  top: 30px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-border);
+  transition: background var(--duration-base) var(--ease-standard);
 }
 
-.quoter__progress-step.is-done::after,
-.quoter__progress-step.is-active::after {
-  width: 100%;
+.quoter__progress-step:first-child::before {
+  left: 50%;
+}
+
+.quoter__progress-step:last-child::before {
+  right: 50%;
+}
+
+.quoter__progress-step.is-done::before,
+.quoter__progress-step.is-active::before {
+  background: var(--color-accent);
+}
+
+.quoter__progress-step.is-done span,
+.quoter__progress-step.is-active span {
+  color: var(--color-primary-strong);
 }
 
 .quoter__body {
@@ -392,11 +443,14 @@
   text-align: left;
   font: inherit;
   color: var(--color-text);
-  transition: border-color var(--transition-base), background var(--transition-base);
+  transition: border-color var(--duration-base) var(--ease-standard), background var(--duration-base) var(--ease-standard),
+    transform var(--duration-base) var(--ease-standard), box-shadow var(--duration-base) var(--ease-standard);
 }
 
 .option-card:hover {
   border-color: var(--color-gold-400);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
 }
 
 .option-card.is-selected {
@@ -483,10 +537,34 @@
   font-size: var(--fs-sm);
 }
 
+.quoter__result-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.quoter__result-header h3 {
+  margin-bottom: 0.1em;
+}
+
+.quoter__result-header .icon-badge {
+  background: var(--color-live);
+  color: var(--color-white);
+  flex-shrink: 0;
+}
+
 .quoter__result-cta {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.quoter__result-note {
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-md);
 }
 
 /* Obituarios */
@@ -552,16 +630,20 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(16, 28, 40, 0.6);
-  display: none;
+  background: rgba(16, 28, 40, 0.55);
+  display: flex;
   align-items: center;
   justify-content: center;
   padding: var(--space-md);
   z-index: 200;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--duration-base) var(--ease-standard), visibility var(--duration-base);
 }
 
 .modal-overlay.is-open {
-  display: flex;
+  opacity: 1;
+  visibility: visible;
 }
 
 .modal {
@@ -574,6 +656,12 @@
   padding: var(--space-lg);
   box-shadow: var(--shadow-lg);
   position: relative;
+  transform: translateY(14px) scale(0.98);
+  transition: transform var(--duration-base) var(--ease-standard);
+}
+
+.modal-overlay.is-open .modal {
+  transform: none;
 }
 
 .modal__close {
@@ -590,6 +678,43 @@
   justify-content: center;
   cursor: pointer;
   color: var(--color-text);
+  transition: background var(--duration-fast) var(--ease-standard);
+}
+
+.modal__close:hover {
+  background: var(--color-border);
+}
+
+.modal-list {
+  margin: var(--space-sm) 0 var(--space-md);
+  display: grid;
+  gap: var(--space-2xs);
+}
+
+.modal-list li {
+  position: relative;
+  padding-left: 1.4em;
+  font-size: var(--fs-sm);
+  color: var(--color-text);
+}
+
+.modal-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+.modal-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-sm);
 }
 
 /* Contacto */
@@ -833,5 +958,248 @@
 
   .assistant-launcher span.label {
     display: none;
+  }
+}
+
+/* Teaser del cotizador (Home) */
+.quote-teaser {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-lg);
+}
+
+.quote-teaser__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--color-navy-800);
+  background: var(--color-gold-100);
+  padding: 0.4em 0.9em;
+  border-radius: var(--radius-pill);
+  margin: var(--space-2xs) 0 var(--space-md);
+}
+
+.quote-teaser__badge .icon {
+  width: 14px;
+  height: 14px;
+}
+
+.quote-teaser__steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.quote-teaser__steps li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-weight: 600;
+  color: var(--color-primary-strong);
+  font-size: var(--fs-sm);
+}
+
+.quote-teaser__steps span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-gold-100);
+  color: var(--color-navy-800);
+  font-family: var(--font-heading);
+  flex-shrink: 0;
+}
+
+/* Atención inmediata */
+.immediate-help {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-live);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  flex-wrap: wrap;
+}
+
+.immediate-help__icon {
+  flex-shrink: 0;
+}
+
+.immediate-help__copy {
+  flex: 1 1 240px;
+}
+
+.immediate-help__copy h2 {
+  font-size: var(--fs-xl);
+  margin-bottom: 0.2em;
+}
+
+.immediate-help__copy p {
+  color: var(--color-text-muted);
+  margin-bottom: 0;
+}
+
+.immediate-help__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+/* CTA banner de obituarios */
+.section-cta {
+  text-align: center;
+  margin-top: var(--space-md);
+}
+
+.obituary-request-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  background: var(--color-gold-100);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  margin-top: var(--space-xl);
+  flex-wrap: wrap;
+}
+
+.obituary-request-banner h3 {
+  font-size: var(--fs-lg);
+  margin-bottom: 0.2em;
+}
+
+.obituary-request-banner p {
+  color: var(--color-navy-800);
+  margin-bottom: 0;
+  max-width: 46ch;
+}
+
+.obituary-request-banner__ctas {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+/* CTA final */
+.final-cta__inner {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.final-cta__inner h2 {
+  font-size: var(--fs-2xl);
+  margin-bottom: var(--space-lg);
+}
+
+.final-cta__actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+@media (max-width: 860px) {
+  .quote-teaser {
+    grid-template-columns: 1fr;
+  }
+
+  .obituary-request-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Formulario: solicitar obituario */
+.obituary-form-wrap {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.obituary-form-wrap fieldset {
+  border: none;
+  padding: 0;
+  margin: 0 0 var(--space-lg);
+}
+
+.obituary-form-wrap legend {
+  font-family: var(--font-heading);
+  font-size: var(--fs-lg);
+  color: var(--color-primary-strong);
+  padding: 0;
+  margin-bottom: var(--space-md);
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.field-group textarea {
+  width: 100%;
+  padding: 0.75em 1em;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--color-border);
+  font: inherit;
+  background: var(--color-surface);
+  color: var(--color-text);
+  resize: vertical;
+}
+
+.field-group textarea:focus {
+  border-color: var(--color-accent);
+  outline: none;
+}
+
+.field-group input[type="file"] {
+  font-size: var(--fs-sm);
+}
+
+.field-note {
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  margin-top: var(--space-2xs);
+  margin-bottom: 0;
+}
+
+.obituary-confirmation {
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.obituary-confirmation__icon {
+  background: var(--color-live);
+  color: var(--color-white);
+  margin: 0 auto var(--space-md);
+}
+
+.obituary-confirmation .quoter__summary dl {
+  text-align: left;
+}
+
+.obituary-confirmation .quoter__result-cta {
+  justify-content: center;
+}
+
+@media (max-width: 640px) {
+  .field-grid {
+    grid-template-columns: 1fr;
   }
 }
