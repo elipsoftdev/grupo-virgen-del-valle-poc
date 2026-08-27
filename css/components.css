@@ -109,8 +109,9 @@
 }
 
 .section--primary .icon-badge {
-  background: rgba(255, 255, 255, 0.12);
-  color: var(--color-gold-400);
+  background: var(--color-white);
+  color: var(--color-navy-800);
+  box-shadow: var(--shadow-sm);
 }
 
 /* Servicios */
@@ -164,17 +165,19 @@
 
 .prevision-card {
   padding: var(--space-lg);
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
 }
 
 .prevision-card h3 {
   font-size: var(--fs-md);
+  color: var(--color-primary-strong);
 }
 
 .prevision-card p {
-  color: rgba(255, 255, 255, 0.78);
+  color: var(--color-text-muted);
   font-size: var(--fs-sm);
   margin-bottom: 0;
 }

@@ -118,13 +118,13 @@ button {
 }
 
 .section--primary {
-  background: linear-gradient(160deg, var(--color-primary-strong), var(--color-primary));
-  color: var(--color-on-primary);
+  background: linear-gradient(160deg, var(--color-gold-100) 0%, var(--color-ivory) 55%);
+  color: var(--color-text);
 }
 
 .section--primary h2,
 .section--primary h3 {
-  color: var(--color-on-primary);
+  color: var(--color-primary-strong);
 }
 
 .section-eyebrow {
@@ -153,7 +153,7 @@ button {
 }
 
 .section--primary .section-header p {
-  color: rgba(255, 255, 255, 0.82);
+  color: var(--color-text-muted);
 }
 
 /* Botones */
@@ -193,7 +193,7 @@ button {
 }
 
 .btn-outline:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(16, 28, 40, 0.08);
 }
 
 .btn-ghost {
@@ -339,8 +339,8 @@ button {
 /* Hero */
 .hero {
   position: relative;
-  background: linear-gradient(150deg, var(--color-primary-strong) 0%, var(--color-navy-800) 55%, var(--color-navy-700) 100%);
-  color: var(--color-on-primary);
+  background: linear-gradient(160deg, var(--color-ivory) 0%, var(--color-white) 55%, var(--color-gold-100) 130%);
+  color: var(--color-text);
   overflow: hidden;
 }
 
@@ -348,7 +348,7 @@ button {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 82% 20%, rgba(197, 160, 89, 0.22), transparent 55%);
+  background: radial-gradient(circle at 82% 15%, rgba(197, 160, 89, 0.18), transparent 55%);
   pointer-events: none;
 }
 
@@ -365,8 +365,9 @@ button {
   gap: 0.5em;
   padding: 0.4em 0.9em;
   border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(26, 42, 58, 0.06);
+  border: 1px solid rgba(26, 42, 58, 0.14);
+  color: var(--color-navy-800);
   font-size: var(--fs-xs);
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -381,7 +382,7 @@ button {
 }
 
 .hero h1 {
-  color: var(--color-on-primary);
+  color: var(--color-primary-strong);
   font-size: clamp(2.1rem, 4.5vw, var(--fs-3xl));
   max-width: 18ch;
   margin-bottom: var(--space-sm);
@@ -389,7 +390,7 @@ button {
 
 .hero p.lead {
   font-size: var(--fs-md);
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--color-text-muted);
   max-width: 56ch;
   margin-bottom: var(--space-lg);
 }
@@ -406,7 +407,7 @@ button {
   gap: var(--space-md);
   margin-top: var(--space-lg);
   padding-top: var(--space-lg);
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  border-top: 1px solid var(--color-border);
   max-width: 640px;
 }
 
@@ -414,12 +415,12 @@ button {
   display: block;
   font-family: var(--font-heading);
   font-size: var(--fs-xl);
-  color: var(--color-gold-400);
+  color: var(--color-primary);
 }
 
 .hero__stat span {
   font-size: var(--fs-xs);
-  color: rgba(255, 255, 255, 0.75);
+  color: var(--color-text-muted);
 }
 
 /* Footer */
