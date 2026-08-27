@@ -5,17 +5,21 @@
  */
 
 const QUOTE_TYPES = [
-  { id: "servicio-ahora", label: "Necesito un servicio funerario ahora", icon: "clock" },
-  { id: "prevision", label: "Quiero conocer planes de previsión", icon: "shield" },
-  { id: "traslado", label: "Necesito un traslado", icon: "truck" },
-  { id: "cremacion", label: "Estoy interesado en cremación", icon: "flame" },
-  { id: "cementerio", label: "Necesito información sobre cementerio", icon: "leaf" },
+  { id: "servicio-ahora", label: "Servicio funerario inmediato", icon: "clock" },
+  { id: "prevision", label: "Plan de previsión", icon: "shield" },
+  { id: "traslado", label: "Traslado", icon: "truck" },
+  { id: "cremacion", label: "Cremación", icon: "flame" },
+  { id: "cementerio", label: "Cementerio", icon: "leaf" },
   { id: "otro", label: "Otro servicio", icon: "message" },
 ];
 
 const QUOTE_TYPE_LABELS = Object.fromEntries(QUOTE_TYPES.map((t) => [t.id, t.label]));
 
 const CITIES = ["Caracas", "Cumaná", "Puerto La Cruz", "Anaco", "Otra ciudad"];
+
+const CONTACT_METHODS = ["WhatsApp", "Llamada", "Correo"];
+
+const STEP_LABELS = ["Servicio", "Ubicación", "Detalles", "Contacto"];
 
 const quoteState = {
   step: 0,
@@ -26,7 +30,13 @@ const quoteState = {
   destination: null,
   urgency: null,
   modality: null,
+  immediateContact: null,
+  cremationMode: null,
   detail: "",
+  contactName: "",
+  contactPhone: "",
+  contactMethod: null,
+  contactEmail: "",
 };
 
 function resetQuoteState() {
@@ -38,7 +48,13 @@ function resetQuoteState() {
   quoteState.destination = null;
   quoteState.urgency = null;
   quoteState.modality = null;
+  quoteState.immediateContact = null;
+  quoteState.cremationMode = null;
   quoteState.detail = "";
+  quoteState.contactName = "";
+  quoteState.contactPhone = "";
+  quoteState.contactMethod = null;
+  quoteState.contactEmail = "";
 }
 
 function cityLabel() {
@@ -48,21 +64,30 @@ function cityLabel() {
 function initQuoter() {
   const root = document.getElementById("quoter");
   if (!root) return;
+
+  const params = new URLSearchParams(location.search);
+  const presetType = params.get("tipo");
+  if (presetType && QUOTE_TYPE_LABELS[presetType]) {
+    quoteState.type = presetType;
+    quoteState.step = 1;
+  }
+
   renderQuoter();
 }
 
 function renderQuoter() {
   const root = document.getElementById("quoter");
-  const totalSteps = 4;
-  const progress = Array.from({ length: totalSteps }, (_, i) => {
-    const cls = i < quoteState.step ? "is-done" : i === quoteState.step ? "is-active" : "";
-    return `<div class="quoter__progress-step ${cls}"></div>`;
+  const isResult = quoteState.step >= STEP_LABELS.length;
+
+  const progress = STEP_LABELS.map((label, i) => {
+    const cls = isResult || i < quoteState.step ? "is-done" : i === quoteState.step ? "is-active" : "";
+    return `<div class="quoter__progress-step ${cls}"><span>${i + 1}. ${label}</span></div>`;
   }).join("");
 
   root.innerHTML = `
-    <div class="quoter__progress" role="progressbar" aria-valuenow="${quoteState.step + 1}" aria-valuemin="1" aria-valuemax="${totalSteps}">${progress}</div>
+    <div class="quoter__progress" role="progressbar" aria-valuenow="${Math.min(quoteState.step + 1, 4)}" aria-valuemin="1" aria-valuemax="4">${progress}</div>
     <div class="quoter__body">${renderQuoterStepContent()}</div>
-    ${quoteState.step < totalSteps - 1 ? renderQuoterNav() : ""}
+    ${!isResult ? renderQuoterNav() : ""}
   `;
   bindQuoterEvents();
 }
@@ -71,7 +96,7 @@ function renderQuoterStepContent() {
   switch (quoteState.step) {
     case 0:
       return `
-        <h3>¿Cómo podemos ayudarle?</h3>
+        <h3>¿Qué servicio necesita?</h3>
         <p class="hint">Seleccione la opción que mejor describe lo que necesita.</p>
         <div class="option-grid" role="radiogroup" aria-label="Tipo de necesidad">
           ${QUOTE_TYPES.map(
@@ -84,7 +109,7 @@ function renderQuoterStepContent() {
         </div>`;
     case 1:
       return `
-        <h3>¿En qué ciudad se encuentra?</h3>
+        <h3>¿Dónde necesita el servicio?</h3>
         <p class="hint">Así podremos orientarle según la sede más cercana.</p>
         <div class="option-grid" role="radiogroup" aria-label="Ciudad">
           ${CITIES.map(
@@ -106,9 +131,9 @@ function renderQuoterStepContent() {
     case 2:
       return renderDynamicQuestions();
     case 3:
-      return renderQuoteResult();
+      return renderContactStep();
     default:
-      return "";
+      return renderQuoteResult();
   }
 }
 
@@ -160,6 +185,37 @@ function renderDynamicQuestions() {
           .join("")}
       </div>`;
   }
+  if (quoteState.type === "servicio-ahora") {
+    return `
+      <h3>Cuéntenos un poco más</h3>
+      <p class="hint">Este dato ayuda al asesor a prepararse antes de contactarle.</p>
+      <div class="field-group">
+        <label for="quote-detail">Tipo general de necesidad (opcional)</label>
+        <input type="text" id="quote-detail" value="${quoteState.detail}" placeholder="Ej. velación, traslado, trámites..." />
+      </div>
+      <div class="field-group">
+        <label>¿Desea contacto inmediato?</label>
+        <div class="option-grid">
+          ${["Sí", "No"]
+            .map(
+              (v) => `<button type="button" class="option-card ${quoteState.immediateContact === v ? "is-selected" : ""}" data-quote-immediate="${v}"><strong>${v}</strong></button>`
+            )
+            .join("")}
+        </div>
+      </div>`;
+  }
+  if (quoteState.type === "cremacion") {
+    return `
+      <h3>Sobre la cremación</h3>
+      <p class="hint">Así sabremos cómo orientarle mejor.</p>
+      <div class="option-grid">
+        ${["Servicio completo", "Solo información"]
+          .map(
+            (v) => `<button type="button" class="option-card ${quoteState.cremationMode === v ? "is-selected" : ""}" data-quote-cremation="${v}"><strong>${v}</strong></button>`
+          )
+          .join("")}
+      </div>`;
+  }
   return `
     <h3>Cuéntenos un poco más</h3>
     <p class="hint">Este paso es opcional, pero ayuda al asesor a prepararse antes de contactarle.</p>
@@ -179,8 +235,34 @@ function renderDynamicQuestions() {
     </div>`;
 }
 
+function renderContactStep() {
+  return `
+    <h3>¿Cómo le contactamos?</h3>
+    <p class="hint">Solo lo necesario para que un asesor le escriba o le llame.</p>
+    <div class="field-group">
+      <label for="quote-name">Nombre</label>
+      <input type="text" id="quote-name" value="${quoteState.contactName}" placeholder="Su nombre" autocomplete="name" />
+    </div>
+    <div class="field-group">
+      <label for="quote-phone">Teléfono</label>
+      <input type="text" id="quote-phone" value="${quoteState.contactPhone}" placeholder="Ej. 0412-1234567" autocomplete="tel" />
+    </div>
+    <div class="field-group">
+      <label>Método preferido de contacto</label>
+      <div class="option-grid">
+        ${CONTACT_METHODS.map(
+          (m) => `<button type="button" class="option-card ${quoteState.contactMethod === m ? "is-selected" : ""}" data-quote-method="${m}"><strong>${m}</strong></button>`
+        ).join("")}
+      </div>
+    </div>
+    <div class="field-group">
+      <label for="quote-email">Correo (opcional)</label>
+      <input type="text" id="quote-email" value="${quoteState.contactEmail}" placeholder="correo@ejemplo.com" autocomplete="email" />
+    </div>`;
+}
+
 function buildQuoteSummary() {
-  const rows = [["Servicio solicitado", QUOTE_TYPE_LABELS[quoteState.type]]];
+  const rows = [["Servicio", QUOTE_TYPE_LABELS[quoteState.type]]];
   rows.push(["Ciudad", cityLabel()]);
   if (quoteState.type === "traslado") {
     rows.push(["Origen", quoteState.origin || "—"]);
@@ -188,57 +270,94 @@ function buildQuoteSummary() {
     rows.push(["Atención", quoteState.urgency || "—"]);
   } else if (quoteState.type === "prevision") {
     rows.push(["Modalidad", quoteState.modality || "—"]);
+  } else if (quoteState.type === "servicio-ahora") {
+    if (quoteState.detail) rows.push(["Detalle", quoteState.detail]);
+    rows.push(["Contacto inmediato", quoteState.immediateContact || "—"]);
+  } else if (quoteState.type === "cremacion") {
+    rows.push(["Modalidad", quoteState.cremationMode || "—"]);
   } else {
     if (quoteState.detail) rows.push(["Detalle", quoteState.detail]);
     rows.push(["Atención", quoteState.urgency || "—"]);
   }
+  rows.push(["Nombre", quoteState.contactName]);
+  rows.push(["Teléfono", quoteState.contactPhone]);
+  rows.push(["Contacto preferido", quoteState.contactMethod || "—"]);
+  if (quoteState.contactEmail) rows.push(["Correo", quoteState.contactEmail]);
   return rows;
 }
 
-function buildQuoteWhatsappMessage() {
+function buildQuoteWhatsappMessage(mode) {
   const lines = [`Hola, ${CONFIG.brandName}.`, ""];
+  lines.push(`Mi nombre es ${quoteState.contactName || "—"}.`, "");
+
   if (quoteState.type === "traslado") {
     lines.push("Estoy solicitando información sobre un traslado funerario.", "");
     lines.push(`Origen: ${quoteState.origin || "—"}`);
     lines.push(`Destino: ${quoteState.destination || "—"}`);
-    lines.push(`Atención requerida: ${(quoteState.urgency || "—").toLowerCase()}`);
+    lines.push(`Atención requerida: ${(quoteState.urgency || "—").toLowerCase()}.`);
   } else if (quoteState.type === "prevision") {
     lines.push(`Me gustaría recibir información sobre sus planes de previsión funeraria ${quoteState.modality ? quoteState.modality.toLowerCase() : ""} en ${cityLabel()}.`);
+  } else if (quoteState.type === "servicio-ahora") {
+    lines.push("Necesito un servicio funerario.", "");
+    lines.push(`Ciudad: ${cityLabel()}`);
+    if (quoteState.detail) lines.push(`Detalle: ${quoteState.detail}`);
+    lines.push(`Contacto inmediato: ${quoteState.immediateContact || "—"}.`);
+  } else if (quoteState.type === "cremacion") {
+    lines.push("Estoy solicitando información sobre cremación.", "");
+    lines.push(`Ciudad: ${cityLabel()}`);
+    lines.push(`Modalidad: ${quoteState.cremationMode || "—"}.`);
   } else {
     lines.push(`Estoy solicitando información sobre: ${QUOTE_TYPE_LABELS[quoteState.type]}.`, "");
     lines.push(`Ciudad: ${cityLabel()}`);
     if (quoteState.detail) lines.push(`Detalle: ${quoteState.detail}`);
-    if (quoteState.urgency) lines.push(`Atención requerida: ${quoteState.urgency.toLowerCase()}`);
+    if (quoteState.urgency) lines.push(`Atención requerida: ${quoteState.urgency.toLowerCase()}.`);
   }
-  lines.push("", "¿Podría comunicarse conmigo un asesor para conocer disponibilidad, proceso y cotización?");
+
+  lines.push("");
+  if (mode === "call") {
+    lines.push(`Preferiría que me llamen al ${quoteState.contactPhone || "número que indiqué"} para coordinar.`);
+  } else {
+    lines.push(`Mi teléfono es ${quoteState.contactPhone || "—"}. Método de contacto preferido: ${quoteState.contactMethod || "—"}.`);
+    lines.push("", "¿Podría comunicarse conmigo un asesor para conocer disponibilidad, proceso y cotización?");
+  }
   return lines.join("\n");
 }
 
 function renderQuoteResult() {
   const rows = buildQuoteSummary();
-  const message = buildQuoteWhatsappMessage();
-  const waUrl = buildWhatsappUrl(message);
+  const waMessage = buildQuoteWhatsappMessage("whatsapp");
+  const callMessage = buildQuoteWhatsappMessage("call");
+  const waUrl = buildWhatsappUrl(waMessage);
+  const callUrl = buildWhatsappUrl(callMessage);
   return `
-    <h3>Resumen de su solicitud</h3>
-    <p class="hint">Revise la información antes de contactar a un asesor.</p>
+    <div class="quoter__result-header">
+      <span class="icon-badge">${icon("check")}</span>
+      <div>
+        <h3>Tu solicitud está lista</h3>
+        <p class="hint">Revise la información antes de continuar.</p>
+      </div>
+    </div>
     <div class="quoter__summary">
       <dl>
-        ${rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("")}
+        ${rows.map(([k, v]) => `<dt>${k}</dt><dd>${v || "—"}</dd>`).join("")}
       </dl>
     </div>
     <div class="quoter__result-cta">
-      ${waUrl ? `<a class="btn btn-primary" href="${waUrl}" target="_blank" rel="noopener">${icon("whatsapp")} Hablar con un asesor</a>` : `<p>Configure un número de WhatsApp en <code>data/config.js</code> para habilitar este enlace.</p>`}
-      <button type="button" class="btn btn-ghost" data-quote-restart>Nueva cotización</button>
+      ${waUrl ? `<a class="btn btn-primary btn-lg" href="${waUrl}" target="_blank" rel="noopener">${icon("whatsapp")} Enviar por WhatsApp</a>` : ""}
+      ${callUrl ? `<a class="btn btn-outline" href="${callUrl}" target="_blank" rel="noopener">Solicitar llamada de un asesor</a>` : ""}
     </div>
+    <p class="quoter__result-note">"Enviar por WhatsApp" abre una conversación con su mensaje ya redactado. "Solicitar llamada" le envía por el mismo canal, indicando que prefiere que le llamen.</p>
+    <button type="button" class="btn btn-ghost btn-sm" data-quote-restart>Nueva cotización</button>
   `;
 }
 
 function renderQuoterNav() {
   const canAdvance = quoterCanAdvance();
+  const isFirst = quoteState.step === 0;
   return `
     <div class="quoter__nav">
-      <button type="button" class="btn btn-ghost btn-sm" data-quote-back ${quoteState.step === 0 ? "disabled" : ""}>${icon("chevronLeft")} Atrás</button>
-      <button type="button" class="btn btn-primary btn-sm" data-quote-next ${canAdvance ? "" : "disabled"}>Continuar ${icon("chevronRight")}</button>
+      <button type="button" class="btn btn-ghost btn-sm" data-quote-back ${isFirst ? "disabled" : ""}>${icon("chevronLeft")} Atrás</button>
+      <button type="button" class="btn btn-primary" data-quote-next ${canAdvance ? "" : "disabled"}>Continuar ${icon("chevronRight")}</button>
     </div>`;
 }
 
@@ -248,7 +367,12 @@ function quoterCanAdvance() {
   if (quoteState.step === 2) {
     if (quoteState.type === "traslado") return !!quoteState.origin && !!quoteState.destination && !!quoteState.urgency;
     if (quoteState.type === "prevision") return !!quoteState.modality;
+    if (quoteState.type === "servicio-ahora") return !!quoteState.immediateContact;
+    if (quoteState.type === "cremacion") return !!quoteState.cremationMode;
     return true;
+  }
+  if (quoteState.step === 3) {
+    return quoteState.contactName.trim().length > 0 && quoteState.contactPhone.trim().length > 0 && !!quoteState.contactMethod;
   }
   return true;
 }
@@ -274,7 +398,8 @@ function bindQuoterEvents() {
   if (cityOtherInput) {
     cityOtherInput.addEventListener("input", (e) => {
       quoteState.cityOther = e.target.value;
-      document.querySelector('[data-quote-next]').disabled = !quoterCanAdvance();
+      const nextBtn = document.querySelector("[data-quote-next]");
+      if (nextBtn) nextBtn.disabled = !quoterCanAdvance();
     });
   }
 
@@ -284,6 +409,21 @@ function bindQuoterEvents() {
   if (destination) destination.addEventListener("change", (e) => (quoteState.destination = e.target.value || null));
   const detail = document.getElementById("quote-detail");
   if (detail) detail.addEventListener("input", (e) => (quoteState.detail = e.target.value));
+
+  const name = document.getElementById("quote-name");
+  if (name) name.addEventListener("input", (e) => {
+    quoteState.contactName = e.target.value;
+    const nextBtn = document.querySelector("[data-quote-next]");
+    if (nextBtn) nextBtn.disabled = !quoterCanAdvance();
+  });
+  const phone = document.getElementById("quote-phone");
+  if (phone) phone.addEventListener("input", (e) => {
+    quoteState.contactPhone = e.target.value;
+    const nextBtn = document.querySelector("[data-quote-next]");
+    if (nextBtn) nextBtn.disabled = !quoterCanAdvance();
+  });
+  const email = document.getElementById("quote-email");
+  if (email) email.addEventListener("input", (e) => (quoteState.contactEmail = e.target.value));
 
   root.querySelectorAll("[data-quote-urgency]").forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -299,11 +439,32 @@ function bindQuoterEvents() {
     });
   });
 
+  root.querySelectorAll("[data-quote-immediate]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      quoteState.immediateContact = btn.getAttribute("data-quote-immediate");
+      renderQuoter();
+    });
+  });
+
+  root.querySelectorAll("[data-quote-cremation]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      quoteState.cremationMode = btn.getAttribute("data-quote-cremation");
+      renderQuoter();
+    });
+  });
+
+  root.querySelectorAll("[data-quote-method]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      quoteState.contactMethod = btn.getAttribute("data-quote-method");
+      renderQuoter();
+    });
+  });
+
   const nextBtn = root.querySelector("[data-quote-next]");
   if (nextBtn) {
     nextBtn.addEventListener("click", () => {
       if (!quoterCanAdvance()) return;
-      quoteState.step = Math.min(quoteState.step + 1, 3);
+      quoteState.step = Math.min(quoteState.step + 1, STEP_LABELS.length);
       renderQuoter();
       root.scrollIntoView({ behavior: "smooth", block: "start" });
     });
@@ -329,9 +490,11 @@ function bindQuoterEvents() {
 
 function startQuoterWithType(typeId) {
   resetQuoteState();
-  quoteState.type = typeId;
-  quoteState.step = 1;
+  if (typeId && QUOTE_TYPE_LABELS[typeId]) {
+    quoteState.type = typeId;
+    quoteState.step = 1;
+  }
   renderQuoter();
-  const el = document.getElementById("cotizador");
+  const el = document.getElementById("cotizador") || document.getElementById("quoter");
   if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
 }
