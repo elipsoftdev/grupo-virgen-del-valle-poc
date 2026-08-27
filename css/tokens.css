@@ -1,0 +1,86 @@
+/**
+ * Design tokens — Grupo Virgen del Valle
+ *
+ * Paleta e tipografías tomadas como referencia provisional de la
+ * identidad actualmente en uso por la empresa (azul profundo institucional
+ * + acento dorado discreto). Deben sustituirse por los valores exactos
+ * del manual de identidad gráfica oficial cuando el cliente lo entregue.
+ * Todo el sitio consume estas variables: cambiar la marca es cuestión de
+ * editar este único archivo.
+ */
+:root {
+  /* Color de marca */
+  --color-navy-950: #101c28;
+  --color-navy-900: #1a2a3a;
+  --color-navy-800: #24384c;
+  --color-navy-700: #2f4c66;
+  --color-navy-600: #3f6688;
+
+  --color-gold-500: #c5a059;
+  --color-gold-400: #d3b378;
+  --color-gold-100: #f2e8d5;
+
+  --color-ivory: #faf7f2;
+  --color-white: #ffffff;
+  --color-silver-200: #e7e9ec;
+  --color-silver-300: #d7dbe0;
+
+  --color-gray-600: #5b6470;
+  --color-gray-500: #767f8a;
+  --color-gray-900: #202733;
+
+  --color-success: #2f7a4f;
+
+  /* Semántica */
+  --color-bg: var(--color-ivory);
+  --color-surface: var(--color-white);
+  --color-text: var(--color-gray-900);
+  --color-text-muted: var(--color-gray-600);
+  --color-primary: var(--color-navy-900);
+  --color-primary-strong: var(--color-navy-950);
+  --color-accent: var(--color-gold-500);
+  --color-border: var(--color-silver-200);
+  --color-on-primary: var(--color-white);
+
+  /* Tipografía */
+  --font-heading: "Playfair Display", "Georgia", "Times New Roman", serif;
+  --font-body: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  --fs-xs: 0.8125rem;
+  --fs-sm: 0.9375rem;
+  --fs-base: 1rem;
+  --fs-md: 1.125rem;
+  --fs-lg: 1.375rem;
+  --fs-xl: 1.75rem;
+  --fs-2xl: 2.25rem;
+  --fs-3xl: 3rem;
+
+  /* Espaciado */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+
+  /* Forma */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 1px 3px rgba(16, 28, 40, 0.08);
+  --shadow-md: 0 8px 24px rgba(16, 28, 40, 0.1);
+  --shadow-lg: 0 20px 48px rgba(16, 28, 40, 0.16);
+
+  --max-width: 1200px;
+  --transition-base: 220ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-base: 0ms;
+  }
+}
