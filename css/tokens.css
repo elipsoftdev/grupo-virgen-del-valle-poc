@@ -77,6 +77,15 @@
 
   --max-width: 1200px;
   --transition-base: 220ms ease;
+
+  /* Movimiento */
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 200ms;
+  --duration-base: 320ms;
+  --duration-slow: 600ms;
+
+  /* Urgencia — mismo lenguaje de marca, sin colores de alarma */
+  --color-live: #2f7a4f;
 }
 
 @media (prefers-reduced-motion: reduce) {
