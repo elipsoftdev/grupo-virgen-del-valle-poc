@@ -10,13 +10,14 @@
 
 const ASSISTANT_TREE = {
   root: {
-    bot: "Hola. Estoy aquí para orientarte. ¿Necesitas asistencia inmediata o deseas información sobre nuestros servicios?",
+    bot: "Hola. Estoy aquí para orientarte. ¿Necesitas asistencia inmediata o deseas cotizar un servicio?",
     options: [
       { label: "Necesito asistencia ahora", next: "urgent" },
+      { label: "Cotizar un servicio", action: "quote", type: null },
       { label: "Planes de previsión", next: "prevision" },
-      { label: "Cremación", next: "cremacion" },
       { label: "Traslados", next: "traslados" },
       { label: "Sedes", next: "sedes" },
+      { label: "Obituarios", action: "link", href: "obituarios.html" },
       { label: "Hablar con una persona", next: "human" },
     ],
   },
@@ -34,14 +35,6 @@ const ASSISTANT_TREE = {
       { label: "Conocer planes", action: "scroll", target: "prevision" },
       { label: "Cotizar previsión", action: "quote", type: "prevision" },
       { label: "Hablar con un asesor", action: "whatsapp", key: "prevision" },
-      { label: "Volver al inicio", next: "root" },
-    ],
-  },
-  cremacion: {
-    bot: "Podemos orientarle sobre el proceso de cremación y las alternativas disponibles según su ciudad.",
-    options: [
-      { label: "Cotizar cremación", action: "quote", type: "cremacion" },
-      { label: "Ver servicios", action: "scroll", target: "servicios" },
       { label: "Volver al inicio", next: "root" },
     ],
   },
@@ -184,14 +177,28 @@ function handleAssistantOption(opt) {
     return;
   }
   if (opt.action === "quote") {
-    appendChatBubble("Perfecto, le llevo al cotizador con esa opción preseleccionada.", "bot");
-    startQuoterWithType(opt.type);
+    const hasQuoter = !!document.getElementById("quoter");
+    if (hasQuoter) {
+      appendChatBubble("Perfecto, le llevo al cotizador.", "bot");
+      startQuoterWithType(opt.type);
+    } else {
+      appendChatBubble("Perfecto, le llevo al cotizador.", "bot");
+      window.location.href = opt.type ? `cotizar.html?tipo=${opt.type}` : "cotizar.html";
+    }
+    return;
+  }
+  if (opt.action === "link") {
+    window.location.href = opt.href;
     return;
   }
   if (opt.action === "scroll") {
     const el = document.getElementById(opt.target);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-    appendChatOptions([{ label: "Volver al inicio", next: "root" }]);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      appendChatOptions([{ label: "Volver al inicio", next: "root" }]);
+    } else {
+      window.location.href = `index.html#${opt.target}`;
+    }
   }
 }
 
