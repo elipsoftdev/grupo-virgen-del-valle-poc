@@ -37,6 +37,7 @@ const quoteState = {
   contactPhone: "",
   contactMethod: null,
   contactEmail: "",
+  leadId: null,
 };
 
 function resetQuoteState() {
@@ -55,6 +56,7 @@ function resetQuoteState() {
   quoteState.contactPhone = "";
   quoteState.contactMethod = null;
   quoteState.contactEmail = "";
+  quoteState.leadId = null;
 }
 
 function cityLabel() {
@@ -323,30 +325,104 @@ function buildQuoteWhatsappMessage(mode) {
   return lines.join("\n");
 }
 
+/** Prioridad comercial derivada de las respuestas del visitante. */
+function quotePriority() {
+  if (quoteState.urgency === "Inmediata") return "Alta";
+  if (quoteState.type === "servicio-ahora") return quoteState.immediateContact === "Sí" ? "Alta" : "Media";
+  if (quoteState.type === "traslado") return "Alta";
+  if (quoteState.type === "cremacion") return quoteState.cremationMode === "Servicio completo" ? "Media" : "Normal";
+  return "Normal";
+}
+
+function quoteDetailText() {
+  if (quoteState.type === "prevision") return quoteState.modality ? `Modalidad ${quoteState.modality.toLowerCase()}` : "";
+  if (quoteState.type === "cremacion") return quoteState.cremationMode || "";
+  return quoteState.detail || "";
+}
+
+/**
+ * Guarda la solicitud como "lead demo" en el navegador para poder mostrar
+ * cómo la recibiría el equipo. No se envía a ningún servidor.
+ */
+function ensureDemoLeadFromQuote() {
+  if (typeof saveDemoLead !== "function") return null;
+
+  if (!quoteState.leadId) quoteState.leadId = generateDemoLeadId();
+
+  const lead = {
+    id: quoteState.leadId,
+    timestamp: new Date().toISOString(),
+    name: quoteState.contactName,
+    phone: quoteState.contactPhone,
+    email: quoteState.contactEmail || "",
+    source: "Web",
+    service: QUOTE_TYPE_LABELS[quoteState.type] || "Consulta",
+    city: cityLabel() || "—",
+    route: quoteState.type === "traslado" && quoteState.origin && quoteState.destination
+      ? `${quoteState.origin} → ${quoteState.destination}`
+      : "",
+    details: quoteDetailText(),
+    contactMethod: quoteState.contactMethod || "",
+    priority: quotePriority(),
+    intent: "Contratación",
+    status: "Nuevo",
+  };
+
+  saveDemoLead(lead);
+  return lead;
+}
+
+const QUOTE_CHECKLIST = [
+  "Información registrada",
+  "Necesidad clasificada",
+  "Sede identificada",
+  "Solicitud preparada para atención",
+  "Asesor pendiente de asignación",
+];
+
 function renderQuoteResult() {
   const rows = buildQuoteSummary();
+  const lead = ensureDemoLeadFromQuote();
   const waMessage = buildQuoteWhatsappMessage("whatsapp");
   const callMessage = buildQuoteWhatsappMessage("call");
   const waUrl = buildWhatsappUrl(waMessage);
   const callUrl = buildWhatsappUrl(callMessage);
+
   return `
     <div class="quoter__result-header">
       <span class="icon-badge">${icon("check")}</span>
       <div>
-        <h3>Tu solicitud está lista</h3>
-        <p class="hint">Revise la información antes de continuar.</p>
+        <h3>Solicitud recibida</h3>
+        <p class="hint">Un asesor continuará su atención personalmente.</p>
       </div>
     </div>
+
+    ${lead ? `<div class="receipt-id"><span>Número de solicitud</span><strong>${lead.id}</strong></div>` : ""}
+
+    <ul class="receipt-checklist">
+      ${QUOTE_CHECKLIST.map((item) => `<li>${icon("check")}${item}</li>`).join("")}
+    </ul>
+
     <div class="quoter__summary">
       <dl>
         ${rows.map(([k, v]) => `<dt>${k}</dt><dd>${v || "—"}</dd>`).join("")}
       </dl>
     </div>
+
     <div class="quoter__result-cta">
-      ${waUrl ? `<a class="btn btn-primary btn-lg" href="${waUrl}" target="_blank" rel="noopener">${icon("whatsapp")} Enviar por WhatsApp</a>` : ""}
+      ${waUrl ? `<a class="btn btn-primary btn-lg" href="${waUrl}" target="_blank" rel="noopener">${icon("whatsapp")} Continuar por WhatsApp</a>` : ""}
       ${callUrl ? `<a class="btn btn-outline" href="${callUrl}" target="_blank" rel="noopener">Solicitar llamada de un asesor</a>` : ""}
     </div>
-    <p class="quoter__result-note">"Enviar por WhatsApp" abre una conversación con su mensaje ya redactado. "Solicitar llamada" le envía por el mismo canal, indicando que prefiere que le llamen.</p>
+    <p class="quoter__result-note">"Continuar por WhatsApp" abre una conversación con su mensaje ya redactado. "Solicitar llamada" usa el mismo canal, indicando que prefiere que le llamen.</p>
+
+    <div class="receipt-demo-cta">
+      <div>
+        <strong>¿Quiere ver el otro lado?</strong>
+        <span>Así llega esta misma solicitud al equipo de atención.</span>
+      </div>
+      <a class="btn btn-secondary" href="centro-atencion-demo.html">Ver cómo recibe esta solicitud el equipo ${icon("arrowRight", "icon--arrow")}</a>
+    </div>
+
     <button type="button" class="btn btn-ghost btn-sm" data-quote-restart>Nueva cotización</button>
   `;
 }
