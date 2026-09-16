@@ -25,6 +25,7 @@ html {
 
 body {
   margin: 0;
+  overflow-x: clip;
   font-family: var(--font-body);
   font-size: var(--fs-base);
   line-height: 1.6;
@@ -656,12 +657,14 @@ button {
     align-items: flex-start;
     padding: calc(var(--space-2xl)) var(--space-lg) var(--space-lg);
     transform: translateX(100%);
-    transition: transform var(--transition-base);
+    visibility: hidden;
+    transition: transform var(--transition-base), visibility var(--transition-base);
     z-index: 90;
   }
 
   .main-nav.is-open {
     transform: translateX(0);
+    visibility: visible;
   }
 
   .main-nav__list {
