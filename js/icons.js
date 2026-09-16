@@ -25,6 +25,23 @@ const ICONS = {
   arrowRight: '<path d="M5 12h14M13 6l6 6-6 6"/>',
   calendar: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
   compass: '<circle cx="12" cy="12" r="9"/><path d="m15 9-2 6-6 2 2-6z"/>',
+  instagram: '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>',
+  facebook: '<path d="M14 8.5V7c0-1 .5-1.5 1.5-1.5H17V3h-2.5C12.5 3 11 4.5 11 7v1.5H9V11h2v10h3V11h2.2l.4-2.5H14Z"/>',
+  globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.7 2.5 15.3 0 18-2.5-2.7-2.5-15.3 0-18Z"/>',
+  inbox: '<path d="M3 13h5l1.5 3h5L16 13h5"/><path d="M4.5 5h15l1.5 8v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Z"/>',
+  chart: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+  trendUp: '<path d="m3 16 5-5 4 4 8-8"/><path d="M15 7h5v5"/>',
+  sparkles: '<path d="M12 3.5 13.6 8 18 9.5 13.6 11 12 15.5 10.4 11 6 9.5 10.4 8Z"/><path d="M18.5 15.5 19.3 18l2.2.8-2.2.8-.8 2.4-.8-2.4-2.2-.8 2.2-.8Z"/>',
+  userCheck: '<circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6 1.2 0 2.3.3 3.2.9"/><path d="m15.5 17 2 2 4-4"/>',
+  bell: '<path d="M18 9a6 6 0 1 0-12 0c0 5-2 7-2 7h16s-2-2-2-7Z"/><path d="M10.5 20a2 2 0 0 0 3 0"/>',
+  send: '<path d="m4 12 16-8-6 16-2.5-6.5L4 12Z"/>',
+  grid: '<rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/>',
+  target: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/>',
+  refresh: '<path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 4v4.5h-4.5"/>',
+  filter: '<path d="M4 5h16l-6 7v6l-4 2v-8Z"/>',
+  megaphone: '<path d="M4 10v4a1 1 0 0 0 1 1h3l6 4V5L8 9H5a1 1 0 0 0-1 1Z"/><path d="M18 9a3.5 3.5 0 0 1 0 6"/>',
+  flower: '<circle cx="12" cy="12" r="2.4"/><path d="M12 9.6c0-2.5-1-4-2.5-4S7 7 7 8.8s1.5 2.6 3.2 2.6"/><path d="M14.4 12c2.5 0 4-1 4-2.5S17 7 15.2 7s-2.6 1.5-2.6 3.2"/><path d="M12 14.4c0 2.5 1 4 2.5 4s2.5-1.4 2.5-3.2-1.5-2.6-3.2-2.6"/><path d="M9.6 12c-2.5 0-4 1-4 2.5S7 17 8.8 17s2.6-1.5 2.6-3.2"/>',
+  building: '<rect x="4" y="3" width="10" height="18" rx="1.5"/><path d="M14 9h5.5a.5.5 0 0 1 .5.5V21"/><path d="M7 7h4M7 11h4M7 15h4M17 13h1M17 17h1"/>',
 };
 
 function icon(name, className = "") {
