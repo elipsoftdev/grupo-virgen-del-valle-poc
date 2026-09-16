@@ -2,3 +2,6 @@
 Thumbs.db
 *.log
 node_modules/
+
+# Archivos temporales del entorno
+.claude/scheduled_tasks.lock
