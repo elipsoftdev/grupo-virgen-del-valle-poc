@@ -129,6 +129,7 @@ function renderChannelDonut() {
   if (!host) return;
 
   const total = DEMO_CHANNELS.reduce((sum, c) => sum + c.value, 0);
+  const leader = DEMO_CHANNELS.reduce((top, c) => (c.value > top.value ? c : top), DEMO_CHANNELS[0]);
   const radius = 68;
   const circumference = 2 * Math.PI * radius;
   let offset = 0;
@@ -150,8 +151,8 @@ function renderChannelDonut() {
         ${segments}
       </svg>
       <div class="donut__center">
-        <strong>${total}%</strong>
-        <span>Oportunidades</span>
+        <strong>${leader.value}%</strong>
+        <span>${leader.label}</span>
       </div>
     </div>
     <div class="donut-legend">
