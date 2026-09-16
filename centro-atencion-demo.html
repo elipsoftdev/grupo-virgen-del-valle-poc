@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Centro Digital · Atención omnicanal (demo) | Grupo Virgen del Valle</title>
+  <meta name="description" content="Demostración del centro de atención omnicanal de Grupo Virgen del Valle: WhatsApp, Instagram, Facebook y web en una misma bandeja, con resumen inteligente para el asesor. Datos simulados." />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/demo-dashboard.css" />
+</head>
+<body class="app-body">
+  <a class="skip-link" href="#app-content">Saltar al contenido</a>
+
+  <div class="app-shell">
+    <aside class="app-sidebar" id="app-sidebar"></aside>
+
+    <div class="app-main">
+      <header class="app-topbar">
+        <div class="app-topbar__titles">
+          <h1>Centro de atención</h1>
+          <p>Todos los canales, una sola conversación con la familia</p>
+        </div>
+        <div class="app-topbar__actions">
+          <span id="demo-reset-host"></span>
+          <a class="btn btn-ghost btn-sm" href="dashboard-demo.html">Ver panel</a>
+          <span class="demo-chip">DEMO · Datos simulados</span>
+        </div>
+      </header>
+
+      <main class="app-content" id="app-content">
+        <div class="inbox-layout">
+          <!-- Bandeja -->
+          <section class="inbox-col" aria-labelledby="inbox-title">
+            <div class="inbox-col__header">
+              <h2 id="inbox-title">Bandeja</h2>
+              <p>WhatsApp · Instagram · Facebook · Web</p>
+            </div>
+            <div class="inbox-tabs" id="inbox-tabs" role="group" aria-label="Filtros de bandeja"></div>
+            <div class="conv-list" id="conv-list"></div>
+          </section>
+
+          <!-- Conversación -->
+          <section class="inbox-col" id="chat-panel" aria-label="Conversación seleccionada"></section>
+
+          <!-- Inteligencia -->
+          <section class="inbox-col inbox-col--ai" aria-labelledby="ai-title">
+            <div class="ai-panel__head">
+              <span class="icon-badge">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 13.6 8 18 9.5 13.6 11 12 15.5 10.4 11 6 9.5 10.4 8Z"/><path d="M18.5 15.5 19.3 18l2.2.8-2.2.8-.8 2.4-.8-2.4-2.2-.8 2.2-.8Z"/></svg>
+              </span>
+              <div>
+                <h2 id="ai-title">Resumen inteligente</h2>
+                <p>Clasificación automática de la solicitud</p>
+              </div>
+            </div>
+            <div class="ai-panel__body" id="ai-panel-body"></div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="data/config.js"></script>
+  <script src="data/demo-leads.js"></script>
+  <script src="data/demo-conversations.js"></script>
+  <script src="js/icons.js"></script>
+  <script src="js/demo-store.js"></script>
+  <script src="js/demo-shell.js"></script>
+  <script>window.DEMO_PAGE = "atencion";</script>
+  <script src="js/centro-atencion.js"></script>
+</body>
+</html>
