@@ -23,15 +23,43 @@ El Home es una landing comercial: convierte. El contenido institucional
 extenso (historia completa, misión, visión) vive aparte, en `/nosotros.html`.
 
 ```text
-index.html               → Home comercial: hero, servicios, teaser de
-                            cotización, atención inmediata, previsión,
-                            obituarios + solicitar obituario, sedes,
-                            instalaciones, CTA final
+index.html                → Home comercial: hero, servicios, teaser de
+                             cotización, atención inmediata, ecosistema
+                             omnicanal, previsión, obituarios + solicitar
+                             obituario, sedes, instalaciones,
+                             oportunidades digitales, CTA final
 cotizar.html              → Cotizador guiado completo (soporta ?tipo=)
 obituarios.html           → Listado completo de obituarios/homenajes
 solicitar-obituario.html  → Formulario de solicitud de publicación
-nosotros.html              → Historia, misión, visión, presencia nacional
+nosotros.html             → Historia, misión, visión, presencia nacional
+
+dashboard-demo.html       → Centro Digital · Panel ejecutivo (demo)
+centro-atencion-demo.html → Centro Digital · Atención omnicanal (demo)
 ```
+
+## Centro Digital (pantallas demo)
+
+Dos pantallas internas muestran el otro lado del ecosistema: qué ocurre
+con una solicitud después de que la familia la envía. **Todos sus datos
+son simulados** y así se identifican en pantalla ("DEMO · Datos
+simulados").
+
+- **Panel ejecutivo** (`dashboard-demo.html`): indicadores del día, embudo
+  digital, oportunidades recientes, origen de los contactos por canal,
+  servicios más consultados y solicitudes por sede.
+- **Atención omnicanal** (`centro-atencion-demo.html`): bandeja única con
+  conversaciones de WhatsApp, Instagram, Facebook y web; la conversación
+  seleccionada; y un panel de resumen con la necesidad ya clasificada,
+  la acción sugerida y la asignación a un asesor (simulada).
+
+### Cómo se conectan con el sitio público
+
+Al terminar el cotizador, la solicitud se guarda **en el navegador del
+visitante** (`localStorage`, clave `gvv_demo_lead`) y aparece marcada como
+nueva en ambas pantallas. Nada se envía a ningún servidor: es el recurso
+que permite demostrar el recorrido completo sin backend. El botón
+"Restablecer datos demo" (visible solo cuando existe esa solicitud) la
+elimina.
 
 ## Funcionalidades demostradas
 
@@ -56,9 +84,13 @@ nosotros.html              → Historia, misión, visión, presencia nacional
   y Distrito Capital, cada una con "Ver sede", "Cómo llegar" y "Contactar".
 - **Misión y visión oficiales**, presentadas tal como están publicadas por la
   empresa (no reescritas), en `/nosotros.html`.
-- **Asistente digital 24/7** simulado mediante árbol conversacional, con
-  enlace directo al cotizador y escalamiento a WhatsApp/asesor humano desde
-  cualquier página.
+- **Asistente digital 24/7** simulado: árbol conversacional + caja de
+  escritura con detección de intención por palabras clave (traslados,
+  previsión, cremación, urgencias, sedes, obituarios), enlace directo al
+  cotizador y escalamiento a WhatsApp/asesor humano desde cualquier página.
+- **Ecosistema omnicanal** explicado en el Home: los cuatro canales, el
+  asistente que clasifica y escala, el centro de atención y el seguimiento,
+  con acceso a las dos pantallas demo del Centro Digital.
 - Sistema de botones e iconografía propios, con microinteracciones
   (elevación, desplazamiento de ícono) y revelado progresivo al hacer scroll,
   respetando `prefers-reduced-motion`.
@@ -78,18 +110,26 @@ css/
   tokens.css       → design tokens (colores, tipografía, espaciado, motion)
   main.css         → layout base, header, hero, botones, footer
   components.css   → cards, cotizador, asistente, modales, formularios
+  demo-dashboard.css → shell de aplicación del Centro Digital (demo)
 data/
   config.js            → configuración centralizada (WhatsApp, correo, etc.)
   company.js           → contenido institucional (misión, visión, trayectoria)
   locations.js         → sedes
   services.js          → catálogo de servicios (Home)
   demo-obituaries.js   → DEMO_DATA — obituarios ficticios
+  demo-leads.js        → DEMO_DATA — oportunidades y asesores simulados
+  demo-conversations.js→ DEMO_DATA — conversaciones omnicanal simuladas
+  demo-metrics.js      → DEMO_DATA — KPIs, embudo y métricas simuladas
 js/
   icons.js             → set de iconos SVG en línea
   render.js            → renderizado de contenido dinámico desde data/
   quote.js             → lógica del cotizador guiado
   assistant.js         → árbol conversacional del asistente digital
   obituary-request.js  → validación y confirmación del formulario de obituario
+  demo-store.js        → puente localStorage entre cotizador y pantallas demo
+  demo-shell.js        → navegación y componentes comunes del Centro Digital
+  dashboard.js         → panel ejecutivo (demo)
+  centro-atencion.js   → centro de atención omnicanal (demo)
   main.js              → navegación, scroll reveal, inicialización
 docs/
   recomendaciones-produccion.md
