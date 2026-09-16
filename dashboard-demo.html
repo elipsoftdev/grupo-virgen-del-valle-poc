@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Centro Digital · Panel Ejecutivo (demo) | Grupo Virgen del Valle</title>
+  <meta name="description" content="Demostración del panel ejecutivo del Centro Digital de Grupo Virgen del Valle: solicitudes, embudo comercial, oportunidades y origen de los contactos. Datos simulados." />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/demo-dashboard.css" />
+</head>
+<body class="app-body">
+  <a class="skip-link" href="#app-content">Saltar al contenido</a>
+
+  <div class="app-shell">
+    <aside class="app-sidebar" id="app-sidebar"></aside>
+
+    <div class="app-main">
+      <header class="app-topbar">
+        <div class="app-topbar__titles">
+          <h1>Centro Digital</h1>
+          <p>Panel Ejecutivo · actividad de los canales digitales</p>
+        </div>
+        <div class="app-topbar__actions">
+          <span id="demo-reset-host"></span>
+          <a class="btn btn-ghost btn-sm" href="centro-atencion-demo.html">Ver atención</a>
+          <span class="demo-chip">DEMO · Datos simulados</span>
+        </div>
+      </header>
+
+      <main class="app-content" id="app-content">
+        <!-- KPIs -->
+        <section aria-labelledby="kpi-title">
+          <h2 id="kpi-title" class="sr-only">Indicadores del día</h2>
+          <div class="kpi-grid" id="kpi-grid"></div>
+        </section>
+
+        <!-- Embudo + rendimiento -->
+        <section class="section-grid section-grid--2">
+          <div class="panel">
+            <div class="panel__header">
+              <div>
+                <h2>Embudo digital</h2>
+                <p>De la visita al contacto comercial</p>
+              </div>
+            </div>
+            <div class="funnel" id="funnel"></div>
+          </div>
+
+          <div class="panel">
+            <div class="panel__header">
+              <div>
+                <h2>Rendimiento digital</h2>
+                <p>Resumen del período</p>
+              </div>
+            </div>
+            <div class="metric-list" id="performance-list"></div>
+          </div>
+        </section>
+
+        <!-- Oportunidades -->
+        <section class="panel" id="oportunidades">
+          <div class="panel__header">
+            <div>
+              <h2>Oportunidades recientes</h2>
+              <p>Solicitudes recibidas desde todos los canales</p>
+            </div>
+            <span class="status-pill" id="lead-count"></span>
+          </div>
+          <div class="lead-list" id="lead-list"></div>
+        </section>
+
+        <!-- Marketing -->
+        <section id="marketing" class="section-grid section-grid--2">
+          <div class="panel">
+            <div class="panel__header">
+              <div>
+                <h2>Origen de oportunidades</h2>
+                <p>Por dónde llegan las familias</p>
+              </div>
+            </div>
+            <div class="donut-wrap" id="channel-donut"></div>
+          </div>
+
+          <div class="panel">
+            <div class="panel__header">
+              <div>
+                <h2>Servicios más consultados</h2>
+                <p>Interés por tipo de servicio</p>
+              </div>
+            </div>
+            <div class="bar-list" id="top-services"></div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel__header">
+            <div>
+              <h2>Solicitudes por sede</h2>
+              <p>Distribución geográfica de la demanda</p>
+            </div>
+          </div>
+          <div class="bar-list" id="by-location"></div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="data/config.js"></script>
+  <script src="data/demo-metrics.js"></script>
+  <script src="data/demo-leads.js"></script>
+  <script src="data/demo-conversations.js"></script>
+  <script src="js/icons.js"></script>
+  <script src="js/demo-store.js"></script>
+  <script src="js/demo-shell.js"></script>
+  <script>window.DEMO_PAGE = "resumen";</script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
