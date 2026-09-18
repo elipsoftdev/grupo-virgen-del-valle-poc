@@ -7,6 +7,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* El menú móvil cerrado vive fuera de pantalla: no debe generar scroll lateral */
+  overflow-x: clip;
 }
 
 @media (prefers-reduced-motion: reduce) {

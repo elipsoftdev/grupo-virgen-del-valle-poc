@@ -71,7 +71,7 @@ const DEMO_LEADS = [
     name: "Luis Bermúdez",
     initials: "LB",
     source: "Web",
-    service: "Cementerio",
+    service: "Inhumación",
     city: "Puerto La Cruz",
     priority: "Media",
     status: "En conversación",

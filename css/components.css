@@ -1389,7 +1389,14 @@
 
 @media (max-width: 860px) {
   .quote-teaser {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+    padding: var(--space-lg) var(--space-md);
+    gap: var(--space-lg);
+  }
+
+  .quote-teaser__cta .btn {
+    white-space: normal;
+    width: 100%;
   }
 
   .obituary-request-banner {
@@ -1624,6 +1631,7 @@
 }
 
 .obituary-form-wrap fieldset {
+  min-width: 0; /* los fieldset usan min-content por defecto y desbordan en móvil */
   border: none;
   padding: 0;
   margin: 0 0 var(--space-lg);
@@ -1661,6 +1669,7 @@
 
 .field-group input[type="file"] {
   font-size: var(--fs-sm);
+  max-width: 100%;
 }
 
 .field-note {
