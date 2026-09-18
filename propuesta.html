@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Propuesta de transformación digital | Grupo Virgen del Valle</title>
+  <meta name="description" content="Propuesta interactiva de transformación digital para Grupo Virgen del Valle: plataforma de atención, captación, seguimiento y crecimiento. Fase 1 implementada en hasta 45 días." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/propuesta.css" />
+</head>
+<body class="proposal-body">
+  <a class="skip-link" href="#vision">Saltar al contenido</a>
+
+  <!-- NAVEGACIÓN -->
+  <header class="pnav" id="pnav">
+    <div class="pnav__bar">
+      <a class="pnav__brand" href="#top">
+        <img src="assets/img/logo.png" alt="Grupo Virgen del Valle" width="72" height="40" />
+        <span>Propuesta de transformación digital</span>
+      </a>
+      <nav class="pnav__links" aria-label="Secciones de la propuesta">
+        <a href="#vision" data-nav="vision">Visión</a>
+        <a href="#ia" data-nav="ia">IA 24/7</a>
+        <a href="#inteligencia" data-nav="inteligencia">Inteligencia</a>
+        <a href="#impacto" data-nav="impacto">Impacto</a>
+        <a href="#alcance" data-nav="alcance">Alcance</a>
+        <a href="#roadmap" data-nav="roadmap">Roadmap</a>
+        <a href="#inversion" data-nav="inversion">Inversión</a>
+      </nav>
+      <button type="button" class="pnav__index" id="pnav-index" aria-expanded="false" aria-controls="pnav-sheet">Índice</button>
+    </div>
+    <div class="pnav__progress" aria-hidden="true"><span id="pnav-progress"></span></div>
+    <nav class="pnav__sheet" id="pnav-sheet" aria-label="Índice de la propuesta" hidden>
+      <a href="#vision">Visión</a>
+      <a href="#ia">Agente digital 24/7</a>
+      <a href="#inteligencia">Inteligencia de negocio</a>
+      <a href="#impacto">Impacto esperado</a>
+      <a href="#alcance">Alcance Fase 1</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#inversion">Inversión</a>
+      <a href="#cierre">Próximos pasos</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- 1. HERO -->
+    <section class="p-hero" data-section="hero">
+      <div class="p-wrap p-hero__inner">
+        <div class="p-hero__copy">
+        <span class="p-eyebrow p-eyebrow--light reveal">Propuesta de transformación digital</span>
+        <h1 class="reveal">De una presencia informativa a una plataforma de atención, captación y crecimiento.</h1>
+        <p class="p-hero__lead reveal">Una experiencia diseñada para atender mejor a las familias, convertir oportunidades en acciones y transformar cada interacción en información útil para el negocio.</p>
+        <div class="p-hero__ctas reveal">
+          <a class="btn btn-primary btn-lg" href="#vision">Conocer la propuesta
+            <svg class="icon icon--arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn p-btn-glass btn-lg" href="index.html" data-track="proposal_demo_click" data-track-target="hero">Explorar la PoC</a>
+        </div>
+        <div class="p-hero__meta reveal">
+          <span class="p-hero__chip">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            <span>Tiempo estimado de implementación: <strong>hasta 45 días</strong></span>
+          </span>
+          <span class="p-hero__chip p-hero__chip--muted">Fase 1 · Servicios de necesidad inmediata</span>
+        </div>
+        </div>
+
+        <div class="p-hero__visual reveal" aria-hidden="true">
+          <span class="p-hero__visual-tag">Ilustrativo</span>
+          <div class="p-float p-float--request">
+            <div class="p-float__row">
+              <span class="p-float__channel">WhatsApp</span>
+              <span class="p-float__time">Ahora</span>
+            </div>
+            <strong>Nueva solicitud</strong>
+            <span class="p-float__detail">Cremación · Caracas</span>
+            <span class="p-float__priority">Atención inmediata</span>
+          </div>
+          <div class="p-float p-float--stat">
+            <span>Respuesta inicial</span>
+            <strong>&lt; 1 min</strong>
+            <small>Agente digital 24/7</small>
+          </div>
+          <div class="p-float p-float--advisor">
+            <span class="p-float__avatar"><svg class="icon" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6 1.2 0 2.3.3 3.2.9"/><path d="m15.5 17 2 2 4-4"/></svg></span>
+            <div>
+              <small>Asignada a</small>
+              <strong>Asesora de guardia</strong>
+            </div>
+          </div>
+        </div>
+
+        <ol class="p-journey reveal" aria-label="Recorrido que cubre la plataforma">
+          <li>Atraer</li><li>Identificar</li><li>Atender</li><li>Convertir</li>
+          <li>Prestar servicio</li><li>Cerrar</li><li>Medir</li><li>Mejorar</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 2. HOY VS PROPUESTA -->
+    <section class="p-section" id="vision" data-section="vision">
+      <div class="p-wrap">
+        <header class="p-head reveal">
+          <span class="p-eyebrow">Visión</span>
+          <h2>No es una página web nueva. Es una forma nueva de atender.</h2>
+        </header>
+
+        <div class="p-compare">
+          <article class="p-compare__card p-compare__card--today reveal">
+            <span class="p-compare__label">Hoy</span>
+            <ul>
+              <li>Presencia principalmente informativa</li>
+              <li>Atención distribuida en distintos canales</li>
+              <li>Contacto menos guiado</li>
+              <li>Menor visibilidad de la intención del cliente</li>
+              <li>Seguimiento menos estructurado</li>
+              <li>Información difícil de consolidar</li>
+            </ul>
+          </article>
+
+          <div class="p-compare__bridge reveal" aria-hidden="true">
+            <span class="p-compare__bridge-line"></span>
+            <span class="p-compare__bridge-text">Evolución digital</span>
+            <span class="p-compare__bridge-line"></span>
+          </div>
+
+          <article class="p-compare__card p-compare__card--next reveal">
+            <span class="p-compare__label">Propuesta</span>
+            <ul>
+              <li>Atención centralizada</li>
+              <li>Solicitudes guiadas</li>
+              <li>Oportunidades mejor calificadas</li>
+              <li>Seguimiento comercial</li>
+              <li>Trazabilidad</li>
+              <li>Información útil para gerencia</li>
+            </ul>
+          </article>
+        </div>
+
+        <!-- 3. QUÉ GANA EL NEGOCIO -->
+        <header class="p-head p-head--spaced reveal">
+          <span class="p-eyebrow">Qué gana el negocio</span>
+          <h2>Cuatro resultados que la plataforma busca mover.</h2>
+        </header>
+        <div class="p-gains">
+          <article class="p-gain reveal">
+            <span class="p-gain__num">01</span>
+            <h3>Más oportunidades calificadas</h3>
+            <p>Cada contacto llega con la necesidad, la ciudad y la urgencia identificadas.</p>
+          </article>
+          <article class="p-gain reveal">
+            <span class="p-gain__num">02</span>
+            <h3>Mejor experiencia para las familias</h3>
+            <p>Respuesta inmediata a cualquier hora y un camino claro para pedir ayuda.</p>
+          </article>
+          <article class="p-gain reveal">
+            <span class="p-gain__num">03</span>
+            <h3>Mayor control comercial</h3>
+            <p>Cada oportunidad tiene sede, asesor, estado y seguimiento.</p>
+          </article>
+          <article class="p-gain reveal">
+            <span class="p-gain__num">04</span>
+            <h3>Mejores decisiones para crecer</h3>
+            <p>Información sobre canales, servicios y sedes para decidir con evidencia.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. AGENTE DIGITAL 24/7 -->
+    <section class="p-section p-section--navy" id="ia" data-section="ia">
+      <div class="p-wrap">
+        <header class="p-head p-head--light reveal">
+          <span class="p-eyebrow p-eyebrow--light">Agente digital 24/7</span>
+          <h2>Atención inteligente, incluso cuando el equipo humano no está disponible.</h2>
+        </header>
+
+        <div class="p-agent">
+          <div class="p-agent__phone reveal">
+            <div class="p-agent__phone-head">
+              <span class="p-agent__avatar" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M12 3.5 13.6 8 18 9.5 13.6 11 12 15.5 10.4 11 6 9.5 10.4 8Z"/></svg>
+              </span>
+              <div class="p-agent__who">
+                <strong>Grupo Virgen del Valle</strong>
+                <span><i class="p-dot"></i>Agente digital · en línea</span>
+              </div>
+              <span class="p-demo-badge">Demo</span>
+            </div>
+            <div class="p-agent__thread" id="agent-thread" role="log" aria-label="Ejemplo de conversación con el agente digital">
+              <div class="p-msg p-msg--client" data-step="0">Necesito un servicio de cremación en Caracas.</div>
+              <div class="p-msg p-msg--bot" data-step="1">Lamentamos su pérdida. Puedo orientarle. ¿La atención es requerida de forma inmediata?</div>
+              <div class="p-msg p-msg--client" data-step="2">Sí.</div>
+              <div class="p-msg p-msg--bot" data-step="3">Entendido. Para que un asesor le contacte de inmediato, ¿a nombre de quién registro la solicitud?</div>
+              <div class="p-msg p-msg--client" data-step="4">Carmen Díaz. Mi número es 0412-0000000.</div>
+              <div class="p-msg p-msg--system" data-step="5">
+                <strong>Solicitud clasificada</strong>
+                <span>Cremación · Caracas · Atención inmediata · Contacto registrado</span>
+              </div>
+              <div class="p-msg p-msg--bot" data-step="6">Gracias, Carmen. Un asesor de nuestro equipo le escribirá en este momento.</div>
+            </div>
+            <button type="button" class="p-agent__replay" id="agent-replay">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 4v4.5h-4.5"/></svg>
+              Repetir conversación
+            </button>
+          </div>
+
+          <div class="p-agent__side">
+            <ol class="p-flow reveal" id="agent-flow" aria-label="Qué ocurre durante la conversación">
+              <li data-flow="0"><span class="p-flow__n">1</span><span class="p-flow__t">Cliente<small>Escribe por WhatsApp, web o redes</small></span></li>
+              <li data-flow="1"><span class="p-flow__n">2</span><span class="p-flow__t">Agente digital<small>Responde de inmediato</small></span></li>
+              <li data-flow="3"><span class="p-flow__n">3</span><span class="p-flow__t">Necesidad identificada<small>Servicio, ciudad y urgencia</small></span></li>
+              <li data-flow="5"><span class="p-flow__n">4</span><span class="p-flow__t">Datos básicos<small>Contacto listo para el asesor</small></span></li>
+              <li data-flow="6"><span class="p-flow__n">5</span><span class="p-flow__t">Asesor humano<small>Continúa la atención</small></span></li>
+            </ol>
+
+            <ul class="p-agent__benefits reveal">
+              <li>Respuesta inicial inmediata</li>
+              <li>Atención 24/7</li>
+              <li>Clasificación de la necesidad</li>
+              <li>Captura de datos</li>
+              <li>Menos prospectos perdidos</li>
+              <li>Pase a una persona cuando corresponde</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="p-agent__closing reveal">
+          <blockquote class="p-agent__quote">La tecnología atiende primero; las personas acompañan cuando más importa.</blockquote>
+          <a class="btn btn-primary btn-lg" href="centro-atencion-demo.html" data-track="proposal_center_click">Ver Centro de Atención
+            <svg class="icon icon--arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. INTELIGENCIA DE NEGOCIO -->
+    <section class="p-section" id="inteligencia" data-section="inteligencia">
+      <div class="p-wrap">
+        <header class="p-head reveal">
+          <span class="p-eyebrow">Inteligencia de negocio</span>
+          <h2>Cada conversación puede convertirse en información útil.</h2>
+        </header>
+
+        <div class="p-bi reveal">
+          <div class="p-bi__top">
+            <span class="p-bi__title">Panel gerencial · ejemplo mensual</span>
+            <span class="p-demo-badge p-demo-badge--dark">Datos demostrativos</span>
+          </div>
+
+          <div class="p-bi__kpis">
+            <div class="p-kpi"><strong><span data-count="524">524</span></strong><span>Consultas</span></div>
+            <div class="p-kpi"><strong><span data-count="312">312</span></strong><span>Oportunidades</span></div>
+            <div class="p-kpi"><strong><span data-count="59">59</span>%</strong><span>Conversión demo</span></div>
+            <div class="p-kpi"><strong>4 min</strong><span>Primera respuesta</span></div>
+          </div>
+
+          <div class="p-bi__grid">
+            <div class="p-bi__panel">
+              <h3>Oportunidades por canal</h3>
+              <div class="p-bars">
+                <div class="p-bar"><span>WhatsApp</span><i style="--w:46%"></i><b>46%</b></div>
+                <div class="p-bar"><span>Web</span><i style="--w:22%"></i><b>22%</b></div>
+                <div class="p-bar"><span>Instagram</span><i style="--w:19%"></i><b>19%</b></div>
+                <div class="p-bar"><span>Facebook</span><i style="--w:13%"></i><b>13%</b></div>
+              </div>
+            </div>
+            <div class="p-bi__panel">
+              <h3>Servicios más solicitados</h3>
+              <div class="p-bars p-bars--gold">
+                <div class="p-bar"><span>Atención inmediata</span><i style="--w:34%"></i><b>34%</b></div>
+                <div class="p-bar"><span>Velación</span><i style="--w:26%"></i><b>26%</b></div>
+                <div class="p-bar"><span>Cremación</span><i style="--w:21%"></i><b>21%</b></div>
+                <div class="p-bar"><span>Traslados</span><i style="--w:12%"></i><b>12%</b></div>
+                <div class="p-bar"><span>Inhumación</span><i style="--w:7%"></i><b>7%</b></div>
+              </div>
+            </div>
+            <div class="p-bi__panel">
+              <h3>Motivos de pérdida</h3>
+              <div class="p-bars">
+                <div class="p-bar"><span>Sin respuesta a tiempo</span><i style="--w:38%"></i><b>38%</b></div>
+                <div class="p-bar"><span>Solo buscaba información</span><i style="--w:27%"></i><b>27%</b></div>
+                <div class="p-bar"><span>Eligió otra opción</span><i style="--w:21%"></i><b>21%</b></div>
+                <div class="p-bar"><span>Otros</span><i style="--w:14%"></i><b>14%</b></div>
+              </div>
+            </div>
+            <div class="p-bi__panel p-bi__panel--split">
+              <div>
+                <h3>Satisfacción</h3>
+                <p class="p-bi__big">4,6<small>/5</small></p>
+              </div>
+              <div>
+                <h3>Por sede</h3>
+                <ul class="p-bi__sedes">
+                  <li><span>Cumaná</span><b>38%</b></li>
+                  <li><span>Puerto La Cruz</span><b>27%</b></li>
+                  <li><span>Caracas</span><b>21%</b></li>
+                  <li><span>Anaco</span><b>14%</b></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-center-cta reveal">
+          <a class="btn btn-secondary btn-lg" href="dashboard-demo.html" data-track="proposal_dashboard_click">Explorar Dashboard
+            <svg class="icon icon--arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+
+        <!-- 6. DE DATOS A DECISIONES -->
+        <header class="p-head p-head--spaced reveal">
+          <span class="p-eyebrow">De datos a decisiones</span>
+          <h2>Preguntas que la dirección podrá responder con evidencia.</h2>
+        </header>
+        <div class="p-questions">
+          <p class="p-question reveal">¿Qué servicios reciben más consultas?</p>
+          <p class="p-question reveal">¿Por qué se están perdiendo oportunidades?</p>
+          <p class="p-question reveal">¿Qué canal genera mejores prospectos?</p>
+          <p class="p-question reveal">¿Dónde debemos mejorar tiempos de atención?</p>
+          <p class="p-question reveal">¿Qué patrones aparecen en las opiniones de los clientes?</p>
+        </div>
+        <p class="p-footnote reveal">Visión de la solución: los indicadores definitivos se acuerdan con la dirección durante la implementación.</p>
+      </div>
+    </section>
+
+    <!-- 7. IMPACTO ESPERADO -->
+    <section class="p-section p-section--ivory" id="impacto" data-section="impacto">
+      <div class="p-wrap">
+        <header class="p-head reveal">
+          <span class="p-eyebrow">Impacto esperado</span>
+          <h2>Escenarios de mejora que la plataforma hace posibles.</h2>
+        </header>
+        <div class="p-impact">
+          <article class="p-impact__card reveal">
+            <strong>10–25%</strong>
+            <p>Incremento potencial de oportunidades calificadas</p>
+          </article>
+          <article class="p-impact__card reveal">
+            <strong>8–15%</strong>
+            <p>Mejora potencial en atención y conversión</p>
+          </article>
+          <article class="p-impact__card reveal">
+            <strong>15–30%</strong>
+            <p>Reducción potencial de oportunidades perdidas por falta de seguimiento</p>
+          </article>
+          <article class="p-impact__card p-impact__card--accent reveal">
+            <strong>100%</strong>
+            <p>Trazabilidad de las interacciones gestionadas dentro del sistema</p>
+          </article>
+        </div>
+        <p class="p-disclaimer reveal">Escenarios referenciales. Los resultados reales dependerán del volumen de demanda, inversión en captación, capacidad de respuesta y operación comercial.</p>
+
+        <!-- 8. SIMULADOR -->
+        <div class="p-sim reveal" id="simulador">
+          <div class="p-sim__intro">
+            <span class="p-eyebrow">Simulador · escenario ilustrativo</span>
+            <h2>¿Qué puede significar recuperar oportunidades que hoy se pierden?</h2>
+          </div>
+
+          <div class="p-sim__body">
+            <form class="p-sim__form" id="sim-form" novalidate>
+              <div class="p-sim__field">
+                <label for="sim-services">Servicios adicionales al mes</label>
+                <div class="p-sim__range">
+                  <input type="range" id="sim-services" min="0" max="10" step="1" value="2" />
+                  <output id="sim-services-out" for="sim-services">2</output>
+                </div>
+              </div>
+              <div class="p-sim__field">
+                <label for="sim-value">Valor estimado por servicio</label>
+                <div class="p-sim__money">
+                  <span aria-hidden="true">USD</span>
+                  <input type="number" id="sim-value" min="0" step="10" inputmode="decimal" placeholder="Ingrese un valor" />
+                </div>
+                <button type="button" class="p-sim__example" id="sim-example">Usar un ejemplo ilustrativo</button>
+              </div>
+            </form>
+
+            <div class="p-sim__results" aria-live="polite">
+              <div class="p-sim__result">
+                <span>Impacto mensual estimado</span>
+                <strong id="sim-month">—</strong>
+              </div>
+              <div class="p-sim__result p-sim__result--main">
+                <span>Impacto anual estimado</span>
+                <strong id="sim-year">—</strong>
+              </div>
+              <p class="p-sim__hint" id="sim-hint">Ingrese un valor por servicio para ver el escenario.</p>
+            </div>
+          </div>
+
+          <p class="p-disclaimer p-disclaimer--sim">Esta herramienta no constituye una proyección financiera ni una garantía de resultados.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. ALCANCE FASE 1 -->
+    <section class="p-section" id="alcance" data-section="alcance">
+      <div class="p-wrap">
+        <header class="p-head reveal">
+          <span class="p-eyebrow">Alcance · Fase 1</span>
+          <h2>Una plataforma completa, organizada en cinco frentes.</h2>
+          <p>Enfocada en servicios de necesidad inmediata: velación, cremación, inhumación, traslados y atención inmediata.</p>
+        </header>
+
+        <div class="p-scope">
+          <details class="p-scope__item reveal" open>
+            <summary><span class="p-scope__n">1</span><span class="p-scope__t">Captación<small>Atraer y guiar a quien necesita un servicio</small></span></summary>
+            <ul><li>Nueva web</li><li>Cotización guiada</li><li>Canales digitales</li></ul>
+          </details>
+          <details class="p-scope__item reveal">
+            <summary><span class="p-scope__n">2</span><span class="p-scope__t">Atención<small>Todos los canales en un mismo lugar</small></span></summary>
+            <ul><li>Web</li><li>WhatsApp</li><li>Instagram</li><li>Facebook</li><li>Bandeja central</li><li>Agente digital 24/7</li></ul>
+          </details>
+          <details class="p-scope__item reveal">
+            <summary><span class="p-scope__n">3</span><span class="p-scope__t">Gestión comercial<small>Cada oportunidad con responsable y seguimiento</small></span></summary>
+            <ul><li>CRM sencillo dentro del sistema</li><li>Embudo</li><li>Sede</li><li>Asesor</li><li>Seguimiento</li></ul>
+          </details>
+          <details class="p-scope__item reveal">
+            <summary><span class="p-scope__n">4</span><span class="p-scope__t">Servicio y calidad<small>Del servicio prestado a la opinión de la familia</small></span></summary>
+            <ul><li>Estados básicos del servicio</li><li>Cierre</li><li>Postventa</li><li>Satisfacción</li><li>Observaciones</li></ul>
+          </details>
+          <details class="p-scope__item reveal">
+            <summary><span class="p-scope__n">5</span><span class="p-scope__t">Gerencia<small>Información para decidir</small></span></summary>
+            <ul><li>Dashboard</li><li>Indicadores</li><li>Análisis</li><li>IA aplicada a la información</li></ul>
+          </details>
+        </div>
+
+        <p class="p-scope__extra reveal"><strong>Contenido:</strong> obituarios y solicitudes de publicación.</p>
+      </div>
+    </section>
+
+    <!-- 10. ROADMAP -->
+    <section class="p-section p-section--ivory" id="roadmap" data-section="roadmap">
+      <div class="p-wrap">
+        <header class="p-head reveal">
+          <span class="p-eyebrow">Roadmap</span>
+          <h2>Hasta 45 días para implementar la Fase 1</h2>
+        </header>
+        <ol class="p-roadmap">
+          <li class="reveal"><span class="p-roadmap__when">Día 0</span><h3>Inicio y levantamiento</h3></li>
+          <li class="reveal"><span class="p-roadmap__when">Días 1–15</span><h3>Experiencia digital, contenidos y configuración</h3></li>
+          <li class="reveal"><span class="p-roadmap__when">Días 16–30</span><h3>Centro de atención y gestión comercial</h3></li>
+          <li class="reveal"><span class="p-roadmap__when">Días 31–45</span><h3>Dashboard, pruebas, capacitación y puesta en producción</h3></li>
+        </ol>
+        <p class="p-footnote reveal">El cronograma supone disponibilidad oportuna de accesos, contenidos, validaciones y servicios de terceros.</p>
+      </div>
+    </section>
+
+    <!-- 11. INVERSIÓN -->
+    <section class="p-section" id="inversion" data-section="inversion">
+      <div class="p-wrap">
+        <header class="p-head reveal">
+          <span class="p-eyebrow">Inversión · Fase 1</span>
+          <h2>Dos modalidades, un mismo alcance.</h2>
+        </header>
+
+        <div class="p-price">
+          <article class="p-price__card reveal">
+            <span class="p-price__label">Monto financiado</span>
+            <strong class="p-price__amount"><small>USD</small> 3.890</strong>
+            <p>Una modalidad flexible para iniciar el proyecto y distribuir parte de la inversión después de la implementación.</p>
+            <a class="p-price__link" href="#pagos">Ver facilidad de pago</a>
+          </article>
+          <article class="p-price__card p-price__card--featured reveal">
+            <span class="p-price__badge">Pronto pago</span>
+            <span class="p-price__label">Pago total dentro de los 45 días</span>
+            <strong class="p-price__amount"><small>USD</small> 3.590</strong>
+            <p>Valor preferencial si la totalidad del proyecto es cancelada dentro del período de implementación.</p>
+          </article>
+        </div>
+
+        <!-- 12. FACILIDAD DE PAGO -->
+        <div class="p-pay reveal" id="pagos" data-section="pagos">
+          <header class="p-pay__head">
+            <h3>Facilidad de pago · modalidad financiada</h3>
+            <p>60% durante la implementación y 40% en los 60 días posteriores.</p>
+          </header>
+          <ol class="p-pay__steps">
+            <li><span class="p-pay__pct">30%</span><span class="p-pay__when">Al inicio</span><strong>USD 1.167</strong></li>
+            <li><span class="p-pay__pct">30%</span><span class="p-pay__when">Durante la implementación</span><strong>USD 1.167</strong></li>
+            <li><span class="p-pay__pct">20%</span><span class="p-pay__when">30 días posteriores</span><strong>USD 778</strong></li>
+            <li><span class="p-pay__pct">20%</span><span class="p-pay__when">60 días posteriores</span><strong>USD 778</strong></li>
+          </ol>
+          <div class="p-pay__notes">
+            <p>Se permiten abonos anticipados o parciales sin penalización.</p>
+            <p><strong>Pronto pago:</strong> no es necesario replicar esta distribución. La condición de USD 3.590 aplica simplemente si el proyecto queda totalmente cancelado dentro de los 45 días de implementación.</p>
+          </div>
+        </div>
+
+        <!-- 13. BOLÍVARES -->
+        <p class="p-ves reveal">Los pagos en bolívares se calcularán a tasa oficial euro BCV vigente para la fecha efectiva de cada pago.</p>
+      </div>
+    </section>
+
+    <!-- 14 + 15. FASE 2 Y SERVICIOS INDEPENDIENTES -->
+    <section class="p-section p-section--ivory" id="fase-2" data-section="fase-2">
+      <div class="p-wrap">
+        <div class="p-later">
+          <article class="p-phase2 reveal">
+            <span class="p-phase2__tag">Fase 2</span>
+            <h2>Próxima etapa: Previsión funeraria</h2>
+            <p>La digitalización de previsión funeraria no forma parte del alcance de esta propuesta. Será objeto de un análisis funcional, comercial, operativo y legal independiente y contará con su propia propuesta.</p>
+          </article>
+
+          <article class="p-extras reveal">
+            <h2>Servicios y evoluciones que se cotizan de forma independiente</h2>
+            <ul>
+              <li>Pauta publicitaria</li>
+              <li>Gestión de campañas</li>
+              <li>Community management</li>
+              <li>Pagos online</li>
+              <li>Firma digital</li>
+              <li>ERP funerario completo</li>
+              <li>Costos recurrentes de terceros</li>
+              <li>Consumo de IA</li>
+              <li>Servicios Meta / WhatsApp</li>
+              <li>Hosting y licencias, si aplican</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 16. CIERRE -->
+    <section class="p-close" id="cierre" data-section="cierre">
+      <div class="p-wrap p-close__inner">
+        <h2 class="reveal">Más que una nueva web, una base digital para atender mejor y crecer con información.</h2>
+        <div class="p-close__ctas reveal">
+          <button type="button" class="btn btn-primary btn-lg" data-contact="advance" data-track="proposal_cta_advance">Quiero avanzar
+            <svg class="icon icon--arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+          <button type="button" class="btn p-btn-glass btn-lg" data-contact="question" data-track="proposal_cta_question">Tengo una consulta</button>
+        </div>
+        <a class="p-close__link reveal" href="index.html" data-track="proposal_demo_click" data-track-target="closing">Volver a explorar la demo</a>
+      </div>
+      <footer class="p-footer">
+        <div class="p-wrap p-footer__inner">
+          <span>Propuesta preparada para Grupo Virgen del Valle</span>
+          <span class="p-footer__dev">Tecnología y desarrollo: <strong>Elipsoft</strong></span>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <!-- Diálogo de contacto: se usa mientras no haya canal comercial configurado -->
+  <dialog class="p-dialog" id="contact-dialog" aria-labelledby="contact-dialog-title">
+    <form method="dialog" class="p-dialog__inner">
+      <h2 id="contact-dialog-title">Mensaje listo para enviar</h2>
+      <p class="p-dialog__hint">Copie este mensaje y envíelo por el canal que prefiera.</p>
+      <label class="sr-only" for="contact-message">Mensaje</label>
+      <textarea id="contact-message" rows="4" readonly></textarea>
+      <div class="p-dialog__actions">
+        <button type="button" class="btn btn-primary" id="contact-copy">Copiar mensaje</button>
+        <button type="submit" class="btn btn-ghost">Cerrar</button>
+      </div>
+      <p class="p-dialog__status" id="contact-status" role="status"></p>
+    </form>
+  </dialog>
+
+  <script src="data/proposal-config.js"></script>
+  <script src="js/propuesta.js"></script>
+</body>
+</html>
