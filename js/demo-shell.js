@@ -41,6 +41,7 @@ function renderDemoSidebar() {
         <strong>Demostración</strong>
         Las cifras y conversaciones de esta vista son simuladas, para mostrar cómo funcionaría la plataforma en operación.
       </div>
+      <a class="app-back-link" href="propuesta.html">${icon("arrowRight")} Volver a la propuesta</a>
       <a class="app-back-link" href="index.html">${icon("home")} Volver al sitio público</a>
     </div>
   `;

@@ -69,11 +69,11 @@ const DEMO_CHANNELS = [
 ];
 
 const DEMO_TOP_SERVICES = [
-  { label: "Previsión", value: 31 },
-  { label: "Servicio inmediato", value: 26 },
-  { label: "Cremación", value: 18 },
+  { label: "Atención inmediata", value: 31 },
+  { label: "Velación", value: 24 },
+  { label: "Cremación", value: 20 },
   { label: "Traslados", value: 15 },
-  { label: "Cementerio", value: 10 },
+  { label: "Inhumación", value: 10 },
 ];
 
 const DEMO_BY_LOCATION = [
@@ -87,5 +87,5 @@ const DEMO_PERFORMANCE = [
   { label: "Conversión", value: "42%", caption: "De conversación a solicitud" },
   { label: "Primera respuesta", value: "3 min", caption: "Tiempo medio" },
   { label: "Canal principal", value: "WhatsApp", caption: "46% de las oportunidades" },
-  { label: "Mayor interés", value: "Previsión", caption: "31% de las consultas" },
+  { label: "Mayor interés", value: "Atención inmediata", caption: "31% de las consultas" },
 ];

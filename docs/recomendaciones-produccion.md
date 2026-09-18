@@ -47,11 +47,12 @@ Definir con el equipo comercial las reglas reales detrás de cada flujo del
 cotizador (qué información se prioriza, a quién se enruta cada tipo de
 solicitud, SLA de respuesta esperado).
 
-## 7. Planes funerarios
+## 7. Previsión funeraria (Fase 2)
 
-Validar los planes de previsión vigentes, condiciones, coberturas y
-cualquier información contractual antes de publicarla. Esta PoC
-deliberadamente no muestra precios ni condiciones específicas.
+Fuera del alcance de la Fase 1. Antes de digitalizarla se requiere un
+análisis funcional, comercial, operativo y legal independiente (planes,
+condiciones, coberturas, marco regulatorio), con su propia propuesta. La
+PoC no muestra planes, precios ni CTA de contratación de previsión.
 
 ## 8. Inteligencia artificial
 

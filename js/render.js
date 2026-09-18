@@ -9,7 +9,6 @@ const SERVICE_LABELS = {
   traslados: "Traslados",
   cremacion: "Cremación",
   inhumacion: "Inhumación",
-  prevision: "Previsión",
 };
 
 function renderCompanyContent() {

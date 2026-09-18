@@ -23,7 +23,7 @@ const LOCATIONS = [
     hours: "Atención 24 horas",
     is24h: true,
     photo: "assets/img/pasillo-cumana.jpg",
-    services: ["velacion", "traslados", "cremacion", "inhumacion", "prevision"],
+    services: ["velacion", "traslados", "cremacion", "inhumacion"],
   },
   {
     slug: "puerto-la-cruz",
@@ -36,7 +36,7 @@ const LOCATIONS = [
     hours: "Atención 24 horas",
     is24h: true,
     photo: "assets/img/fachada-pto-la-cruz.jpg",
-    services: ["velacion", "traslados", "prevision"],
+    services: ["velacion", "traslados"],
   },
   {
     slug: "anaco",
@@ -49,7 +49,7 @@ const LOCATIONS = [
     hours: "Atención 24 horas",
     is24h: true,
     photo: "assets/img/fachada-anaco.jpg",
-    services: ["velacion", "traslados", "prevision"],
+    services: ["velacion", "traslados"],
   },
   {
     slug: "caracas",
@@ -62,6 +62,6 @@ const LOCATIONS = [
     hours: "Atención 24 horas",
     is24h: true,
     photo: "assets/img/fachada-historica.jpg",
-    services: ["velacion", "traslados", "cremacion", "prevision"],
+    services: ["velacion", "traslados", "cremacion"],
   },
 ];

@@ -14,6 +14,7 @@
 body.app-body {
   background: var(--app-bg);
   margin: 0;
+  font-variant-numeric: lining-nums;
 }
 
 /* ------------------------------------------------------------------ */
@@ -307,18 +308,18 @@ body.app-body {
 }
 
 .section-grid--2 {
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
 }
 
 .section-grid--3 {
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
 }
 
 /* KPI cards ---------------------------------------------------------- */
 
 .kpi-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
   gap: var(--space-md);
 }
 
@@ -1419,6 +1420,35 @@ body.app-body {
 /* Responsive                                                          */
 /* ------------------------------------------------------------------ */
 
+/* Con la barra lateral visible, la fila de 6 columnas no cabe por debajo de ~1180px */
+@media (max-width: 1180px) {
+  .lead-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5em var(--space-sm);
+  }
+
+  .lead-row__name {
+    flex: 1 1 60%;
+    min-width: 0;
+  }
+
+  .lead-row__cell {
+    flex: 0 0 auto;
+    font-size: var(--fs-xs);
+  }
+
+  .lead-row__cell small {
+    display: inline;
+    margin-left: 0.35em;
+  }
+
+  .lead-row__cell small::before {
+    content: "· ";
+  }
+}
+
 @media (max-width: 1240px) {
   .inbox-layout {
     grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
@@ -1436,22 +1466,33 @@ body.app-body {
 
 @media (max-width: 900px) {
   .app-shell {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .app-sidebar {
     position: static;
     height: auto;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     gap: var(--space-sm);
     padding: var(--space-sm) var(--space-md);
-    overflow-x: auto;
+    overflow: visible;
   }
 
+  /* Fila 1: navegación desplazable; fila 2: accesos de regreso */
   .app-nav {
     flex-direction: row;
     gap: 4px;
+    order: 3;
+    flex: 1 1 100%;
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .app-nav::-webkit-scrollbar {
+    display: none;
   }
 
   .app-nav__label,
@@ -1461,7 +1502,17 @@ body.app-body {
 
   .app-sidebar__footer {
     margin-top: 0;
-    margin-left: auto;
+    order: 4;
+    flex: 1 1 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .app-back-link {
+    padding: 0.55em 0.8em;
+    font-size: var(--fs-xs);
   }
 
   .app-nav__item {
@@ -1478,7 +1529,7 @@ body.app-body {
   }
 
   .inbox-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .inbox-col {
@@ -1525,6 +1576,24 @@ body.app-body {
 @media (max-width: 560px) {
   .app-brand__text {
     display: none;
+  }
+
+  /* Embudo compacto: cifra y etapa arriba, barra proporcional debajo */
+  .funnel__step {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.4em;
+  }
+
+  .funnel__meta {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6em;
+  }
+
+  .funnel__bar {
+    height: 12px;
+    padding: 0;
+    font-size: 0;
   }
 
   .kpi-card__value {

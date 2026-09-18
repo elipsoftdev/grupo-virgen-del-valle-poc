@@ -14,7 +14,7 @@ const ASSISTANT_TREE = {
     options: [
       { label: "Necesito asistencia ahora", next: "urgent" },
       { label: "Cotizar un servicio", action: "quote", type: null },
-      { label: "Planes de previsión", next: "prevision" },
+      { label: "Velación, cremación e inhumación", next: "servicios" },
       { label: "Traslados", next: "traslados" },
       { label: "Sedes", next: "sedes" },
       { label: "Obituarios", action: "link", href: "obituarios.html" },
@@ -29,12 +29,21 @@ const ASSISTANT_TREE = {
       { label: "Volver al inicio", next: "root" },
     ],
   },
-  prevision: {
-    bot: "La previsión permite planificar con calma y evitar decisiones bajo presión, protegiendo la tranquilidad de su familia. ¿Qué desea hacer?",
+  servicios: {
+    bot: "Con gusto le oriento. ¿Qué servicio necesita su familia?",
     options: [
-      { label: "Conocer planes", action: "scroll", target: "prevision" },
-      { label: "Cotizar previsión", action: "quote", type: "prevision" },
-      { label: "Hablar con un asesor", action: "whatsapp", key: "prevision" },
+      { label: "Velación", action: "quote", type: "velacion" },
+      { label: "Cremación", action: "quote", type: "cremacion" },
+      { label: "Inhumación", action: "quote", type: "cementerio" },
+      { label: "Hablar con un asesor", action: "whatsapp", key: "generic" },
+      { label: "Volver al inicio", next: "root" },
+    ],
+  },
+  prevision: {
+    bot: "La previsión funeraria será parte de una próxima etapa. Hoy puedo orientarle sobre servicios de atención inmediata o comunicarle con un asesor.",
+    options: [
+      { label: "Ver servicios disponibles", next: "servicios" },
+      { label: "Hablar con un asesor", action: "whatsapp", key: "generic" },
       { label: "Volver al inicio", next: "root" },
     ],
   },
@@ -63,7 +72,6 @@ const ASSISTANT_TREE = {
 
 const ASSISTANT_WHATSAPP_MESSAGES = {
   urgent: "Hola, Grupo Virgen del Valle.\n\nNecesito asistencia inmediata.\n\n¿Podría comunicarse conmigo un asesor lo antes posible?",
-  prevision: "Hola, Grupo Virgen del Valle.\n\nMe gustaría recibir información sobre sus planes de previsión funeraria.\n\n¿Podría contactarme un asesor?",
   generic: "Hola, Grupo Virgen del Valle.\n\nMe gustaría hablar con un asesor.\n\n¿Podrían contactarme?",
 };
 
@@ -261,10 +269,7 @@ function respondToIntent(intent, cities) {
   }
 
   if (intent === "prevision") {
-    appendChatBubble(
-      "Con gusto. Los planes de previsión permiten organizar todo con anticipación y evitar decisiones bajo presión.",
-      "bot"
-    );
+    appendChatBubble(ASSISTANT_TREE.prevision.bot, "bot");
     appendChatOptions(ASSISTANT_TREE.prevision.options);
     return;
   }
