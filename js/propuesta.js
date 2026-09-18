@@ -375,6 +375,43 @@ function initContact() {
 }
 
 /* ------------------------------------------------------------------ */
+/* Enlaces configurables: PDF y sitio de Elipsoft                      */
+/* ------------------------------------------------------------------ */
+
+/** Solo rutas relativas del proyecto o URLs http(s): nunca javascript:, data:, etc. */
+function safeUrl(value) {
+  if (!value || typeof value !== "string") return null;
+  const trimmed = value.trim();
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  if (/^[\w\-./]+$/.test(trimmed) && !trimmed.startsWith("//")) return trimmed;
+  return null;
+}
+
+function initConfigurableLinks() {
+  const pdf = safeUrl(PROPOSAL_CONFIG.pdfUrl);
+  if (pdf) {
+    document.querySelectorAll("[data-pdf-link]").forEach((a) => {
+      a.href = pdf;
+      a.setAttribute("download", "");
+    });
+    document.querySelectorAll("[data-pdf-wrap]").forEach((el) => (el.hidden = false));
+  }
+
+  const site = safeUrl(PROPOSAL_CONFIG.elipsoft && PROPOSAL_CONFIG.elipsoft.url);
+  if (site) {
+    document.querySelectorAll("[data-elipsoft-link]").forEach((a) => {
+      a.href = site;
+      a.hidden = false;
+    });
+  }
+
+  // Sin canal comercial configurado, se explica qué hará el botón.
+  const hint = document.getElementById("contact-hint");
+  const { whatsapp, email } = PROPOSAL_CONFIG.contact || {};
+  if (hint && !whatsapp && !email) hint.hidden = false;
+}
+
+/* ------------------------------------------------------------------ */
 /* Impresión                                                           */
 /* ------------------------------------------------------------------ */
 
@@ -404,6 +441,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initAgentDemo();
   initSimulator();
   initContact();
+  initConfigurableLinks();
   initTrackedLinks();
   initPrint();
   trackProposalEvent("proposal_open", { referrer: document.referrer ? "external" : "direct" });
