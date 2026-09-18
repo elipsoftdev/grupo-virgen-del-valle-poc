@@ -34,7 +34,7 @@ const PROPOSAL_CONFIG = {
   pdfUrl: null, // pendiente: PDF definitivo de la propuesta
 
   elipsoft: {
-    url: null, // pendiente: sitio web oficial de Elipsoft
+    url: "https://www.elipsoft.us",
   },
 
   messages: {
