@@ -27,8 +27,8 @@ const PROPOSAL_CONFIG = {
   implementationDays: 45,
 
   contact: {
-    whatsapp: null, // pendiente: WhatsApp comercial de Elipsoft
-    email: null, // pendiente: correo comercial de Elipsoft
+    whatsapp: "584142564848",
+    email: "info@elipsoft.us",
   },
 
   pdfUrl: null, // pendiente: PDF definitivo de la propuesta
