@@ -2,8 +2,8 @@
 
 Prueba de concepto (PoC) independiente que demuestra cómo el sitio de Grupo
 Virgen del Valle puede evolucionar de una página informativa a un canal
-digital de atención, orientación, cotización, previsión y captación,
-disponible 24/7.
+digital de atención, orientación, cotización y captación, disponible
+24/7 — y una propuesta comercial interactiva para la Junta Directiva.
 
 Este proyecto **no modifica, redirige ni depende** del sitio institucional
 actual de la empresa. Es un desarrollo completamente independiente pensado
@@ -13,9 +13,20 @@ para presentación interna/comercial.
 
 Mostrar, sobre la identidad actual de la marca, capacidades que el sitio
 actual no explota: atención inmediata, cotización guiada, mensajes de
-WhatsApp personalizados, planes de previsión, presencia nacional, un
+WhatsApp personalizados, presencia nacional, un
 asistente digital 24/7 y un módulo de obituarios — dejando además el terreno
 preparado para una futura arquitectura con backend, CRM e IA real.
+
+## Alcance: Fase 1 y Fase 2
+
+- **Fase 1 (esta PoC y la propuesta):** servicios de necesidad inmediata /
+  venta directa — atención inmediata, velación, cremación, inhumación y
+  traslados.
+- **Fase 2 (fuera de alcance):** previsión funeraria. Será objeto de un
+  análisis legal, comercial y operativo independiente, con su propia
+  propuesta. En el sitio solo aparece como nota discreta "Próxima etapa";
+  no hay cotización, planes ni CTA de contratación de previsión, y el
+  asistente responde a esas consultas indicando que es una próxima etapa.
 
 ## Arquitectura
 
@@ -25,7 +36,8 @@ extenso (historia completa, misión, visión) vive aparte, en `/nosotros.html`.
 ```text
 index.html                → Home comercial: hero, servicios, teaser de
                              cotización, atención inmediata, ecosistema
-                             omnicanal, previsión, obituarios + solicitar
+                             omnicanal, nota "próxima etapa" (previsión),
+                             obituarios + solicitar
                              obituario, sedes, instalaciones,
                              oportunidades digitales, CTA final
 cotizar.html              → Cotizador guiado completo (soporta ?tipo=)
@@ -35,7 +47,64 @@ nosotros.html             → Historia, misión, visión, presencia nacional
 
 dashboard-demo.html       → Centro Digital · Panel ejecutivo (demo)
 centro-atencion-demo.html → Centro Digital · Atención omnicanal (demo)
+
+propuesta.html            → Propuesta comercial interactiva (no está en
+                             el menú público: se envía por enlace)
 ```
+
+## Flujo de navegación
+
+```text
+propuesta.html ──► index.html (Explorar la PoC)
+      │                 └─► cotizar.html ─► centro-atencion-demo.html
+      ├──► centro-atencion-demo.html ◄──► dashboard-demo.html
+      └──► dashboard-demo.html            (ambas con "Volver a la propuesta"
+                                           y "Volver al sitio público")
+```
+
+## Propuesta comercial (`propuesta.html`)
+
+Página independiente del sitio público, pensada para enviarse por enlace a
+la Junta Directiva. Recorre: hoy vs. propuesta, qué gana el negocio,
+agente digital 24/7 (conversación animada y flujo cliente → agente →
+necesidad → datos → asesor humano), inteligencia de negocio (datos
+demostrativos), preguntas de dirección, impacto esperado (escenarios
+referenciales), simulador ilustrativo, alcance en cinco frentes, roadmap
+de hasta 45 días, inversión (USD 3.890 financiado / USD 3.590 pago total
+dentro de los 45 días), plan 30/30/20/20, nota de bolívares (tasa oficial
+euro BCV vigente a la fecha de cada pago), Fase 2 y servicios que se cotizan
+aparte.
+
+- Archivos: `propuesta.html`, `css/propuesta.css`, `js/propuesta.js`,
+  `data/proposal-config.js`.
+- **Contacto comercial:** `PROPOSAL_CONFIG.contact` (`whatsapp`, `email`)
+  está en `null` a propósito. Mientras no se complete, "Quiero avanzar" y
+  "Tengo una consulta" muestran el mensaje redactado para copiarlo.
+- **Impresión / PDF:** `@media print` oculta controles interactivos, abre
+  todos los bloques de alcance y conserva precios, pagos, roadmap y
+  términos (≈14 páginas A4).
+- **Elipsoft:** aparece como texto discreto en el pie ("Tecnología y
+  desarrollo: Elipsoft"). No hay logo de Elipsoft en el repositorio; si se
+  agrega, reemplazar ese texto en `propuesta.html` (`.p-footer__dev`).
+
+### Eventos preparados para analytics / n8n
+
+`js/propuesta.js` registra eventos anónimos (sin datos personales ni
+fingerprinting) en `window.GVV_PROPOSAL_EVENTS` y los emite como
+`CustomEvent("proposal:event")`. Si se define
+`PROPOSAL_CONFIG.analytics.endpoint`, se envían con `navigator.sendBeacon`.
+
+| Evento | Cuándo |
+| --- | --- |
+| `proposal_open` | Carga de la página |
+| `proposal_section_view` | Primera vez que se ve cada sección |
+| `proposal_demo_click` | "Explorar la PoC" / "Volver a explorar la demo" |
+| `proposal_center_click` | "Ver Centro de Atención" |
+| `proposal_dashboard_click` | "Explorar Dashboard" |
+| `proposal_roi_interaction` | Primer uso del simulador |
+| `proposal_payment_view` | Se ve el plan de pagos |
+| `proposal_cta_advance` | "Quiero avanzar" |
+| `proposal_cta_question`, `proposal_agent_replay` | Consulta / repetir conversación |
 
 ## Centro Digital (pantallas demo)
 
@@ -63,8 +132,8 @@ elimina.
 
 ## Funcionalidades demostradas
 
-- **Header y navegación responsive** (Inicio, Servicios, Previsión,
-  Obituarios, Sedes, Cotizar, Nosotros) con acceso permanente a
+- **Header y navegación responsive** (Inicio, Servicios, Obituarios,
+  Sedes, Cotizar, Nosotros) con acceso permanente a
   "Atención 24/7".
 - **Hero comercial** con jerarquía de CTAs: Cotizar un servicio (dominante),
   Necesito asistencia ahora, Ver nuestros servicios.
@@ -75,8 +144,7 @@ elimina.
   CTAs de WhatsApp (enviar solicitud / solicitar llamada).
 - **Atención inmediata** diferenciada del cotizador, para saltar directo a
   WhatsApp o pedir contacto.
-- **Previsión funeraria**, resumida en tres pilares (sin precios ni
-  condiciones inventadas).
+- **Previsión funeraria**: solo como nota "Próxima etapa" (Fase 2).
 - **Obituarios y homenajes**: teaser en el Home, listado completo, y un
   flujo de solicitud de publicación con validación, resumen y confirmación
   simulada (sin backend).
@@ -86,7 +154,8 @@ elimina.
   empresa (no reescritas), en `/nosotros.html`.
 - **Asistente digital 24/7** simulado: árbol conversacional + caja de
   escritura con detección de intención por palabras clave (traslados,
-  previsión, cremación, urgencias, sedes, obituarios), enlace directo al
+  cremación, urgencias, sedes, obituarios; previsión → "próxima etapa"),
+  enlace directo al
   cotizador y escalamiento a WhatsApp/asesor humano desde cualquier página.
 - **Ecosistema omnicanal** explicado en el Home: los cuatro canales, el
   asistente que clasifica y escala, el centro de atención y el seguimiento,
@@ -160,7 +229,8 @@ rama principal (carpeta raíz), sin paso de build.
   confirmada).
 - Reglas de distribución de WhatsApp por sede (hoy se usa un único número
   centralizado, confirmado desde el sitio institucional público).
-- Catálogo vigente de servicios y condiciones de los planes de previsión.
+- Catálogo vigente de servicios de Fase 1 y servicios disponibles por sede.
+- Contacto comercial de Elipsoft para la propuesta (`data/proposal-config.js`).
 - Flujo administrativo, permisos y consideraciones de privacidad para el
   módulo de obituarios antes de usar datos reales.
 - Integración futura con un asistente de IA real, CRM, y automatización de
