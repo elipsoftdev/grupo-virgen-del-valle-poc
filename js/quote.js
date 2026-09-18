@@ -5,11 +5,11 @@
  */
 
 const QUOTE_TYPES = [
-  { id: "servicio-ahora", label: "Servicio funerario inmediato", icon: "clock" },
-  { id: "prevision", label: "Plan de previsión", icon: "shield" },
-  { id: "traslado", label: "Traslado", icon: "truck" },
+  { id: "servicio-ahora", label: "Atención inmediata", icon: "clock" },
+  { id: "velacion", label: "Velación", icon: "heart" },
   { id: "cremacion", label: "Cremación", icon: "flame" },
-  { id: "cementerio", label: "Cementerio", icon: "leaf" },
+  { id: "cementerio", label: "Inhumación", icon: "leaf" },
+  { id: "traslado", label: "Traslado", icon: "truck" },
   { id: "otro", label: "Otro servicio", icon: "message" },
 ];
 
@@ -173,20 +173,6 @@ function renderDynamicQuestions() {
         </div>
       </div>`;
   }
-  if (quoteState.type === "prevision") {
-    return `
-      <h3>¿Qué tipo de previsión le interesa?</h3>
-      <p class="hint">Podremos enviarle la información más adecuada a su caso.</p>
-      <div class="option-grid">
-        ${["Individual", "Familiar", "Corporativa"]
-          .map(
-            (m) => `<button type="button" class="option-card ${quoteState.modality === m ? "is-selected" : ""}" data-quote-modality="${m}">
-              <span class="icon-badge">${icon("users")}</span><strong>${m}</strong>
-            </button>`
-          )
-          .join("")}
-      </div>`;
-  }
   if (quoteState.type === "servicio-ahora") {
     return `
       <h3>Cuéntenos un poco más</h3>
@@ -270,8 +256,6 @@ function buildQuoteSummary() {
     rows.push(["Origen", quoteState.origin || "—"]);
     rows.push(["Destino", quoteState.destination || "—"]);
     rows.push(["Atención", quoteState.urgency || "—"]);
-  } else if (quoteState.type === "prevision") {
-    rows.push(["Modalidad", quoteState.modality || "—"]);
   } else if (quoteState.type === "servicio-ahora") {
     if (quoteState.detail) rows.push(["Detalle", quoteState.detail]);
     rows.push(["Contacto inmediato", quoteState.immediateContact || "—"]);
@@ -297,8 +281,6 @@ function buildQuoteWhatsappMessage(mode) {
     lines.push(`Origen: ${quoteState.origin || "—"}`);
     lines.push(`Destino: ${quoteState.destination || "—"}`);
     lines.push(`Atención requerida: ${(quoteState.urgency || "—").toLowerCase()}.`);
-  } else if (quoteState.type === "prevision") {
-    lines.push(`Me gustaría recibir información sobre sus planes de previsión funeraria ${quoteState.modality ? quoteState.modality.toLowerCase() : ""} en ${cityLabel()}.`);
   } else if (quoteState.type === "servicio-ahora") {
     lines.push("Necesito un servicio funerario.", "");
     lines.push(`Ciudad: ${cityLabel()}`);
@@ -335,7 +317,6 @@ function quotePriority() {
 }
 
 function quoteDetailText() {
-  if (quoteState.type === "prevision") return quoteState.modality ? `Modalidad ${quoteState.modality.toLowerCase()}` : "";
   if (quoteState.type === "cremacion") return quoteState.cremationMode || "";
   return quoteState.detail || "";
 }
@@ -442,7 +423,6 @@ function quoterCanAdvance() {
   if (quoteState.step === 1) return !!quoteState.city && (quoteState.city !== "Otra ciudad" || quoteState.cityOther.trim().length > 0);
   if (quoteState.step === 2) {
     if (quoteState.type === "traslado") return !!quoteState.origin && !!quoteState.destination && !!quoteState.urgency;
-    if (quoteState.type === "prevision") return !!quoteState.modality;
     if (quoteState.type === "servicio-ahora") return !!quoteState.immediateContact;
     if (quoteState.type === "cremacion") return !!quoteState.cremationMode;
     return true;

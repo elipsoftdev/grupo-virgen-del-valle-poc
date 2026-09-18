@@ -1,58 +1,58 @@
 /**
- * Servicios mostrados en el Home: seis bloques comerciales simples, cada
- * uno con su detalle ampliado (mostrado en un modal ligero, sin necesidad
- * de una página aparte) y su tipo de cotización asociado.
+ * Servicios del Home — Fase 1: necesidad inmediata / venta directa.
+ * Cada bloque tiene su detalle ampliado (modal) y su tipo de cotización.
  *
- * Algunos servicios se presentan como parte del concepto comercial de la
- * PoC y no deben interpretarse como una oferta contractual vigente: el
- * catálogo real debe ser validado por el cliente antes de producción.
+ * Previsión funeraria queda fuera de la Fase 1: será una segunda etapa
+ * independiente, con su propio análisis y propuesta.
+ *
+ * El catálogo real debe ser validado por el cliente antes de producción.
  */
 const SERVICES = [
   {
-    id: "servicio-funerario",
-    title: "Servicio funerario",
-    icon: "heart",
-    desc: "Atención inmediata, velación y acompañamiento completo en el momento que más lo necesita.",
-    items: ["Atención funeraria 24/7", "Velación", "Preparación", "Carroza fúnebre", "Trámites y diligencias"],
+    id: "atencion-inmediata",
+    title: "Atención inmediata",
+    icon: "clock",
+    desc: "Disponibles las 24 horas para orientarle y activar el servicio que su familia necesita.",
+    items: ["Atención funeraria 24/7", "Orientación inicial", "Trámites y diligencias"],
     quoteType: "servicio-ahora",
   },
   {
-    id: "traslados",
-    title: "Traslados",
-    icon: "truck",
-    desc: "Traslados nacionales con unidades modernas, dentro y entre ciudades.",
-    items: ["Traslado del fallecido", "Traslados nacionales", "Coordinación entre sedes"],
-    quoteType: "traslado",
+    id: "velacion",
+    title: "Velación",
+    icon: "heart",
+    desc: "Salas y espacios pensados para despedir con serenidad y acompañar a la familia.",
+    items: ["Salas de velación", "Preparación", "Salas y espacios de descanso"],
+    quoteType: "velacion",
   },
   {
     id: "cremacion",
     title: "Cremación",
     icon: "flame",
-    desc: "Acompañamiento claro en cada alternativa, con la información necesaria para decidir con calma.",
+    desc: "Acompañamiento claro en cada paso, con la información necesaria para decidir con calma.",
     items: ["Proceso de cremación", "Entrega de cenizas", "Alternativas de destino final"],
     quoteType: "cremacion",
   },
   {
-    id: "cementerio",
-    title: "Cementerio",
+    id: "inhumacion",
+    title: "Inhumación",
     icon: "leaf",
-    desc: "Orientación sobre alternativas de cementerio municipal y privado según su ciudad.",
+    desc: "Orientación sobre cementerios municipales y privados según su ciudad.",
     items: ["Inhumación", "Cementerio municipal", "Cementerios privados"],
     quoteType: "cementerio",
   },
   {
-    id: "prevision-funeraria",
-    title: "Previsión funeraria",
-    icon: "shield",
-    desc: "Planifique hoy y proteja la tranquilidad de quienes más quiere.",
-    items: ["Planes individuales", "Planes familiares", "Convenios corporativos"],
-    quoteType: "prevision",
+    id: "traslados",
+    title: "Traslados",
+    icon: "truck",
+    desc: "Traslados dentro de la ciudad y entre ciudades, con unidades modernas.",
+    items: ["Traslado del fallecido", "Traslados nacionales", "Carroza fúnebre"],
+    quoteType: "traslado",
   },
   {
     id: "asesoria",
     title: "Asesoría y trámites",
     icon: "users",
-    desc: "Acompañamiento en gestiones legales y apoyo profesional en cada paso.",
+    desc: "Acompañamiento en gestiones y apoyo profesional en cada paso.",
     items: ["Asesoría integral", "Servicios religiosos", "Atención a familiares"],
     quoteType: "otro",
   },

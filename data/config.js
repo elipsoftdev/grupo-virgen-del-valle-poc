@@ -37,7 +37,7 @@ const CLIENT_CONFIG = {
     "Banco fotográfico profesional actualizado",
     "Direcciones y teléfonos específicos de cada sede",
     "Confirmación de reglas de distribución de WhatsApp por sede",
-    "Catálogo vigente de servicios y planes de previsión con condiciones actuales",
+    "Catálogo vigente de servicios de Fase 1 (velación, cremación, inhumación, traslados, atención inmediata)",
   ],
 };
 
