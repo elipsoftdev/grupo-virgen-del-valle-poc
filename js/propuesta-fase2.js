@@ -235,6 +235,240 @@ function initConfigurableLinks() {
   if (hint && !whatsapp && !email) hint.hidden = false;
 }
 
+/* ------------------------------------------------------------------ */
+/* PoC funcional: panel comercial de previsiones                       */
+/*                                                                      */
+/* Demostración conceptual, 100% frontend, con datos ficticios en      */
+/* memoria (sin localStorage ni backend). Muestra solo capacidad       */
+/* comercial: 4 etapas genéricas, sin exponer el workflow operativo    */
+/* real que tendrá la plataforma.                                      */
+/* ------------------------------------------------------------------ */
+
+const POC_STAGES = [
+  { key: "nuevos", label: "Nuevos" },
+  { key: "atencion", label: "En atención" },
+  { key: "interesados", label: "Interesados" },
+  { key: "contratacion", label: "Contratación" },
+];
+
+const POC_SEED = [
+  { id: "s1", name: "María González", origin: "Instagram", interest: "Previsión Familiar", owner: "Ana", activity: "Solicitó información sobre cobertura familiar.", stage: "nuevos" },
+  { id: "s2", name: "Beatriz Salazar", origin: "Web", interest: "Previsión Familiar", owner: "José", activity: "Completó el formulario de contacto del sitio.", stage: "nuevos" },
+  { id: "s3", name: "Carlos Pérez", origin: "Web", interest: "Previsión Individual", owner: "José", activity: "Solicitó una cotización individual.", stage: "atencion" },
+  { id: "s4", name: "Jorge Marcano", origin: "Instagram", interest: "Previsión Individual", owner: "Ana", activity: "Escribió preguntando por los planes disponibles.", stage: "atencion" },
+  { id: "s5", name: "Andrea Rodríguez", origin: "WhatsApp", interest: "Previsión Familiar", owner: "Ana", activity: "Pidió más detalles sobre el plan familiar.", stage: "interesados" },
+  { id: "s6", name: "Luis Fernández", origin: "Facebook", interest: "Previsión Individual", owner: "José", activity: "Confirmó interés en avanzar con la contratación.", stage: "contratacion" },
+];
+
+const POC_SIM_NAMES = ["Carmen Rodríguez", "Daniela Torres", "Miguel Ángel Silva", "Valentina Ríos", "Rafael Gómez", "Estefanía Blanco"];
+const POC_OWNERS = ["Ana", "José"];
+const POC_INTERESTS = ["Previsión Familiar", "Previsión Individual"];
+
+let pocLeads = [];
+let pocSimIndex = 0;
+let pocSimSeq = 0;
+let pocDrawerLeadId = null;
+let pocLastFocused = null;
+
+function pocEscapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+function clonePocSeed() {
+  return POC_SEED.map((lead) => ({ ...lead }));
+}
+
+function pocStageIndex(stage) {
+  return POC_STAGES.findIndex((s) => s.key === stage);
+}
+
+function pocAnnounce(message) {
+  const el = document.getElementById("poc-announcer");
+  if (!el) return;
+  el.textContent = "";
+  window.setTimeout(() => {
+    el.textContent = message;
+  }, 30);
+}
+
+function renderPocBoard() {
+  POC_STAGES.forEach((stage) => {
+    const list = document.getElementById(`poc-list-${stage.key}`);
+    const colCount = document.getElementById(`poc-col-${stage.key}`);
+    const kpi = document.getElementById(`poc-kpi-${stage.key}`);
+    const leads = pocLeads.filter((l) => l.stage === stage.key);
+
+    if (colCount) colCount.textContent = String(leads.length);
+    if (kpi) kpi.textContent = String(leads.length);
+    if (!list) return;
+
+    list.innerHTML = "";
+    leads.forEach((lead) => {
+      const card = document.createElement("button");
+      card.type = "button";
+      card.className = "f2-poc__card";
+      if (lead._justMoved && !REDUCED_MOTION) card.classList.add("f2-poc__card--enter");
+      card.innerHTML = `<strong>${pocEscapeHtml(lead.name)}</strong><span>${pocEscapeHtml(lead.origin)} · ${pocEscapeHtml(lead.interest)}</span><small>Resp. ${pocEscapeHtml(lead.owner)}</small>`;
+      card.addEventListener("click", () => openPocDrawer(lead.id));
+      list.appendChild(card);
+    });
+  });
+
+  pocLeads.forEach((lead) => {
+    delete lead._justMoved;
+  });
+}
+
+function openPocDrawer(id) {
+  const lead = pocLeads.find((l) => l.id === id);
+  const drawer = document.getElementById("poc-drawer");
+  if (!lead || !drawer) return;
+
+  pocDrawerLeadId = id;
+  document.getElementById("poc-drawer-name").textContent = lead.name;
+  document.getElementById("poc-drawer-origen").textContent = lead.origin;
+  document.getElementById("poc-drawer-interes").textContent = lead.interest;
+  document.getElementById("poc-drawer-responsable").textContent = lead.owner;
+  document.getElementById("poc-drawer-actividad").textContent = lead.activity;
+
+  const stageInfo = POC_STAGES[pocStageIndex(lead.stage)];
+  document.getElementById("poc-drawer-stage").textContent = stageInfo ? stageInfo.label : lead.stage;
+
+  const isLast = pocStageIndex(lead.stage) === POC_STAGES.length - 1;
+  document.getElementById("poc-advance-btn").hidden = isLast;
+  document.getElementById("poc-drawer-note").hidden = !isLast;
+
+  if (drawer.hidden) pocLastFocused = document.activeElement;
+  drawer.hidden = false;
+  document.getElementById("poc-drawer-close").focus();
+  trackProposalEvent("poc_open_lead", { stage: lead.stage });
+}
+
+function closePocDrawer() {
+  const drawer = document.getElementById("poc-drawer");
+  if (!drawer || drawer.hidden) return;
+  drawer.hidden = true;
+  pocDrawerLeadId = null;
+  if (pocLastFocused && typeof pocLastFocused.focus === "function") pocLastFocused.focus();
+  pocLastFocused = null;
+}
+
+function advancePocLead() {
+  const lead = pocLeads.find((l) => l.id === pocDrawerLeadId);
+  if (!lead) return;
+  const idx = pocStageIndex(lead.stage);
+  if (idx >= POC_STAGES.length - 1) return;
+
+  lead.stage = POC_STAGES[idx + 1].key;
+  lead._justMoved = true;
+  renderPocBoard();
+  trackProposalEvent("poc_advance_lead", { stage: lead.stage });
+  pocAnnounce(`Oportunidad movida a ${POC_STAGES[idx + 1].label}.`);
+  openPocDrawer(lead.id);
+}
+
+function simulatePocLead(channel) {
+  pocSimSeq += 1;
+  const name = POC_SIM_NAMES[pocSimIndex % POC_SIM_NAMES.length];
+  pocSimIndex += 1;
+
+  const lead = {
+    id: `sim-${Date.now()}-${pocSimSeq}`,
+    name,
+    origin: channel,
+    interest: POC_INTERESTS[pocSimSeq % POC_INTERESTS.length],
+    owner: POC_OWNERS[pocSimSeq % POC_OWNERS.length],
+    activity: `Escribió por ${channel} preguntando por información de previsión.`,
+    stage: "nuevos",
+    _justMoved: true,
+  };
+
+  pocLeads.unshift(lead);
+  renderPocBoard();
+  trackProposalEvent("poc_simulate_lead", { channel });
+  pocAnnounce("Nuevo interesado recibido.");
+  setPocActiveTab("nuevos");
+
+  const menu = document.getElementById("poc-simulate-menu");
+  const btn = document.getElementById("poc-simulate-btn");
+  menu.hidden = true;
+  btn.setAttribute("aria-expanded", "false");
+}
+
+function setPocActiveTab(stage) {
+  const board = document.getElementById("poc-board");
+  if (board) board.dataset.active = stage;
+  document.querySelectorAll(".f2-poc__tab").forEach((tab) => {
+    tab.setAttribute("aria-selected", String(tab.getAttribute("data-stage") === stage));
+  });
+}
+
+function resetPocDemo() {
+  pocLeads = clonePocSeed();
+  pocSimIndex = 0;
+  pocSimSeq = 0;
+  closePocDrawer();
+  setPocActiveTab("nuevos");
+  renderPocBoard();
+  trackProposalEvent("poc_reset", {});
+  pocAnnounce("Demostración reiniciada.");
+}
+
+function openPocDialog() {
+  const dialog = document.getElementById("poc-dialog");
+  if (!dialog) return;
+  if (typeof dialog.showModal === "function") dialog.showModal();
+  else dialog.setAttribute("open", "");
+}
+
+function closePocDialog() {
+  const dialog = document.getElementById("poc-dialog");
+  if (!dialog) return;
+  closePocDrawer();
+  if (typeof dialog.close === "function") dialog.close();
+  else dialog.removeAttribute("open");
+}
+
+function initPocDemo() {
+  const openBtn = document.getElementById("poc-open-btn");
+  const dialog = document.getElementById("poc-dialog");
+  if (!openBtn || !dialog) return;
+
+  pocLeads = clonePocSeed();
+  renderPocBoard();
+
+  openBtn.addEventListener("click", () => {
+    openPocDialog();
+    trackProposalEvent("poc_open", {});
+  });
+
+  document.getElementById("poc-close-btn").addEventListener("click", closePocDialog);
+  dialog.addEventListener("close", closePocDrawer);
+  document.getElementById("poc-drawer-close").addEventListener("click", closePocDrawer);
+  document.getElementById("poc-advance-btn").addEventListener("click", advancePocLead);
+  document.getElementById("poc-reset-btn").addEventListener("click", resetPocDemo);
+
+  const simBtn = document.getElementById("poc-simulate-btn");
+  const simMenu = document.getElementById("poc-simulate-menu");
+  simBtn.addEventListener("click", () => {
+    const willOpen = simMenu.hidden;
+    simMenu.hidden = !willOpen;
+    simBtn.setAttribute("aria-expanded", String(willOpen));
+  });
+  simMenu.querySelectorAll("[data-channel]").forEach((btn) => {
+    btn.addEventListener("click", () => simulatePocLead(btn.getAttribute("data-channel")));
+  });
+  document.addEventListener("click", (e) => {
+    if (simMenu.hidden || simBtn.contains(e.target) || simMenu.contains(e.target)) return;
+    simMenu.hidden = true;
+    simBtn.setAttribute("aria-expanded", "false");
+  });
+
+  document.querySelectorAll(".f2-poc__tab").forEach((tab) => {
+    tab.addEventListener("click", () => setPocActiveTab(tab.getAttribute("data-stage")));
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   staggerSiblings();
   initReveal();
@@ -243,5 +477,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initContact();
   initConfigurableLinks();
   initTrackedLinks();
+  initPocDemo();
   trackProposalEvent("proposal_open", { referrer: document.referrer ? "external" : "direct" });
 });

@@ -245,6 +245,24 @@
             <p class="f2-pillar__note">Ver <a href="#administracion">control y visibilidad de la operación</a>.</p>
           </article>
         </div>
+
+        <div class="f2-poc-launch reveal">
+          <div class="f2-poc-launch__flow" aria-hidden="true">
+            <span>Fase 1<small>Captación y atención digital</small></span>
+            <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            <span class="f2-poc-launch__accent">Nuevo interesado</span>
+            <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            <span>Fase 2<small>Gestión comercial de previsión</small></span>
+          </div>
+          <div class="f2-poc-launch__copy">
+            <h3>Vea cómo comienza el proceso</h3>
+            <p>Un interesado captado desde los canales digitales puede ingresar al proceso comercial y ser gestionado desde un único entorno.</p>
+            <button type="button" class="btn btn-primary btn-lg" id="poc-open-btn">Probar demostración
+              <svg class="icon icon--arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+            <p class="f2-poc-launch__disclaimer">Demostración conceptual de una parte del módulo comercial. La configuración definitiva de procesos, estados y reglas será establecida durante el levantamiento funcional del proyecto.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -521,6 +539,87 @@
       </footer>
     </section>
   </main>
+
+  <!-- PoC funcional: panel comercial de previsiones (demo frontend, sin backend) -->
+  <dialog class="f2-poc-dialog" id="poc-dialog" aria-labelledby="poc-dialog-title">
+    <div class="f2-poc">
+      <header class="f2-poc__head">
+        <div class="f2-poc__head-title">
+          <span class="p-demo-badge">Demo</span>
+          <h2 id="poc-dialog-title">Panel comercial de previsiones</h2>
+        </div>
+        <button type="button" class="f2-poc__close" id="poc-close-btn" aria-label="Cerrar demostración">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </header>
+
+      <div class="f2-poc__kpis" id="poc-kpis">
+        <div class="f2-poc__kpi"><strong id="poc-kpi-nuevos">0</strong><span>Nuevos</span></div>
+        <div class="f2-poc__kpi"><strong id="poc-kpi-atencion">0</strong><span>En atención</span></div>
+        <div class="f2-poc__kpi"><strong id="poc-kpi-interesados">0</strong><span>Interesados</span></div>
+        <div class="f2-poc__kpi"><strong id="poc-kpi-contratacion">0</strong><span>Contratación</span></div>
+      </div>
+
+      <div class="f2-poc__toolbar">
+        <div class="f2-poc__simulate">
+          <button type="button" class="btn btn-secondary btn-sm" id="poc-simulate-btn" aria-expanded="false" aria-controls="poc-simulate-menu">+ Simular nuevo lead</button>
+          <div class="f2-poc__channels" id="poc-simulate-menu" hidden>
+            <button type="button" data-channel="Instagram">Instagram</button>
+            <button type="button" data-channel="Web">Web</button>
+            <button type="button" data-channel="WhatsApp">WhatsApp</button>
+            <button type="button" data-channel="Facebook">Facebook</button>
+          </div>
+        </div>
+        <button type="button" class="f2-poc__reset" id="poc-reset-btn">Reiniciar demo</button>
+      </div>
+
+      <div class="f2-poc__tabs" role="tablist" aria-label="Etapas del funnel">
+        <button type="button" role="tab" class="f2-poc__tab" data-stage="nuevos" aria-selected="true">Nuevos</button>
+        <button type="button" role="tab" class="f2-poc__tab" data-stage="atencion" aria-selected="false">En atención</button>
+        <button type="button" role="tab" class="f2-poc__tab" data-stage="interesados" aria-selected="false">Interesados</button>
+        <button type="button" role="tab" class="f2-poc__tab" data-stage="contratacion" aria-selected="false">Contratación</button>
+      </div>
+
+      <div class="f2-poc__board" id="poc-board" data-active="nuevos">
+        <div class="f2-poc__column" data-stage="nuevos">
+          <h3>Nuevos <span class="f2-poc__col-count" id="poc-col-nuevos"></span></h3>
+          <div class="f2-poc__cards" id="poc-list-nuevos"></div>
+        </div>
+        <div class="f2-poc__column" data-stage="atencion">
+          <h3>En atención <span class="f2-poc__col-count" id="poc-col-atencion"></span></h3>
+          <div class="f2-poc__cards" id="poc-list-atencion"></div>
+        </div>
+        <div class="f2-poc__column" data-stage="interesados">
+          <h3>Interesados <span class="f2-poc__col-count" id="poc-col-interesados"></span></h3>
+          <div class="f2-poc__cards" id="poc-list-interesados"></div>
+        </div>
+        <div class="f2-poc__column" data-stage="contratacion">
+          <h3>Contratación <span class="f2-poc__col-count" id="poc-col-contratacion"></span></h3>
+          <div class="f2-poc__cards" id="poc-list-contratacion"></div>
+        </div>
+      </div>
+
+      <p class="f2-poc__disclaimer">Demostración conceptual de una parte del módulo comercial. La configuración definitiva de procesos, estados y reglas será establecida durante el levantamiento funcional del proyecto.</p>
+
+      <div aria-live="polite" class="sr-only" id="poc-announcer"></div>
+    </div>
+
+    <aside class="f2-poc__drawer" id="poc-drawer" hidden aria-label="Ficha del prospecto">
+      <button type="button" class="f2-poc__close" id="poc-drawer-close" aria-label="Cerrar ficha">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+      <span class="p-demo-badge" id="poc-drawer-stage"></span>
+      <h3 id="poc-drawer-name"></h3>
+      <dl class="f2-poc__fields">
+        <div><dt>Origen</dt><dd id="poc-drawer-origen"></dd></div>
+        <div><dt>Interés</dt><dd id="poc-drawer-interes"></dd></div>
+        <div><dt>Responsable</dt><dd id="poc-drawer-responsable"></dd></div>
+        <div><dt>Actividad</dt><dd id="poc-drawer-actividad"></dd></div>
+      </dl>
+      <button type="button" class="btn btn-primary btn-block" id="poc-advance-btn">Avanzar oportunidad</button>
+      <p class="f2-poc__drawer-note" id="poc-drawer-note" hidden>Esta oportunidad ya llegó al final de la demostración.</p>
+    </aside>
+  </dialog>
 
   <!-- Diálogo de contacto: se usa mientras no haya canal comercial configurado -->
   <dialog class="p-dialog" id="contact-dialog" aria-labelledby="contact-dialog-title">
