@@ -22,15 +22,17 @@ preparado para una futura arquitectura con backend, CRM e IA real.
 - **Fase 1 (esta PoC y la propuesta):** servicios de necesidad inmediata /
   venta directa — atención inmediata, velación, cremación, inhumación y
   traslados.
-- **Fase 2 (fuera de alcance):** previsión funeraria. Será objeto de un
-  análisis legal, comercial y operativo independiente, con su propia
-  propuesta. En el sitio solo aparece como nota discreta "Próxima etapa";
+- **Fase 2 (fuera del alcance de la Nueva Web de Fase 1):** previsión funeraria.
+  Tiene su propia propuesta y PoC de Panel Comercial / CRM. En la Nueva Web
+  solo aparece como nota discreta "Próxima etapa";
   no hay cotización, planes ni CTA de contratación de previsión, y el
   asistente responde a esas consultas indicando que es una próxima etapa.
 
 ## Arquitectura
 
-El Home es una landing comercial: convierte. El contenido institucional
+La única ruta principal para compartir con el cliente es
+`/propuesta-integral.html`. `index.html` es la experiencia funcional
+"Nueva Web" de Fase 1. El contenido institucional
 extenso (historia completa, misión, visión) vive aparte, en `/nosotros.html`.
 
 ```text
@@ -48,38 +50,42 @@ nosotros.html             → Historia, misión, visión, presencia nacional
 dashboard-demo.html       → Centro Digital · Panel ejecutivo (demo)
 centro-atencion-demo.html → Centro Digital · Atención omnicanal (demo)
 
-propuesta.html            → Propuesta comercial interactiva (no está en
-                             el menú público: se envía por enlace)
+propuesta-integral.html   → Visión general y entrada al recorrido
+propuesta.html            → Propuesta comercial de Fase 1
+propuesta-fase2.html      → Propuesta de Fase 2 con PoC del Panel Comercial / CRM
 ```
 
 ## Flujo de navegación
 
 ```text
-propuesta.html ──► index.html (Explorar la PoC)
-      │                 └─► cotizar.html ─► centro-atencion-demo.html
-      ├──► centro-atencion-demo.html ◄──► dashboard-demo.html
-      └──► dashboard-demo.html            (ambas con "Volver a la propuesta"
-                                           y "Volver al sitio público")
+propuesta-integral.html ──► propuesta.html (Fase 1)
+         │                     ├──► index.html (Nueva Web)
+         │                     ├──► cotizar.html
+         │                     ├──► centro-atencion-demo.html
+         │                     └──► dashboard-demo.html
+         └───────────────► propuesta-fase2.html (Fase 2 + Panel Comercial)
 ```
+
+Cada experiencia de Fase 1 permite volver a `propuesta.html` o a la visión
+general. Ambas propuestas enlazan con la visión general y entre sí.
 
 ## Propuesta comercial (`propuesta.html`)
 
-Página independiente del sitio público, pensada para enviarse por enlace a
-la Junta Directiva. Recorre: hoy vs. propuesta, qué gana el negocio,
+Página de Fase 1 accesible desde la visión general. Recorre: hoy vs.
+propuesta, qué gana el negocio,
 agente digital 24/7 (conversación animada y flujo cliente → agente →
 necesidad → datos → asesor humano), inteligencia de negocio (datos
 demostrativos), preguntas de dirección, impacto esperado (escenarios
 referenciales), simulador ilustrativo, alcance en cinco frentes, roadmap
-de hasta 45 días, inversión (USD 3.890 financiado / USD 3.590 pago total
-dentro de los 45 días), plan 30/30/20/20, nota de bolívares (tasa oficial
+de hasta 45 días, inversión de Fase 1 (USD 2.790; 50 % durante la implementación
+y 50 % financiable hasta por 60 días), nota de bolívares (tasa oficial
 euro BCV vigente a la fecha de cada pago), Fase 2 y servicios que se cotizan
 aparte.
 
 - Archivos: `propuesta.html`, `css/propuesta.css`, `js/propuesta.js`,
   `data/proposal-config.js`.
 - **Contacto comercial:** `PROPOSAL_CONFIG.contact` (`whatsapp`, `email`)
-  está en `null` a propósito. Mientras no se complete, "Quiero avanzar" y
-  "Tengo una consulta" muestran el mensaje redactado para copiarlo.
+  contiene los canales comerciales de Elipsoft configurados en esta PoC.
 - **Impresión / PDF:** `@media print` oculta controles interactivos, abre
   todos los bloques de alcance y conserva precios, pagos, roadmap y
   términos (≈14 páginas A4).
@@ -98,7 +104,7 @@ fingerprinting) en `window.GVV_PROPOSAL_EVENTS` y los emite como
 | --- | --- |
 | `proposal_open` | Carga de la página |
 | `proposal_section_view` | Primera vez que se ve cada sección |
-| `proposal_demo_click` | "Explorar la PoC" / "Volver a explorar la demo" |
+| `proposal_demo_click` | "Explorar la PoC" / "Explorar Nueva Web" |
 | `proposal_center_click` | "Ver Centro de Atención" |
 | `proposal_dashboard_click` | "Explorar Dashboard" |
 | `proposal_roi_interaction` | Primer uso del simulador |

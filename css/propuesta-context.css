@@ -1,0 +1,515 @@
+/**
+ * Controles de navegación entre capítulos (Vision general / Fase 1 / Fase 2).
+ *
+ * Compartido por propuesta.html, propuesta-fase2.html, index.html y
+ * cotizar.html. No modifica ningun otro archivo CSS existente.
+ */
+
+.pnav__chapters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.5em var(--space-md);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-ivory);
+}
+
+.pnav__chapter-link {
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  padding: 0.4em 0.95em;
+  white-space: nowrap;
+  transition: color var(--duration-base) var(--ease-standard), border-color var(--duration-base) var(--ease-standard);
+}
+
+.pnav__chapter-link:hover {
+  color: var(--color-primary-strong);
+  border-color: var(--color-gold-500);
+}
+
+.pcontext-strip {
+  padding-top: var(--space-lg);
+  display: grid;
+  gap: 0.5em;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
+}
+
+.pcontext-strip strong {
+  color: var(--color-primary-strong);
+}
+
+.pcontext-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6em;
+  font-size: var(--fs-sm);
+}
+
+.pcontext-links a {
+  color: var(--color-navy-700);
+  font-weight: 600;
+  text-underline-offset: 3px;
+}
+
+.pcontext-links span {
+  color: var(--color-silver-300);
+}
+
+.pcontext-quicklinks {
+  margin-top: var(--space-md);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6em;
+}
+
+.pcontext-quicklinks a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-navy-700);
+  text-decoration: none;
+  background: var(--color-ivory);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  padding: 0.6em 1.1em;
+  transition: border-color var(--duration-base) var(--ease-standard), background var(--duration-base) var(--ease-standard);
+}
+
+.pcontext-quicklinks a:hover {
+  border-color: var(--color-gold-500);
+  background: var(--color-surface);
+}
+
+.p-phase2__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.pcontext-bar {
+  position: fixed;
+  left: 14px;
+  bottom: 14px;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  background: var(--color-navy-900);
+  color: rgba(255, 255, 255, 0.85);
+  border-radius: var(--radius-pill);
+  padding: 0.5em 0.55em 0.5em 0.9em;
+  box-shadow: 0 10px 24px rgba(16, 28, 40, 0.25);
+  font-size: 0.76rem;
+}
+
+.pcontext-bar a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.3em 0.55em;
+  border-radius: var(--radius-pill);
+  transition: background var(--duration-base) var(--ease-standard);
+}
+
+.pcontext-bar a:hover,
+.pcontext-bar a:focus-visible {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.pcontext-bar span[aria-hidden="true"] {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+@media (max-width: 560px) {
+  .pcontext-bar {
+    left: 10px;
+    bottom: 10px;
+    font-size: 0.7rem;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Gramática de acción: avanzar/explorar (violeta) vs volver (turquesa) */
+/*                                                                      */
+/* Clase adicional aplicada sobre controles de navegación ya existentes */
+/* (.btn, .pnav__chapter-link, .app-back-link, enlaces de cierre). No   */
+/* modifica .btn, main.css ni los tokens de marca — solo define estos   */
+/* dos colores de acción y los aplica donde corresponde.                */
+/* ------------------------------------------------------------------ */
+
+.pcontext-action--forward,
+.pcontext-action--back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: transform 200ms ease, box-shadow 200ms ease, background-color 200ms ease, color 200ms ease;
+}
+
+.pcontext-action--forward {
+  background: #6857e5;
+  color: #ffffff;
+  box-shadow: 0 10px 22px rgba(104, 87, 229, 0.32);
+}
+
+.pcontext-action--forward:hover,
+.pcontext-action--forward:focus-visible {
+  background: #5746cf;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 26px rgba(87, 70, 207, 0.38);
+}
+
+.pcontext-action--back {
+  background: #10b7c4;
+  color: #ffffff;
+  box-shadow: 0 8px 18px rgba(16, 183, 196, 0.26);
+}
+
+.pcontext-action--back:hover,
+.pcontext-action--back:focus-visible {
+  background: #0799a6;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 22px rgba(7, 153, 166, 0.32);
+}
+
+.pcontext-action--forward:focus-visible,
+.pcontext-action--back:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 2px;
+}
+
+.pcontext-action--forward .icon,
+.pcontext-action--back .icon {
+  transition: transform 200ms ease;
+}
+
+.pcontext-action--forward:hover .icon,
+.pcontext-action--forward:focus-visible .icon {
+  transform: translateX(3px);
+}
+
+.pcontext-action--back:hover .icon,
+.pcontext-action--back:focus-visible .icon {
+  transform: translateX(-3px);
+}
+
+/* Controles que ya eran .btn: solo reciben color, peso y sombra;        */
+/* .btn ya aporta tamaño, padding y radio coherentes con la marca.       */
+.btn.pcontext-action--forward,
+.btn.pcontext-action--back {
+  border-color: transparent;
+}
+
+/* Controles compactos que aún no eran .btn (chips de navegación,        */
+/* accesos rápidos y enlaces de retorno en pie de sidebar/cierre).       */
+.pnav__chapter-link.pcontext-action--forward,
+.pnav__chapter-link.pcontext-action--back,
+.pcontext-quicklinks a.pcontext-action--forward,
+.app-back-link.pcontext-action--forward,
+.app-back-link.pcontext-action--back,
+.p-close__link.pcontext-action--forward,
+.p-close__link.pcontext-action--back {
+  min-height: 44px;
+  padding: 0.65em 1.2em;
+  border-radius: 11px;
+  font-size: 0.92rem;
+}
+
+/* .pcontext-quicklinks a ya trae fondo/borde propios (0,0,1,1); se      */
+/* repite aquí el color de acción con un selector igual de específico    */
+/* para que gane sobre esa regla de base. */
+.pcontext-quicklinks a.pcontext-action--forward {
+  color: #ffffff;
+  background: #6857e5;
+  border-color: transparent;
+}
+
+.pcontext-quicklinks a.pcontext-action--forward:hover,
+.pcontext-quicklinks a.pcontext-action--forward:focus-visible {
+  color: #ffffff;
+  background: #5746cf;
+  border-color: transparent;
+}
+
+/* Dentro de la hoja/índice móvil: fila más compacta, sin restructurar   */
+/* la lista existente. */
+.pnav__sheet a.pcontext-action--forward,
+.pnav__sheet a.pcontext-action--back {
+  min-height: 40px;
+  padding: 0.55em 1em;
+  border-radius: 10px;
+  border-bottom: none;
+  margin: 0.3em 0;
+  font-size: 0.85rem;
+}
+
+/* Franja de contexto (propuesta-fase2.html): enlaces de texto, no       */
+/* botones sólidos, para no duplicar visualmente el chip del header.     */
+.pcontext-links a {
+  color: #0799a6;
+  font-weight: 700;
+  text-decoration-thickness: 1px;
+}
+
+.pcontext-links a:hover,
+.pcontext-links a:focus-visible {
+  text-decoration-thickness: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pcontext-action--forward,
+  .pcontext-action--back,
+  .pcontext-action--forward .icon,
+  .pcontext-action--back .icon {
+    transition: none;
+  }
+
+  .pcontext-action--forward:hover,
+  .pcontext-action--back:hover {
+    transform: none;
+  }
+
+  .pcontext-action--forward:hover .icon,
+  .pcontext-action--back:hover .icon {
+    transform: none;
+  }
+}
+
+/* Control flotante de retorno (index.html, cotizar.html): mismo         */
+/* lenguaje turquesa, sin rediseñar su forma o ubicación compacta.       */
+.pcontext-bar {
+  background: #10b7c4;
+}
+
+.pcontext-bar a:hover,
+.pcontext-bar a:focus-visible {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* Botones de recorrido: tamaño táctil y contraste coherentes en todas las vistas. */
+.btn.pcontext-action--forward,
+.btn.pcontext-action--back,
+.pnav__chapter-link.pcontext-action--forward,
+.pnav__chapter-link.pcontext-action--back,
+.pcontext-quicklinks a.pcontext-action--forward,
+.app-back-link.pcontext-action--forward,
+.app-back-link.pcontext-action--back,
+.p-close__link.pcontext-action--forward,
+.p-close__link.pcontext-action--back,
+.pintegral-chapter__grid a.pcontext-action--forward,
+.pcontext-bar a.pcontext-action--back {
+  min-height: 52px;
+  padding: 0.75em 1.15em;
+  border-radius: 11px;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.25;
+  white-space: normal;
+  text-align: center;
+}
+
+.btn.pcontext-action--forward,
+.pnav__chapter-link.pcontext-action--forward,
+.app-back-link.pcontext-action--forward,
+.p-close__link.pcontext-action--forward,
+.pintegral-chapter__grid a.pcontext-action--forward {
+  background: #6857e5;
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.btn.pcontext-action--back,
+.pnav__chapter-link.pcontext-action--back,
+.app-back-link.pcontext-action--back,
+.p-close__link.pcontext-action--back,
+.pcontext-bar a.pcontext-action--back {
+  background: #10b7c4;
+  color: #ffffff;
+  border-color: transparent;
+  text-shadow: 0 1px 2px rgba(0, 34, 44, 0.55);
+}
+
+.btn.pcontext-action--forward:hover,
+.btn.pcontext-action--forward:focus-visible,
+.pnav__chapter-link.pcontext-action--forward:hover,
+.pnav__chapter-link.pcontext-action--forward:focus-visible,
+.app-back-link.pcontext-action--forward:hover,
+.app-back-link.pcontext-action--forward:focus-visible,
+.p-close__link.pcontext-action--forward:hover,
+.p-close__link.pcontext-action--forward:focus-visible,
+.pintegral-chapter__grid a.pcontext-action--forward:hover,
+.pintegral-chapter__grid a.pcontext-action--forward:focus-visible {
+  background: #5746cf;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 26px rgba(87, 70, 207, 0.38);
+}
+
+.btn.pcontext-action--back:hover,
+.btn.pcontext-action--back:focus-visible,
+.pnav__chapter-link.pcontext-action--back:hover,
+.pnav__chapter-link.pcontext-action--back:focus-visible,
+.app-back-link.pcontext-action--back:hover,
+.app-back-link.pcontext-action--back:focus-visible,
+.p-close__link.pcontext-action--back:hover,
+.p-close__link.pcontext-action--back:focus-visible,
+.pcontext-bar a.pcontext-action--back:hover,
+.pcontext-bar a.pcontext-action--back:focus-visible {
+  background: #0799a6;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 22px rgba(7, 153, 166, 0.32);
+}
+
+.pcontext-action--forward:focus-visible,
+.pcontext-action--back:focus-visible {
+  outline: 3px solid #172a43;
+  outline-offset: 3px;
+}
+
+.pintegral-chapter__grid a.pcontext-action--forward {
+  display: grid;
+  justify-items: start;
+  text-align: left;
+}
+
+.pintegral-chapter__grid a.pcontext-action--forward strong,
+.pintegral-chapter__grid a.pcontext-action--forward span {
+  color: #ffffff;
+}
+
+.pintegral-chapter__grid a.pcontext-action--forward span {
+  opacity: 0.9;
+}
+
+.pcontext-quicklinks a.pcontext-action--forward::after,
+.pintegral-chapter__grid a.pcontext-action--forward::after,
+.pintegral-chapter__ctas a.pcontext-action--forward:last-child::after,
+.pnav__sheet a.pcontext-action--forward::after {
+  content: "→";
+  display: inline-block;
+  font-size: 1.1em;
+  transition: transform 200ms ease;
+}
+
+.pintegral-chapter__grid a.pcontext-action--forward::after {
+  justify-self: end;
+}
+
+.pcontext-quicklinks a.pcontext-action--forward:hover::after,
+.pintegral-chapter__grid a.pcontext-action--forward:hover::after,
+.pintegral-chapter__ctas a.pcontext-action--forward:last-child:hover::after,
+.pnav__sheet a.pcontext-action--forward:hover::after {
+  transform: translateX(4px);
+}
+
+.pcontext-bar {
+  width: max-content;
+  max-width: calc(100vw - 20px);
+  padding: 0;
+  gap: 0.4em;
+  background: transparent;
+  box-shadow: none;
+}
+
+.pcontext-bar a.pcontext-action--back {
+  display: inline-flex;
+  box-shadow: 0 8px 18px rgba(16, 183, 196, 0.26);
+}
+
+.pcontext-bar span[aria-hidden="true"] {
+  display: none;
+}
+
+.pcontext-links a.pcontext-action--back {
+  min-height: 50px;
+  padding: 0.7em 1em;
+  border-radius: 11px;
+  background: #10b7c4;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.pcontext-links a.pcontext-action--back:hover,
+.pcontext-links a.pcontext-action--back:focus-visible {
+  background: #0799a6;
+  color: #ffffff;
+}
+
+.pnav__sheet a.pcontext-action--forward,
+.pnav__sheet a.pcontext-action--back {
+  min-height: 50px;
+  font-size: 1rem;
+}
+
+.p-price.p-price--single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.p-pay__steps.p-pay__steps--split,
+.f2-pay__steps.f2-pay__steps--split {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 560px) {
+  .pnav__chapters,
+  .pcontext-links {
+    flex-wrap: wrap;
+  }
+
+  .pcontext-bar {
+    right: 10px;
+  }
+
+  .pcontext-bar a.pcontext-action--back {
+    min-height: 50px;
+    padding: 0.65em 0.7em;
+    font-size: 0.875rem;
+  }
+
+  .p-pay__steps.p-pay__steps--split,
+  .f2-pay__steps.f2-pay__steps--split {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pcontext-quicklinks a.pcontext-action--forward::after,
+  .pintegral-chapter__grid a.pcontext-action--forward::after,
+  .pintegral-chapter__ctas a.pcontext-action--forward:last-child::after,
+  .pnav__sheet a.pcontext-action--forward::after {
+    transition: none;
+  }
+
+  .pcontext-quicklinks a.pcontext-action--forward:hover::after,
+  .pintegral-chapter__grid a.pcontext-action--forward:hover::after,
+  .pintegral-chapter__ctas a.pcontext-action--forward:last-child:hover::after,
+  .pnav__sheet a.pcontext-action--forward:hover::after {
+    transform: none;
+  }
+
+  .pcontext-action--forward:hover,
+  .pcontext-action--back:hover,
+  .pcontext-action--forward:focus-visible,
+  .pcontext-action--back:focus-visible {
+    transform: none;
+  }
+}

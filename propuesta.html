@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="css/tokens.css" />
   <link rel="stylesheet" href="css/main.css" />
   <link rel="stylesheet" href="css/propuesta.css" />
+  <link rel="stylesheet" href="css/propuesta-context.css" />
 </head>
 <body class="proposal-body">
   <a class="skip-link" href="#vision">Saltar al contenido</a>
@@ -37,6 +38,10 @@
       </nav>
       <button type="button" class="pnav__index" id="pnav-index" aria-expanded="false" aria-controls="pnav-sheet">Índice</button>
     </div>
+    <div class="pnav__chapters" aria-label="Otras superficies de la propuesta">
+      <a class="pnav__chapter-link pcontext-action--back" href="propuesta-integral.html">Visión general</a>
+      <a class="pnav__chapter-link pcontext-action--forward" href="propuesta-fase2.html">Fase 2 →</a>
+    </div>
     <div class="pnav__progress" aria-hidden="true"><span id="pnav-progress"></span></div>
     <nav class="pnav__sheet" id="pnav-sheet" aria-label="Índice de la propuesta" hidden>
       <a href="#vision">Visión</a>
@@ -47,6 +52,8 @@
       <a href="#roadmap">Roadmap</a>
       <a href="#inversion">Inversión</a>
       <a href="#cierre">Próximos pasos</a>
+      <a class="pcontext-action--back" href="propuesta-integral.html">Visión general</a>
+      <a class="pcontext-action--forward" href="propuesta-fase2.html">Ver propuesta Fase 2</a>
     </nav>
   </header>
 
@@ -59,10 +66,10 @@
         <h1 class="reveal">De una presencia informativa a una plataforma de atención, captación y crecimiento.</h1>
         <p class="p-hero__lead reveal">Una experiencia diseñada para atender mejor a las familias, convertir oportunidades en acciones y transformar cada interacción en información útil para el negocio.</p>
         <div class="p-hero__ctas reveal">
-          <a class="btn btn-primary btn-lg" href="#vision">Conocer la propuesta
+          <a class="btn pcontext-action--forward btn-lg" href="#vision">Conocer la propuesta
             <svg class="icon icon--arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
-          <a class="btn p-btn-glass btn-lg" href="index.html" data-track="proposal_demo_click" data-track-target="hero">Explorar la PoC</a>
+          <a class="btn pcontext-action--forward btn-lg" href="index.html" data-track="proposal_demo_click" data-track-target="hero">Explorar la PoC</a>
         </div>
         <div class="p-hero__meta reveal">
           <span class="p-hero__chip">
@@ -235,7 +242,7 @@
 
         <div class="p-agent__closing reveal">
           <blockquote class="p-agent__quote">La tecnología atiende primero; las personas acompañan cuando más importa.</blockquote>
-          <a class="btn btn-primary btn-lg" href="centro-atencion-demo.html" data-track="proposal_center_click">Ver Centro de Atención
+          <a class="btn pcontext-action--forward btn-lg" href="centro-atencion-demo.html" data-track="proposal_center_click">Ver Centro de Atención
             <svg class="icon icon--arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </div>
@@ -311,7 +318,7 @@
         </div>
 
         <div class="p-center-cta reveal">
-          <a class="btn btn-secondary btn-lg" href="dashboard-demo.html" data-track="proposal_dashboard_click">Explorar Dashboard
+          <a class="btn pcontext-action--forward btn-lg" href="dashboard-demo.html" data-track="proposal_dashboard_click">Explorar Dashboard
             <svg class="icon icon--arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </div>
@@ -468,39 +475,31 @@
       <div class="p-wrap">
         <header class="p-head reveal">
           <span class="p-eyebrow">Inversión · Fase 1</span>
-          <h2>Dos modalidades, un mismo alcance.</h2>
+          <h2>Una inversión, un mismo alcance.</h2>
         </header>
 
-        <div class="p-price">
-          <article class="p-price__card reveal">
-            <span class="p-price__label">Monto financiado</span>
-            <strong class="p-price__amount"><small>USD</small> 3.890</strong>
-            <p>Una modalidad flexible para iniciar el proyecto y distribuir parte de la inversión después de la implementación.</p>
-            <a class="p-price__link" href="#pagos">Ver facilidad de pago</a>
-          </article>
+        <div class="p-price p-price--single">
           <article class="p-price__card p-price__card--featured reveal">
-            <span class="p-price__badge">Pronto pago</span>
-            <span class="p-price__label">Pago total dentro de los 45 días</span>
-            <strong class="p-price__amount"><small>USD</small> 3.590</strong>
-            <p>Valor preferencial si la totalidad del proyecto es cancelada dentro del período de implementación.</p>
+            <span class="p-price__label">Inversión Fase 1</span>
+            <strong class="p-price__amount"><small>USD</small> 2.790</strong>
+            <p>Incluye todo el alcance descrito en esta propuesta.</p>
+            <a class="p-price__link" href="#pagos">Ver facilidad de pago</a>
           </article>
         </div>
 
         <!-- 12. FACILIDAD DE PAGO -->
         <div class="p-pay reveal" id="pagos" data-section="pagos">
           <header class="p-pay__head">
-            <h3>Facilidad de pago · modalidad financiada</h3>
-            <p>50% durante la implementación y 50% en los 60 días posteriores.</p>
+            <h3>Facilidad de pago</h3>
+            <p>50% durante la implementación y 50% financiado directamente por Elipsoft hasta por 60 días posteriores a la entrega final.</p>
           </header>
-          <ol class="p-pay__steps">
-            <li><span class="p-pay__pct">25%</span><span class="p-pay__when">Al inicio</span><strong>USD 972,50</strong></li>
-            <li><span class="p-pay__pct">25%</span><span class="p-pay__when">Durante la implementación</span><strong>USD 972,50</strong></li>
-            <li><span class="p-pay__pct">25%</span><span class="p-pay__when">30 días posteriores</span><strong>USD 972,50</strong></li>
-            <li><span class="p-pay__pct">25%</span><span class="p-pay__when">60 días posteriores</span><strong>USD 972,50</strong></li>
+          <ol class="p-pay__steps p-pay__steps--split">
+            <li><span class="p-pay__pct">50%</span><span class="p-pay__when">Durante la implementación</span><strong>USD 1.395</strong></li>
+            <li><span class="p-pay__pct">50%</span><span class="p-pay__when">Financiado · hasta 60 días posteriores a la entrega final</span><strong>USD 1.395</strong></li>
           </ol>
           <div class="p-pay__notes">
             <p>Se permiten abonos anticipados o parciales sin penalización.</p>
-            <p><strong>Pronto pago:</strong> no es necesario replicar esta distribución. La condición de USD 3.590 aplica simplemente si el proyecto queda totalmente cancelado dentro de los 45 días de implementación.</p>
+            <p>La periodicidad del saldo financiado se acuerda con Grupo Virgen del Valle.</p>
           </div>
         </div>
 
@@ -515,14 +514,33 @@
       </div>
     </section>
 
-    <!-- 14 + 15. FASE 2 Y SERVICIOS INDEPENDIENTES -->
+    <!-- 14 + 15. EXPLORE LA FASE 1 + PUENTE A FASE 2 + SERVICIOS INDEPENDIENTES -->
     <section class="p-section p-section--ivory" id="fase-2" data-section="fase-2">
       <div class="p-wrap">
-        <div class="p-later">
+        <header class="p-head reveal">
+          <span class="p-eyebrow">Explore la Fase 1</span>
+          <h2>Cuatro experiencias interactivas de esta fase</h2>
+          <p>Cada una demuestra, en funcionamiento, una capacidad de la plataforma descrita en esta propuesta.</p>
+        </header>
+        <div class="pcontext-quicklinks reveal">
+          <a class="pcontext-action--forward" href="index.html" data-track="proposal_demo_click" data-track-target="quicklinks">Nueva web</a>
+          <a class="pcontext-action--forward" href="cotizar.html">Cotizador</a>
+          <a class="pcontext-action--forward" href="centro-atencion-demo.html" data-track="proposal_center_click">Centro de Atención</a>
+          <a class="pcontext-action--forward" href="dashboard-demo.html" data-track="proposal_dashboard_click">Panel Ejecutivo</a>
+        </div>
+
+        <div class="p-later" style="margin-top: var(--space-2xl);">
           <article class="p-phase2 reveal">
             <span class="p-phase2__tag">Fase 2</span>
-            <h2>Próxima etapa: Previsión funeraria</h2>
-            <p>La digitalización de previsión funeraria no forma parte del alcance de esta propuesta. Será objeto de un análisis funcional, comercial, operativo y legal independiente y contará con su propia propuesta.</p>
+            <h2>De la presencia digital a la operación digital</h2>
+            <p>Fase 1 crea el punto de entrada, organiza la experiencia y fortalece la captación y atención.</p>
+            <p>Cuando una oportunidad corresponde al servicio de previsiones, comienza una segunda etapa: convertir esa oportunidad en una previsión contratada, cobrada y administrada.</p>
+            <div class="p-phase2__ctas">
+              <a class="btn pcontext-action--forward" href="propuesta-fase2.html">Continuar a Fase 2
+                <svg class="icon icon--arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+              <a class="btn pcontext-action--back" href="propuesta-integral.html">Volver a la visión general</a>
+            </div>
           </article>
 
           <article class="p-extras reveal">
@@ -549,17 +567,16 @@
       <div class="p-wrap p-close__inner">
         <h2 class="reveal">Más que una nueva web, una base digital para atender mejor y crecer con información.</h2>
         <div class="p-close__ctas reveal">
-          <button type="button" class="btn btn-primary btn-lg" data-contact="advance" data-track="proposal_cta_advance">Quiero avanzar
+          <button type="button" class="btn pcontext-action--forward btn-lg" data-contact="advance" data-track="proposal_cta_advance">Quiero avanzar
             <svg class="icon icon--arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </button>
           <button type="button" class="btn p-btn-glass btn-lg" data-contact="question" data-track="proposal_cta_question">Tengo una consulta</button>
         </div>
         <p class="p-close__hint reveal" id="contact-hint" hidden>Al pulsar, le mostramos el mensaje listo para enviarlo por el canal que prefiera.</p>
         <div class="p-close__links reveal">
-          <a class="p-close__link" href="index.html" data-track="proposal_demo_click" data-track-target="closing">Volver a explorar la demo</a>
+          <a class="p-close__link pcontext-action--forward" href="index.html" data-track="proposal_demo_click" data-track-target="closing">Explorar Nueva Web →</a>
           <a class="p-close__link" href="#" data-pdf-link data-pdf-wrap hidden data-track="proposal_pdf_download">Descargar propuesta en PDF</a>
         </div>
-
         <aside class="p-dev reveal" aria-label="Desarrollador de la solución">
           <span class="p-dev__label">Solución desarrollada por</span>
           <span class="p-dev__wordmark">Elipsoft</span>

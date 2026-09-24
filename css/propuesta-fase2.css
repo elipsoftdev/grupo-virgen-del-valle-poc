@@ -759,6 +759,11 @@
   gap: var(--space-sm);
 }
 
+.f2-poc__drawer[hidden],
+.f2-poc__channels[hidden] {
+  display: none;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .f2-poc__drawer:not([hidden]) {
     animation: f2PocDrawerIn 260ms var(--ease-standard);

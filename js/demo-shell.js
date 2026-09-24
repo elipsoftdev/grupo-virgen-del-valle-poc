@@ -41,8 +41,9 @@ function renderDemoSidebar() {
         <strong>Demostración</strong>
         Las cifras y conversaciones de esta vista son simuladas, para mostrar cómo funcionaría la plataforma en operación.
       </div>
-      <a class="app-back-link" href="propuesta.html">${icon("arrowRight")} Volver a la propuesta</a>
-      <a class="app-back-link" href="index.html">${icon("home")} Volver al sitio público</a>
+      <a class="app-back-link pcontext-action--back" href="propuesta.html">${icon("arrowRight")} Volver a Fase 1</a>
+      <a class="app-back-link pcontext-action--back" href="propuesta-integral.html">${icon("grid")} Visión general</a>
+      <a class="app-back-link pcontext-action--forward" href="index.html">${icon("home")} Explorar Nueva Web</a>
     </div>
   `;
 }

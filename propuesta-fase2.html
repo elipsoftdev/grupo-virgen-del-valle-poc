@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="css/main.css" />
   <link rel="stylesheet" href="css/propuesta.css" />
   <link rel="stylesheet" href="css/propuesta-fase2.css" />
+  <link rel="stylesheet" href="css/propuesta-context.css" />
 </head>
 <body class="proposal-body">
   <a class="skip-link" href="#contexto">Saltar al contenido</a>
@@ -37,6 +38,10 @@
       </nav>
       <button type="button" class="pnav__index" id="pnav-index" aria-expanded="false" aria-controls="pnav-sheet">Índice</button>
     </div>
+    <div class="pnav__chapters" aria-label="Otras superficies de la propuesta">
+      <a class="pnav__chapter-link pcontext-action--back" href="propuesta-integral.html">Visión general</a>
+      <a class="pnav__chapter-link pcontext-action--back" href="propuesta.html">← Fase 1</a>
+    </div>
     <div class="pnav__progress" aria-hidden="true"><span id="pnav-progress"></span></div>
     <nav class="pnav__sheet" id="pnav-sheet" aria-label="Índice de la propuesta" hidden>
       <a href="#contexto">Cómo llegamos hasta aquí</a>
@@ -50,6 +55,8 @@
       <a href="#siguientes-pasos">Qué ocurre después</a>
       <a href="#inversion">Inversión</a>
       <a href="#cierre">Próximos pasos</a>
+      <a class="pcontext-action--back" href="propuesta-integral.html">Visión general</a>
+      <a class="pcontext-action--back" href="propuesta.html">Volver a Fase 1</a>
     </nav>
   </header>
 
@@ -62,7 +69,7 @@
           <h1 class="reveal">Plataforma Digital de Previsiones</h1>
           <p class="p-hero__lead reveal">De una oportunidad comercial a una previsión contratada, pagada y administrada dentro de un mismo proceso.</p>
           <div class="p-hero__ctas reveal">
-            <a class="btn btn-primary btn-lg" href="#contexto">Explorar propuesta
+            <a class="btn pcontext-action--forward btn-lg" href="#contexto">Explorar propuesta
               <svg class="icon icon--arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
             <a class="btn p-btn-glass btn-lg" href="#pilares">Ver los 4 pilares</a>
@@ -106,6 +113,15 @@
         </ol>
       </div>
     </section>
+
+    <div class="p-wrap pcontext-strip reveal">
+      <p><strong>Fase 2 continúa el proceso iniciado en Fase 1.</strong> La primera fase atrae y atiende. La segunda convierte y opera.</p>
+      <p class="pcontext-links">
+        <a class="pcontext-action--back" href="propuesta.html">← Volver a Fase 1</a>
+        <span aria-hidden="true">·</span>
+        <a class="pcontext-action--back" href="propuesta-integral.html">Visión general</a>
+      </p>
+    </div>
 
     <!-- 02. CÓMO LLEGAMOS HASTA AQUÍ -->
     <section class="p-section" id="contexto" data-section="contexto">
@@ -246,7 +262,7 @@
           </article>
         </div>
 
-        <div class="f2-poc-launch reveal">
+        <div class="f2-poc-launch reveal" id="demo-comercial">
           <div class="f2-poc-launch__flow" aria-hidden="true">
             <span>Fase 1<small>Captación y atención digital</small></span>
             <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -257,7 +273,7 @@
           <div class="f2-poc-launch__copy">
             <h3>Vea cómo comienza el proceso</h3>
             <p>Un interesado captado desde los canales digitales puede ingresar al proceso comercial y ser gestionado desde un único entorno.</p>
-            <button type="button" class="btn btn-primary btn-lg" id="poc-open-btn">Probar demostración
+            <button type="button" class="btn pcontext-action--forward btn-lg" id="poc-open-btn">Probar demostración
               <svg class="icon icon--arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </button>
             <p class="f2-poc-launch__disclaimer">Demostración conceptual de una parte del módulo comercial. La configuración definitiva de procesos, estados y reglas será establecida durante el levantamiento funcional del proyecto.</p>
@@ -474,16 +490,14 @@
         <div class="f2-pay reveal">
           <header class="f2-pay__head">
             <h3>Condiciones de pago</h3>
-            <p>25% al inicio · 25% contra entrega final · 50% financiado por Elipsoft durante 60 días.</p>
+            <p>50 % durante la implementación y 50 % financiado directamente por Elipsoft hasta por 60 días posteriores a la entrega final de esta fase.</p>
           </header>
-          <ol class="f2-pay__steps">
-            <li><span class="f2-pay__pct">25%</span><span class="f2-pay__when">Al inicio</span><strong>USD 1.932,50</strong></li>
-            <li><span class="f2-pay__pct">25%</span><span class="f2-pay__when">Contra entrega final y puesta en producción</span><strong>USD 1.932,50</strong></li>
-            <li><span class="f2-pay__pct">50%</span><span class="f2-pay__when">Financiado · 60 días posteriores a la entrega final</span><strong>USD 3.865</strong></li>
+          <ol class="f2-pay__steps f2-pay__steps--split">
+            <li><span class="f2-pay__pct">50%</span><span class="f2-pay__when">Durante la implementación</span><strong>USD 3.865</strong></li>
+            <li><span class="f2-pay__pct">50%</span><span class="f2-pay__when">Financiado · hasta 60 días posteriores a la entrega final</span><strong>USD 3.865</strong></li>
           </ol>
           <div class="f2-pay__notes">
-            <p>Referencial: 2 cuotas mensuales de USD 1.932,50, o 4 cuotas quincenales de USD 966,25. La periodicidad exacta se acuerda con el cliente.</p>
-            <p><strong>Elipsoft financia directamente el 50% de la inversión durante los 60 días posteriores a la entrega final.</strong></p>
+            <p>La periodicidad del saldo financiado se acuerda con Grupo Virgen del Valle.</p>
           </div>
         </div>
 
@@ -514,16 +528,15 @@
       <div class="p-wrap p-close__inner">
         <h2 class="reveal">La siguiente etapa es formalizar el proyecto y comenzar el levantamiento detallado sobre el trabajo ya avanzado.</h2>
         <div class="p-close__ctas reveal">
-          <button type="button" class="btn btn-primary btn-lg" data-contact="advance" data-track="proposal_cta_advance">Avanzar con Fase 2
+          <button type="button" class="btn pcontext-action--forward btn-lg" data-contact="advance" data-track="proposal_cta_advance">Avanzar con Fase 2
             <svg class="icon icon--arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </button>
           <button type="button" class="btn p-btn-glass btn-lg" data-contact="meeting" data-track="proposal_cta_question">Coordinar reunión</button>
         </div>
         <p class="p-close__hint reveal" id="contact-hint" hidden>Al pulsar, le mostramos el mensaje listo para enviarlo por el canal que prefiera.</p>
         <div class="p-close__links reveal">
-          <a class="p-close__link" href="propuesta.html">Ver la propuesta Fase 1</a>
+          <a class="p-close__link pcontext-action--back" href="propuesta.html">Ver la propuesta Fase 1</a>
         </div>
-
         <aside class="p-dev reveal" aria-label="Desarrollador de la solución">
           <span class="p-dev__label">Solución desarrollada por</span>
           <span class="p-dev__wordmark">Elipsoft</span>
