@@ -1,0 +1,443 @@
+/**
+ * Propuesta comercial Fase 2 — Plataforma Digital de Previsiones.
+ *
+ * Reutiliza tokens.css, main.css y los componentes compartidos de
+ * css/propuesta.css (nav, hero, p-section, p-head, p-compare, p-price,
+ * p-later/p-extras, p-close, p-dev, p-dialog, .reveal). Este archivo solo
+ * añade los componentes nuevos de esta página: flujo de pasos, pilares,
+ * mockup de indicadores y estado del trabajo ya avanzado.
+ */
+
+/* ------------------------------------------------------------------ */
+/* Cita destacada                                                      */
+/* ------------------------------------------------------------------ */
+
+.f2-quote {
+  margin: var(--space-lg) 0 0;
+  padding: var(--space-md) var(--space-lg);
+  border-left: 3px solid var(--color-gold-500);
+  background: var(--color-ivory);
+  border-radius: 0 20px 20px 0;
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: var(--fs-lg);
+  line-height: 1.4;
+  color: var(--color-primary-strong);
+}
+
+.f2-quote--light {
+  background: rgba(255, 255, 255, 0.05);
+  border-left-color: var(--color-gold-400);
+  color: var(--color-white);
+}
+
+/* ------------------------------------------------------------------ */
+/* Flujo de pasos (transformación, viaje del cliente, cobranza, NCNDA) */
+/* ------------------------------------------------------------------ */
+
+.f2-flow {
+  list-style: none;
+  margin: var(--space-lg) 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6em;
+}
+
+.f2-flow li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  padding: 0.7em 1.2em;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-primary-strong);
+  box-shadow: var(--shadow-sm);
+}
+
+.f2-flow li:not(:last-child)::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  margin-left: 0.5em;
+  border-top: 2px solid var(--color-gold-500);
+  border-right: 2px solid var(--color-gold-500);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+.f2-flow li:last-child {
+  background: var(--color-navy-900);
+  border-color: var(--color-navy-900);
+  color: var(--color-gold-100);
+}
+
+.f2-flow--light li {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.16);
+  color: var(--color-white);
+}
+
+.f2-flow--light li:last-child {
+  background: var(--color-gold-500);
+  color: var(--color-navy-950);
+}
+
+.f2-flow--light li:not(:last-child)::after {
+  border-color: var(--color-gold-400);
+}
+
+/* ------------------------------------------------------------------ */
+/* Los 4 pilares                                                       */
+/* ------------------------------------------------------------------ */
+
+.f2-pillars {
+  margin-top: var(--space-lg);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-md);
+}
+
+.f2-pillar {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 28px;
+  padding: var(--space-lg) var(--space-md);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--duration-base) var(--ease-standard), border-color var(--duration-base) var(--ease-standard),
+    box-shadow var(--duration-base) var(--ease-standard);
+}
+
+.f2-pillar:hover {
+  transform: translateY(-4px);
+  border-color: rgba(197, 160, 89, 0.5);
+  box-shadow: var(--shadow-md);
+}
+
+.f2-pillar__n {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: var(--color-navy-900);
+  color: var(--color-gold-400);
+  font-family: var(--font-heading);
+  font-size: var(--fs-lg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-md);
+  flex-shrink: 0;
+}
+
+.f2-pillar h3 {
+  font-size: var(--fs-xl);
+  margin-bottom: 0.6em;
+}
+
+.f2-pillar ul {
+  display: grid;
+  gap: 0.55em;
+  margin: 0 0 var(--space-sm);
+  padding: 0;
+}
+
+.f2-pillar li {
+  position: relative;
+  list-style: none;
+  padding-left: 1.3em;
+  font-size: var(--fs-sm);
+  line-height: 1.45;
+  color: var(--color-text);
+}
+
+.f2-pillar li::before {
+  content: "";
+  position: absolute;
+  left: 0.1em;
+  top: 0.6em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-gold-500);
+}
+
+.f2-pillar__note {
+  margin-top: auto;
+  padding-top: var(--space-sm);
+  border-top: 1px dashed var(--color-silver-300);
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+/* ------------------------------------------------------------------ */
+/* Mockup de indicadores (control y visibilidad)                       */
+/* ------------------------------------------------------------------ */
+
+.f2-dashboard-mock {
+  margin-top: var(--space-lg);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-sm);
+}
+
+.f2-dashboard-mock__chip {
+  background: var(--color-ivory);
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  padding: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+}
+
+.f2-dashboard-mock__chip .icon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-gold-500);
+  flex-shrink: 0;
+}
+
+.f2-dashboard-mock__chip span {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-primary-strong);
+}
+
+/* ------------------------------------------------------------------ */
+/* Trabajo ya avanzado (estado)                                        */
+/* ------------------------------------------------------------------ */
+
+.f2-status {
+  margin-top: var(--space-xl);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-md);
+}
+
+.f2-status__item {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  padding: var(--space-lg) var(--space-md);
+}
+
+.f2-status__n {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: var(--fs-xl);
+  color: var(--color-gold-400);
+  margin-bottom: var(--space-sm);
+}
+
+.f2-status__item h3 {
+  color: var(--color-white);
+  font-size: var(--fs-md);
+  line-height: 1.3;
+  margin-bottom: var(--space-md);
+}
+
+.f2-status__tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: var(--radius-pill);
+  padding: 0.4em 0.9em;
+}
+
+.f2-status__item--done .f2-status__tag {
+  background: rgba(47, 122, 79, 0.22);
+  color: #6fcf97;
+}
+
+.f2-status__item--progress .f2-status__tag {
+  background: rgba(197, 160, 89, 0.2);
+  color: var(--color-gold-400);
+}
+
+.f2-status__item--next .f2-status__tag {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ------------------------------------------------------------------ */
+/* Inversión: tarjeta única y condiciones de pago                      */
+/* ------------------------------------------------------------------ */
+
+.f2-price-wrap {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.f2-price-wrap .p-price__card {
+  text-align: center;
+}
+
+.f2-price-wrap .p-price__amount {
+  justify-content: center;
+}
+
+.f2-pay {
+  margin-top: var(--space-xl);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 30px;
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.f2-pay__head h3 {
+  font-size: var(--fs-xl);
+  margin-bottom: 0.3em;
+}
+
+.f2-pay__head p {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-lg);
+}
+
+.f2-pay__steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-sm);
+}
+
+.f2-pay__steps li {
+  position: relative;
+  background: var(--color-gold-100);
+  border-radius: 22px;
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35em;
+}
+
+.f2-pay__steps li:last-child {
+  background: var(--color-navy-900);
+  color: var(--color-white);
+}
+
+.f2-pay__steps li:last-child .f2-pay__pct,
+.f2-pay__steps li:last-child .f2-pay__when,
+.f2-pay__steps li:last-child strong {
+  color: var(--color-white);
+}
+
+.f2-pay__steps li:last-child .f2-pay__when {
+  color: var(--color-gold-400);
+}
+
+.f2-pay__steps li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: -13px;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid var(--color-gold-500);
+  border-right: 2px solid var(--color-gold-500);
+  transform: translateY(-50%) rotate(45deg);
+  z-index: 1;
+}
+
+.f2-pay__pct {
+  font-family: var(--font-heading);
+  font-size: var(--fs-2xl);
+  line-height: 1;
+  color: var(--color-primary-strong);
+}
+
+.f2-pay__when {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.f2-pay__steps strong {
+  margin-top: auto;
+  padding-top: 0.5em;
+  font-size: var(--fs-lg);
+  color: var(--color-primary-strong);
+}
+
+.f2-pay__notes {
+  margin-top: var(--space-md);
+  display: grid;
+  gap: 0.5em;
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+}
+
+.f2-pay__notes p {
+  margin: 0;
+}
+
+.f2-pay__notes strong {
+  color: var(--color-primary-strong);
+}
+
+.f2-includes {
+  margin-top: var(--space-xl);
+}
+
+.f2-includes h3 {
+  font-size: var(--fs-lg);
+  margin-bottom: var(--space-sm);
+}
+
+/* ------------------------------------------------------------------ */
+/* Responsive                                                          */
+/* ------------------------------------------------------------------ */
+
+@media (max-width: 1080px) {
+  .f2-pillars {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .f2-status {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 820px) {
+  .f2-pay__steps {
+    grid-template-columns: 1fr;
+  }
+
+  .f2-pay__steps li:not(:last-child)::after {
+    display: none;
+  }
+
+  .f2-flow li {
+    font-size: var(--fs-xs);
+    padding: 0.6em 0.9em;
+  }
+}
+
+@media (max-width: 560px) {
+  .f2-pillars {
+    grid-template-columns: 1fr;
+  }
+
+  .f2-pillar,
+  .f2-pay,
+  .f2-status__item {
+    padding: var(--space-md);
+  }
+
+  .f2-quote {
+    font-size: var(--fs-md);
+    padding: var(--space-sm) var(--space-md);
+  }
+}
